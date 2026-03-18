@@ -4,10 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,49 +20,51 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Products', href: '#products' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Services', href: '/services' },
+    { name: 'Products', href: '/products' },
+    { name: 'Contact', href: '/contact' },
   ];
+
+  const isHome = location.pathname === '/';
 
   return (
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4",
-        scrolled 
+        (scrolled || !isHome)
           ? "bg-brand-forest/95 backdrop-blur-md border-b border-brand-gold/30 py-3 shadow-lg" 
           : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-2 group cursor-pointer">
+        <Link to="/" className="flex items-center gap-2 group cursor-pointer">
           <div className="w-10 h-10 bg-brand-gold rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
             <span className="text-brand-forest font-bold text-xl">ॐ</span>
           </div>
           <div className="flex flex-col">
-            <span className={cn(
-              "font-serif font-bold text-xl tracking-tight leading-none",
-              scrolled ? "text-brand-gold" : "text-brand-gold"
-            )}>
+            <span className="font-serif font-bold text-xl tracking-tight leading-none text-brand-gold">
               OM AYURVEDA
             </span>
             <span className="text-[10px] uppercase tracking-[0.2em] text-brand-cream/80">Registered Brand</span>
           </div>
-        </div>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
-              className="text-brand-cream hover:text-brand-gold transition-colors font-medium text-sm uppercase tracking-wider"
+              to={link.href}
+              className={cn(
+                "transition-colors font-medium text-sm uppercase tracking-wider",
+                location.pathname === link.href ? "text-brand-gold" : "text-brand-cream hover:text-brand-gold"
+              )}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
           <Button 
             className="bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-black font-bold hover:opacity-90 transition-all shadow-lg border-none"
@@ -92,14 +96,17 @@ const Navbar = () => {
           <X size={32} />
         </button>
         {navLinks.map((link) => (
-          <a
+          <Link
             key={link.name}
-            href={link.href}
+            to={link.href}
             onClick={() => setIsOpen(false)}
-            className="text-brand-cream text-2xl font-serif hover:text-brand-gold transition-colors"
+            className={cn(
+              "text-2xl font-serif transition-colors",
+              location.pathname === link.href ? "text-brand-gold" : "text-brand-cream hover:text-brand-gold"
+            )}
           >
             {link.name}
-          </a>
+          </Link>
         ))}
         <Button 
           className="bg-brand-gold text-brand-black font-bold px-8 py-6 text-lg"

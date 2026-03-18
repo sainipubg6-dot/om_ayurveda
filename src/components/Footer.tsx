@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -9,12 +10,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div className="col-span-1 lg:col-span-1">
-            <div className="flex items-center gap-2 mb-6">
+            <Link to="/" className="flex items-center gap-2 mb-6">
               <div className="w-10 h-10 bg-brand-gold rounded-full flex items-center justify-center">
                 <span className="text-brand-forest font-bold text-xl">ॐ</span>
               </div>
               <span className="font-serif font-bold text-2xl text-brand-gold tracking-tight">OM AYURVEDA</span>
-            </div>
+            </Link>
             <p className="text-brand-cream/50 leading-relaxed mb-8">
               Premium Ayurvedic healthcare dedicated to ancient wisdom and modern healing. Registered brand serving thousands across India.
             </p>
@@ -31,11 +32,17 @@ const Footer = () => {
           <div>
             <h4 className="text-brand-cream font-serif text-xl font-bold mb-8">Quick Links</h4>
             <ul className="space-y-4">
-              {['Home', 'About Us', 'Our Services', 'Products', 'Contact'].map(link => (
-                <li key={link}>
-                  <a href={`#${link.toLowerCase().replace(' ', '')}`} className="text-brand-cream/60 hover:text-brand-gold transition-colors">
-                    {link}
-                  </a>
+              {[
+                { name: 'Home', href: '/' },
+                { name: 'About Us', href: '/about' },
+                { name: 'Our Services', href: '/services' },
+                { name: 'Products', href: '/products' },
+                { name: 'Contact', href: '/contact' }
+              ].map(link => (
+                <li key={link.name}>
+                  <Link to={link.href} className="text-brand-cream/60 hover:text-brand-gold transition-colors">
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -47,9 +54,9 @@ const Footer = () => {
             <ul className="space-y-4">
               {['Swarna Bhasma', 'Joint Pain', 'Sexual Wellness', 'Athletes Care', 'Chronic Illness'].map(item => (
                 <li key={item}>
-                  <a href="#services" className="text-brand-cream/60 hover:text-brand-gold transition-colors">
+                  <Link to="/services" className="text-brand-cream/60 hover:text-brand-gold transition-colors">
                     {item}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
