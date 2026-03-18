@@ -5,8 +5,10 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Marquee from '@/components/Marquee';
 import Services from '@/components/Services';
+import WhyChooseUs from '@/components/WhyChooseUs';
 import Process from '@/components/Process';
 import About from '@/components/About';
+import Gallery from '@/components/Gallery';
 import Team from '@/components/Team';
 import Products from '@/components/Products';
 import Testimonials from '@/components/Testimonials';
@@ -37,12 +39,13 @@ const Index = () => {
         <Services />
         <div className="bg-brand-cream pb-24 text-center">
           <Link to="/services">
-            <Button size="lg" className="bg-brand-forest text-brand-gold hover:bg-brand-forest/90 font-bold px-10 py-6 rounded-full">
+            <Button size="lg" className="bg-brand-forest text-brand-gold hover:bg-forest/90 font-bold px-10 py-6 rounded-full">
               View All Specialties
             </Button>
           </Link>
         </div>
 
+        <WhyChooseUs />
         <Process />
 
         {/* About Preview */}
@@ -55,6 +58,7 @@ const Index = () => {
           </Link>
         </div>
 
+        <Gallery />
         <Team />
         <Products />
         <Testimonials />

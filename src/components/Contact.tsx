@@ -1,13 +1,31 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Phone, Clock, MapPin, Send, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { showSuccess } from '@/utils/toast';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    concern: '',
+    message: ''
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const whatsappNumber = "917015001978";
+    const text = `*New Consultation Request*%0A%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Concern:* ${formData.concern}%0A*Message:* ${formData.message}`;
+    
+    showSuccess("Redirecting to WhatsApp...");
+    window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
+  };
+
   return (
     <section id="contact" className="py-24 bg-brand-cream relative">
       <div className="container px-6">
@@ -83,40 +101,58 @@ const Contact = () => {
             
             <h4 className="text-brand-cream font-serif text-2xl font-bold mb-8 relative z-10">Send a Message</h4>
             
-            <form className="space-y-6 relative z-10">
+            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-brand-cream/70 text-sm font-medium">Full Name</label>
-                  <Input className="bg-white/10 border-brand-cream/20 text-brand-cream placeholder:text-brand-cream/30 focus:border-brand-gold" placeholder="Your Name" />
+                  <Input 
+                    required
+                    className="bg-white/10 border-brand-cream/20 text-brand-cream placeholder:text-brand-cream/30 focus:border-brand-gold" 
+                    placeholder="Your Name" 
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-brand-cream/70 text-sm font-medium">Phone Number</label>
-                  <Input className="bg-white/10 border-brand-cream/20 text-brand-cream placeholder:text-brand-cream/30 focus:border-brand-gold" placeholder="Your Phone" />
+                  <Input 
+                    required
+                    className="bg-white/10 border-brand-cream/20 text-brand-cream placeholder:text-brand-cream/30 focus:border-brand-gold" 
+                    placeholder="Your Phone" 
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label className="text-brand-cream/70 text-sm font-medium">Health Concern</label>
-                <Select>
+                <Select onValueChange={(val) => setFormData({...formData, concern: val})}>
                   <SelectTrigger className="bg-white/10 border-brand-cream/20 text-brand-cream">
                     <SelectValue placeholder="Select Concern" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="athletes">Athletes Performance</SelectItem>
-                    <SelectItem value="joints">Joint Pain</SelectItem>
-                    <SelectItem value="sexual">Sexual Wellness</SelectItem>
-                    <SelectItem value="chronic">Chronic Illness</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
+                    <SelectItem value="Athletes Performance">Athletes Performance</SelectItem>
+                    <SelectItem value="Joint Pain">Joint Pain</SelectItem>
+                    <SelectItem value="Sexual Wellness">Sexual Wellness</SelectItem>
+                    <SelectItem value="Chronic Illness">Chronic Illness</SelectItem>
+                    <SelectItem value="Other">Other</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
                 <label className="text-brand-cream/70 text-sm font-medium">Message</label>
-                <Textarea className="bg-white/10 border-brand-cream/20 text-brand-cream placeholder:text-brand-cream/30 focus:border-brand-gold min-h-[120px]" placeholder="How can we help you?" />
+                <Textarea 
+                  required
+                  className="bg-white/10 border-brand-cream/20 text-brand-cream placeholder:text-brand-cream/30 focus:border-brand-gold min-h-[120px]" 
+                  placeholder="How can we help you?" 
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                />
               </div>
 
-              <Button className="w-full bg-brand-gold hover:bg-brand-goldDark text-brand-black font-bold py-6 text-lg shadow-lg">
+              <Button type="submit" className="w-full bg-brand-gold hover:bg-brand-goldDark text-brand-black font-bold py-6 text-lg shadow-lg">
                 <Send className="w-5 h-5 mr-2" />
                 Submit Request
               </Button>
