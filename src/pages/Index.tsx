@@ -5,8 +5,15 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Marquee from '@/components/Marquee';
 import Services from '@/components/Services';
-import Testimonials from '@/components/Testimonials';
+import Process from '@/components/Process';
 import About from '@/components/About';
+import Team from '@/components/Team';
+import Products from '@/components/Products';
+import Testimonials from '@/components/Testimonials';
+import Blog from '@/components/Blog';
+import FAQ from '@/components/FAQ';
+import Newsletter from '@/components/Newsletter';
+import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { MadeWithDyad } from "@/components/made-with-dyad";
@@ -36,6 +43,8 @@ const Index = () => {
           </Link>
         </div>
 
+        <Process />
+
         {/* About Preview */}
         <About />
         <div className="bg-white pb-24 text-center">
@@ -46,23 +55,13 @@ const Index = () => {
           </Link>
         </div>
 
+        <Team />
+        <Products />
         <Testimonials />
-
-        {/* CTA Section */}
-        <section className="py-24 bg-brand-forest text-center relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-gold via-transparent to-transparent" />
-          </div>
-          <div className="container px-6 relative z-10">
-            <h2 className="text-brand-gold font-serif text-4xl md:text-5xl mb-8">Ready to Start Your Healing Journey?</h2>
-            <p className="text-brand-cream/80 text-xl max-w-2xl mx-auto mb-12">Book a consultation with our expert doctors today and experience the power of authentic Ayurveda.</p>
-            <Link to="/contact">
-              <Button size="lg" className="bg-brand-gold text-brand-black hover:bg-brand-goldDark font-bold px-12 py-8 text-xl rounded-full shadow-2xl">
-                Book Your Appointment
-              </Button>
-            </Link>
-          </div>
-        </section>
+        <Blog />
+        <FAQ />
+        <Newsletter />
+        <Contact />
       </main>
 
       <Footer />
