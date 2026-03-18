@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart, Info } from 'lucide-react';
+import { ShoppingCart, Info, X, CheckCircle2 } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
 const categories = ["All", "Wellness", "Performance", "Pain Relief", "Sexual Health"];
 
@@ -12,7 +13,8 @@ const products = [
     name: "Swarna Bhasma Capsules",
     category: "Performance",
     price: "₹2,499",
-    description: "Pure 24K gold bhasma for ultimate strength and vitality.",
+    description: "Pure 24K gold bhasma for ultimate strength and vitality. Enhances immunity and mental clarity.",
+    benefits: ["Boosts Stamina", "Improves Immunity", "Mental Clarity", "Anti-aging"],
     image: "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=400",
   },
   {
@@ -20,7 +22,8 @@ const products = [
     name: "Joint Relief Oil",
     category: "Pain Relief",
     price: "₹899",
-    description: "Deep penetrating herbal oil for chronic joint and muscle pain.",
+    description: "Deep penetrating herbal oil for chronic joint and muscle pain. Formulated with 32 rare herbs.",
+    benefits: ["Reduces Inflammation", "Eases Stiffness", "Improves Mobility", "Fast Acting"],
     image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&q=80&w=400",
   },
   {
@@ -28,7 +31,8 @@ const products = [
     name: "Stamina Booster",
     category: "Performance",
     price: "₹1,299",
-    description: "Ashwagandha and Shilajit blend for peak physical performance.",
+    description: "Ashwagandha and Shilajit blend for peak physical performance and stress management.",
+    benefits: ["Natural Energy", "Stress Relief", "Muscle Strength", "Better Sleep"],
     image: "https://images.unsplash.com/photo-1584017945516-60a7d46273b4?auto=format&fit=crop&q=80&w=400",
   },
   {
@@ -36,7 +40,8 @@ const products = [
     name: "Immunity Kadha",
     category: "Wellness",
     price: "₹450",
-    description: "Traditional herbal decoction for strong natural defenses.",
+    description: "Traditional herbal decoction for strong natural defenses against seasonal illnesses.",
+    benefits: ["Respiratory Health", "Detoxification", "Rich in Antioxidants", "Pure Herbs"],
     image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=400",
   },
   {
@@ -44,7 +49,8 @@ const products = [
     name: "Men's Wellness Kit",
     category: "Sexual Health",
     price: "₹3,999",
-    description: "Complete Ayurvedic regimen for male reproductive health.",
+    description: "Complete Ayurvedic regimen for male reproductive health and overall vitality.",
+    benefits: ["Hormonal Balance", "Vitality Boost", "Nervine Tonic", "Holistic Care"],
     image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&q=80&w=400",
   },
   {
@@ -52,17 +58,24 @@ const products = [
     name: "Herbal Detox Pack",
     category: "Wellness",
     price: "₹1,599",
-    description: "30-day internal cleansing and rejuvenation program.",
+    description: "30-day internal cleansing and rejuvenation program to restore metabolic balance.",
+    benefits: ["Digestive Health", "Clear Skin", "Weight Management", "Toxin Removal"],
     image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=400",
   }
 ];
 
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
   const filteredProducts = activeCategory === "All" 
     ? products 
     : products.filter(p => p.category === activeCategory);
+
+  const handleEnquire = (product: any) => {
+    const message = `Hi Om Ayurveda, I'm interested in ${product.name}. Please provide more details.`;
+    window.open(`https://wa.me/917015001978?text=${encodeURIComponent(message)}`, '_blank');
+  };
 
   return (
     <section id="products" className="py-24 bg-brand-forest relative">
@@ -114,11 +127,18 @@ const Products = () => {
                 </p>
                 
                 <div className="flex gap-3">
-                  <Button className="flex-1 bg-brand-gold hover:bg-brand-goldDark text-brand-black font-bold">
+                  <Button 
+                    className="flex-1 bg-brand-gold hover:bg-brand-goldDark text-brand-black font-bold"
+                    onClick={() => handleEnquire(product)}
+                  >
                     <ShoppingCart className="w-4 h-4 mr-2" />
                     Enquire Now
                   </Button>
-                  <Button variant="outline" className="border-brand-gold text-brand-gold hover:bg-brand-gold/10">
+                  <Button 
+                    variant="outline" 
+                    className="border-brand-gold text-brand-gold hover:bg-brand-gold/10"
+                    onClick={() => setSelectedProduct(product)}
+                  >
                     <Info className="w-4 h-4" />
                   </Button>
                 </div>
@@ -127,6 +147,51 @@ const Products = () => {
           ))}
         </div>
       </div>
+
+      {/* Product Detail Modal */}
+      <Dialog open={!!selectedProduct} onOpenChange={() => setSelectedProduct(null)}>
+        <DialogContent className="bg-brand-cream border-brand-gold/30 max-w-2xl">
+          {selectedProduct && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
+              <div className="rounded-2xl overflow-hidden h-64 md:h-full">
+                <img 
+                  src={selectedProduct.image} 
+                  alt={selectedProduct.name} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="space-y-6">
+                <div>
+                  <span className="text-brand-goldDark font-bold text-sm uppercase tracking-widest">{selectedProduct.category}</span>
+                  <DialogTitle className="text-brand-forest font-serif text-3xl font-bold mt-1">{selectedProduct.name}</DialogTitle>
+                  <p className="text-brand-gold font-bold text-2xl mt-2">{selectedProduct.price}</p>
+                </div>
+                
+                <DialogDescription className="text-brand-black/70 text-lg leading-relaxed">
+                  {selectedProduct.description}
+                </DialogDescription>
+
+                <div className="space-y-3">
+                  <p className="font-bold text-brand-forest">Key Benefits:</p>
+                  {selectedProduct.benefits.map((benefit: string, i: number) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <CheckCircle2 className="text-brand-leaf w-5 h-5" />
+                      <span className="text-brand-black/80">{benefit}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <Button 
+                  className="w-full bg-brand-forest hover:bg-brand-forest/90 text-brand-cream font-bold py-6"
+                  onClick={() => handleEnquire(selectedProduct)}
+                >
+                  Enquire on WhatsApp
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
