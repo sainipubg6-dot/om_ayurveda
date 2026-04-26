@@ -9,71 +9,6 @@ import { useCart } from '@/contexts/CartContext';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
-
-    id: 5,
-    name: "OM COUGH HAR",
-    category: "Respiratory Care",
-    price: "150",
-    description: "Om Ayurveda OM COUGH HAR is a carefully crafted Ayurvedic formulation designed to support respiratory health and provide relief from cough, throat irritation, and cold symptoms. Enriched with traditional herbal ingredients, this syrup helps soothe the throat, reduce mucus buildup, and support easier breathing. Ideal for daily use during seasonal changes and respiratory discomfort.",
-    shortDescription: "Ayurvedic OM COUGH HAR formulated with natural herbs to provide relief from cough, cold, and respiratory discomfort.",
-    ingredients: [
-      "Vasaka (Adhatoda vasica)",
-      "Mulethi (Licorice)",
-      "Tulsi",
-      "Pippali",
-      "Ginger Extract",
-    images: [
-      "/images/products/gokshura-front.png",
-      "/images/products/gokshura-side.png",
-      "/images/products/gokshura-details.png",
-      "/images/products/gokshura-box.png"
-    ],
-    faq: [
-      { q: "Dosage?", a: "1–2 tablets daily after meals or as directed by physician." },
-      { q: "Storage", a: "Store below 25°C in a cool, dry & dark place." },
-      { q: "Warning", a: "Do not exceed recommended dosage. Use under medical supervision." }
-    ],
-    reviews: []
-  },
-  {
-    id: 11,
-    name: "SWARN SHAKTIRRASH",
-    category: "Immunity Booster",
-    price: "2,500",
-    description: "Om Ayurveda SWARN SHAKTIRRASH is a premium Ayurvedic formulation inspired by traditional Chyawanprash, enriched with powerful herbs, Swarn (gold), and natural ingredients. It is specially designed to strengthen immunity, improve energy levels, and support overall physical and mental wellness. Made with Amla and a blend of 40+ Ayurvedic herbs, this formulation helps rejuvenate the body, enhance stamina, and protect against seasonal illnesses like cold and cough.",
-    shortDescription: "A powerful Ayurvedic health tonic SWARN SHAKTIRRASH enriched with Swarn (Gold), herbs, and Amla.",
-    ingredients: [
-      "Amla (Indian Gooseberry)",
-      "Ashwagandha & Giloy",
-      "Shatavari & Safed Musli",
-      "Honey & Ghee",
-      "Swarn Bhasma (Gold)",
-      "Saffron (Kesar)",
-      "40+ Ayurvedic Herbal Blend"
-    ],
-    benefits: [
-      "Boosts immunity and resistance",
-      "Improves strength & stamina",
-      "Supports brain function",
-      "Helps fight cold & weakness",
-      "Promotes overall vitality",
-      "Rejuvenates body and mind"
-    ],
-    images: [
-      "/images/products/swranprash front.png",
-      "/images/products/swranprash (2).png",
-      "/images/products/swranprash (3).png",
-      "/images/products/swranprash (4).png"
-    ],
-    faq: [
-      { q: "Usage Instructions", a: "Take 1–2 teaspoons daily, preferably with milk, in the morning or evening." },
-      { q: "Storage", a: "Store in a cool & dry place. Keep away from children." },
-      { q: "Safety Information", a: "Consult physician if under medication or pregnant. Do not exceed recommended dosage." }
-    ],
-    reviews: []
-  }
-];
-
 const ProductDetailPage = () => {
   const { id } = useParams();
   const { products: wcProducts, loading } = useWCProducts();
@@ -118,10 +53,6 @@ const ProductDetailPage = () => {
             ]
           };
         }
-      }
-
-      if (!foundProduct) {
-        foundProduct = staticProducts.find(p => p.id === Number(id));
       }
 
       setProduct(foundProduct);

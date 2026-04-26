@@ -18,7 +18,7 @@ import { Button } from '@/components/ui/button';
 import { TiltedCard } from '@/components/react-bits/TiltedCard';
 import { FadedContent } from '@/components/react-bits/FadedContent';
 import { Trophy, Activity, ShieldPlus, HeartPulse, Sparkles, Zap, CheckCircle2, ShieldCheck, Award, BadgeCheck } from 'lucide-react';
-import { useWCProducts } from '@/hooks/useWCProducts';
+import { useWCProducts } from '@/lib/woocommerce';
 
 
 
