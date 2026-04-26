@@ -38,11 +38,11 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section className="py-12 md:py-24 bg-brand-cream overflow-hidden">
+    <section className="py-8 md:py-16 bg-brand-cream overflow-hidden">
       <div className="container px-4 md:px-6">
-        <div className="text-center mb-8 md:mb-16">
-          <h2 className="text-brand-gold font-serif text-xs md:text-lg uppercase tracking-[0.3em] mb-2 md:mb-4">Patient Stories</h2>
-          <h3 className="text-brand-forest font-serif text-2xl md:text-5xl leading-tight">Trusted by Thousands</h3>
+        <div className="text-center mb-4 md:mb-8">
+          <h2 className="text-brand-gold font-serif text-[10px] md:text-sm uppercase tracking-[0.3em] mb-1 font-bold">Patient Stories</h2>
+          <h3 className="text-brand-forest font-serif text-2xl md:text-4xl leading-tight">Trusted by Thousands</h3>
         </div>
 
         <div className="max-w-4xl mx-auto">
@@ -54,18 +54,18 @@ const Testimonials = () => {
                   i === activeIndex ? "opacity-100" : "opacity-0 hidden"
                 }`}
               >
-                <Quote className="text-brand-gold w-8 h-8 md:w-16 md:h-16 mb-3 md:mb-8 opacity-20" />
+                <Quote className="text-brand-gold w-6 h-6 md:w-10 md:h-10 mb-2 md:mb-4 opacity-20" />
                 
-                <div className="flex gap-1 mb-3 md:mb-6">
+                <div className="flex gap-1 mb-2 md:mb-4">
                   {[...Array(t.rating)].map((_, star) => (
-                    <Star key={star} className="w-3 h-3 md:w-5 md:h-5 fill-brand-gold text-brand-gold" />
+                    <Star key={star} className="w-3 h-3 md:w-4 md:h-4 fill-brand-gold text-brand-gold" />
                   ))}
                 </div>
                 
-                <p className="text-brand-forest font-hindi text-base md:text-3xl mb-2 md:mb-4 italic break-words leading-normal">
+                <p className="text-brand-forest font-hindi text-base md:text-2xl mb-1 md:mb-3 italic break-words leading-tight">
                   "{t.hindi}"
                 </p>
-                <p className="text-brand-black/70 text-xs md:text-lg mb-3 md:mb-8 max-w-2xl break-words leading-relaxed">
+                <p className="text-brand-black/70 text-[10px] md:text-base mb-2 md:mb-4 max-w-2xl break-words leading-relaxed">
                   {t.text}
                 </p>
                 
