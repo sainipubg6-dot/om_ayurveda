@@ -4,7 +4,7 @@ import { useCart } from '@/contexts/CartContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { ShieldCheck, Truck, CreditCard, ChevronRight, ArrowLeft } from 'lucide-react';
+import { ShieldCheck, Truck, CreditCard, ChevronRight, ArrowLeft, CheckCircle2, MessageCircle } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { createWCOrder } from '@/lib/woocommerce';
@@ -13,6 +13,8 @@ const CheckoutPage = () => {
   const { cart, cartTotal, clearCart } = useCart();
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [orderSuccess, setOrderSuccess] = useState(false);
+  const [lastOrderDetails, setLastOrderDetails] = useState<any>(null);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -23,17 +25,11 @@ const CheckoutPage = () => {
     pincode: ''
   });
 
-  if (cart.length === 0) {
-    navigate('/cart');
-    return null;
-  }
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Load Razorpay script once
   const loadRazorpay = () => {
     return new Promise((resolve) => {
       const existing = document.getElementById('razorpay-script');
@@ -49,16 +45,32 @@ const CheckoutPage = () => {
     });
   };
 
+  const handleWhatsAppSync = () => {
+    if (!lastOrderDetails) return;
+    
+    const storePhone = "917015001978"; // Replace with your actual WhatsApp number
+    const message = `*NEW ORDER CONFIRMATION* %0A%0A` +
+      `*Name:* ${formData.name}%0A` +
+      `*Total:* ₹${cartTotal}%0A` +
+      `*Items:* ${cart.map(item => `${item.name} (x${item.quantity})`).join(', ')}%0A` +
+      `*Address:* ${formData.address}, ${formData.city}%0A%0A` +
+      `Please confirm my order!`;
+    
+    window.open(`https://wa.me/${storePhone}?text=${message}`, '_blank');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
       await loadRazorpay();
+      
+      // RAZORPAY CONFIGURATION
       const options = {
-        key: 'rzp_test_1234567890abcdef', // Replace with live key in prod
-        amount: cartTotal * 100, // amount in paise
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_placeholder', 
+        amount: cartTotal * 100,
         currency: 'INR',
-        name: 'Ayurveda Veda',
+        name: 'Om Ayurveda',
         description: `Order for ${cart.length} items`,
         prefill: {
           name: formData.name,
@@ -66,47 +78,93 @@ const CheckoutPage = () => {
           contact: formData.phone.replace(/[^0-9]/g, '')
         },
         handler: async function (response: any) {
-          // Sync with Headless WooCommerce Backend
-          await createWCOrder({
-            payment_method: 'razorpay',
-            payment_method_title: 'Razorpay Online',
-            set_paid: true,
-            billing: {
-              first_name: formData.name,
-              email: formData.email,
-              phone: formData.phone,
-              address_1: formData.address,
-              city: formData.city,
-              state: formData.state,
-              postcode: formData.pincode,
-              country: 'IN'
-            },
-            line_items: cart.map(item => ({
-              product_id: item.id,
-              quantity: item.quantity
-            }))
-          });
+          try {
+            // Create Order in WooCommerce
+            const wcOrder = await createWCOrder({
+              payment_method: 'razorpay',
+              payment_method_title: 'Razorpay Online',
+              set_paid: true,
+              billing: {
+                first_name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                address_1: formData.address,
+                city: formData.city,
+                postcode: formData.pincode,
+                country: 'IN'
+              },
+              line_items: cart.map(item => ({
+                product_id: item.id,
+                quantity: item.quantity
+              }))
+            });
 
-          // Payment successful UI
-          toast.success('Order Placed Successfully!', {
-            description: 'You can manage this order in your dashboard.'
-          });
-          clearCart();
-          navigate('/');
+            setLastOrderDetails(wcOrder);
+            setOrderSuccess(true);
+            toast.success('Payment Successful!');
+            clearCart();
+          } catch (wcErr) {
+            console.error("Order creation failed", wcErr);
+            toast.error("Payment received but order sync failed. Contact support.");
+          }
         },
         theme: {
-          color: '#d4af37'
+          color: '#2D6A4F'
         }
       } as any;
+
       // @ts-ignore
       const rzp = new window.Razorpay(options);
       rzp.open();
     } catch (err) {
-      toast.error('Payment failed. Please try again.');
+      toast.error('Could not initialize payment. Please check connection.');
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  // SUCCESS SCREEN
+  if (orderSuccess) {
+    return (
+      <div className="min-h-screen bg-brand-cream flex flex-col">
+        <Navbar />
+        <main className="flex-1 flex items-center justify-center p-6 pt-32">
+          <div className="max-w-xl w-full bg-white rounded-[3rem] p-10 md:p-16 text-center shadow-2xl border border-brand-gold/10">
+            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
+              <CheckCircle2 className="text-green-600 w-12 h-12" />
+            </div>
+            <h1 className="text-brand-forest font-serif text-3xl md:text-5xl font-bold mb-4">Order Received!</h1>
+            <p className="text-brand-black/60 mb-10 text-lg">Your healing journey begins today. We have received your order and are preparing your formulations.</p>
+            
+            <div className="space-y-4">
+              <Button 
+                onClick={handleWhatsAppSync}
+                className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-8 text-xl rounded-2xl shadow-xl flex items-center justify-center gap-3 transition-all active:scale-95"
+              >
+                <MessageCircle className="w-6 h-6" />
+                Sync with WhatsApp
+              </Button>
+              <Button 
+                variant="outline"
+                onClick={() => navigate('/')}
+                className="w-full border-brand-gold/20 text-brand-forest hover:bg-brand-gold/5 font-bold py-8 text-lg rounded-2xl"
+              >
+                Return to Home
+              </Button>
+            </div>
+            <p className="mt-8 text-[10px] uppercase tracking-widest text-brand-black/30 font-bold">Please click the WhatsApp button to get instant updates</p>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  // CART EMPTY CHECK (Moved after success check)
+  if (cart.length === 0 && !orderSuccess) {
+    navigate('/cart');
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-brand-cream">
@@ -125,7 +183,6 @@ const CheckoutPage = () => {
           <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Left: Forms */}
             <div className="lg:col-span-2 space-y-10">
-              {/* Shipping Information */}
               <div className="bg-white rounded-3xl p-8 shadow-xl border border-brand-gold/10">
                 <h2 className="text-brand-forest font-serif text-2xl font-bold mb-8 flex items-center gap-3">
                   <span className="w-8 h-8 bg-brand-gold text-brand-black rounded-full flex items-center justify-center font-bold text-sm">1</span>
@@ -155,7 +212,6 @@ const CheckoutPage = () => {
                   </div>
                 </div>
               </div>
-
             </div>
 
             {/* Right: Summary & Pay */}
