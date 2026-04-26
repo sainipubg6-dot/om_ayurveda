@@ -10,7 +10,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 const CartPage = () => {
-  const { cart, removeFromCart, updateQuantity, totalPrice } = useCart();
+  const { cart, removeFromCart, updateQuantity, cartTotal } = useCart();
   const navigate = useNavigate();
 
   return (
@@ -98,7 +98,7 @@ const CartPage = () => {
                   <div className="space-y-4 mb-8">
                     <div className="flex justify-between items-center text-sm opacity-80">
                       <span>Subtotal</span>
-                      <span>₹{totalPrice}</span>
+                      <span>₹{cartTotal}</span>
                     </div>
                     <div className="flex justify-between items-center text-sm opacity-80">
                       <span>Shipping</span>
@@ -106,7 +106,7 @@ const CartPage = () => {
                     </div>
                     <div className="pt-4 border-t border-brand-gold/20 flex justify-between items-center">
                       <span className="font-bold text-lg">Total</span>
-                      <span className="font-serif text-2xl font-bold text-brand-gold">₹{totalPrice}</span>
+                      <span className="font-serif text-2xl font-bold text-brand-gold">₹{cartTotal}</span>
                     </div>
                   </div>
                   <Button 

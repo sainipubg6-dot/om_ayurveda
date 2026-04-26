@@ -27,7 +27,7 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+  }, [slug]);
 
   useEffect(() => {
     if (!loading && wcProducts?.length > 0) {
@@ -63,7 +63,7 @@ const ProductDetailPage = () => {
         setActiveImage(0);
       }
     }
-  }, [id, wcProducts, loading]);
+  }, [slug, wcProducts, loading]);
 
   const handlePrev = (e?: React.MouseEvent) => {
     e?.stopPropagation();
@@ -107,29 +107,29 @@ const ProductDetailPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-brand-cream selection:bg-brand-gold selection:text-brand-black">
+    <div className="min-h-screen flex flex-col bg-brand-cream selection:bg-brand-gold selection:text-brand-black">
       <Seo 
         title={`${product?.name} - Ayurveda Veda`} 
         description={product?.shortDescription} 
       />
       <Navbar />
       
-      <main className="pt-32 pb-24">
-        <div className="container px-6">
+      <main className="flex-1 pt-24 md:pt-32 pb-16 md:pb-24">
+        <div className="container px-4 md:px-6">
           <div className="max-w-7xl mx-auto">
             <Link 
               to="/products" 
-              className="inline-flex items-center text-brand-forest/60 hover:text-brand-gold transition-colors mb-10 group"
+              className="inline-flex items-center text-brand-forest/60 hover:text-brand-gold transition-colors mb-6 md:mb-10 group"
             >
               <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
               Back to Collections
             </Link>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 mb-24">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 xl:gap-24 mb-16 md:mb-24">
               {/* Product Gallery */}
-              <div className="space-y-6">
+              <div className="space-y-4 md:space-y-6">
                 <div 
-                  className="relative group rounded-[2.5rem] overflow-hidden bg-white shadow-2xl border-[12px] border-white aspect-[4/5] md:aspect-square cursor-zoom-in"
+                  className="relative group rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden bg-white shadow-2xl border-[6px] md:border-[12px] border-white aspect-[4/5] md:aspect-square cursor-zoom-in"
                   onClick={() => {
                     setLightboxIndex(activeImage);
                     setIsLightboxOpen(true);
@@ -141,18 +141,18 @@ const ProductDetailPage = () => {
                     className="w-full h-full object-contain bg-white transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-brand-black/0 group-hover:bg-brand-black/5 transition-colors duration-500" />
-                  <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/90 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-brand-gold/10">
-                    <Maximize2 className="w-5 h-5 text-brand-forest" />
+                  <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/90 backdrop-blur-md p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-brand-gold/10">
+                    <Maximize2 className="w-4 h-4 md:w-5 md:h-5 text-brand-forest" />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-4 gap-2 md:gap-4">
                   {(product?.images || []).map((img: string, i: number) => (
                     <button
                       key={i}
                       onClick={() => setActiveImage(i)}
                       className={cn(
-                        "relative aspect-square rounded-2xl overflow-hidden border-4 transition-all duration-300",
+                        "relative aspect-square rounded-xl md:rounded-2xl overflow-hidden border-2 md:border-4 transition-all duration-300",
                         activeImage === i ? "border-brand-gold shadow-lg scale-95" : "border-white hover:border-brand-gold/30"
                       )}
                     >
@@ -164,8 +164,8 @@ const ProductDetailPage = () => {
 
               {/* Product Info */}
               <div className="flex flex-col">
-                <div className="mb-4 flex items-center gap-2">
-                  <span className="bg-brand-gold/10 text-brand-gold font-bold text-[10px] uppercase tracking-[0.3em] px-4 py-1.5 rounded-full border border-brand-gold/20">
+                <div className="mb-2 md:mb-4 flex items-center gap-2">
+                  <span className="bg-brand-gold/10 text-brand-gold font-bold text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em] px-3 md:px-4 py-1 md:py-1.5 rounded-full border border-brand-gold/20">
                     {product?.category}
                   </span>
                   <div className="flex gap-1 ml-4">
@@ -175,42 +175,42 @@ const ProductDetailPage = () => {
                   </div>
                 </div>
 
-                <h1 className="text-brand-forest font-serif text-5xl md:text-7xl font-bold mb-8 leading-[1.1]">
+                <h1 className="text-brand-forest font-serif text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-8 leading-[1.1]">
                   {product?.name}
                 </h1>
                 
-                <div className="flex items-center gap-8 mb-12">
+                <div className="flex items-center gap-6 md:gap-8 mb-8 md:mb-12">
                   <div className="flex flex-col">
-                    <span className="text-brand-black/30 text-[10px] uppercase font-bold tracking-[0.2em] mb-1">Clinic Price</span>
-                    <span className="text-brand-forest text-5xl font-bold font-serif whitespace-nowrap">₹{product?.price}</span>
+                    <span className="text-brand-black/30 text-[8px] md:text-[10px] uppercase font-bold tracking-[0.1em] md:tracking-[0.2em] mb-1">Clinic Price</span>
+                    <span className="text-brand-forest text-3xl md:text-5xl font-bold font-serif whitespace-nowrap">₹{product?.price}</span>
                   </div>
-                  <div className="h-16 w-px bg-brand-gold/20" />
+                  <div className="h-12 md:h-16 w-px bg-brand-gold/20" />
                   <div className="flex flex-col">
-                    <span className="text-brand-black/30 text-[10px] uppercase font-bold tracking-[0.2em] mb-1">Availability</span>
-                    <span className="text-brand-leaf font-bold text-lg flex items-center gap-2">
+                    <span className="text-brand-black/30 text-[8px] md:text-[10px] uppercase font-bold tracking-[0.1em] md:tracking-[0.2em] mb-1">Availability</span>
+                    <span className="text-brand-leaf font-bold text-base md:text-lg flex items-center gap-2">
                       <div className="w-2 h-2 bg-brand-leaf rounded-full animate-pulse" />
                       Fresh Stock
                     </span>
                   </div>
                 </div>
 
-                <p className="text-brand-black/70 text-xl mb-12 leading-relaxed font-light border-l-4 border-brand-gold/30 pl-8 italic">
+                <p className="text-brand-black/70 text-base md:text-xl mb-8 md:mb-12 leading-relaxed font-light border-l-4 border-brand-gold/30 pl-4 md:pl-8 italic">
                   {product?.shortDescription}
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 mb-16">
+                <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-10 md:mb-16">
                   <button 
-                    className="flex-1 bg-brand-forest hover:bg-brand-forest/95 text-brand-gold font-bold py-8 text-xl rounded-[1.5rem] shadow-xl transition-all"
+                    className="flex-1 bg-brand-forest hover:bg-brand-forest/95 text-brand-gold font-bold py-5 md:py-8 text-lg md:text-xl rounded-xl md:rounded-[1.5rem] shadow-xl transition-all"
                     onClick={() => {
                       addToCart(product);
                       toast.success(`${product?.name} added to cart`);
                     }}
                   >
-                    <ShoppingCart className="w-6 h-6 mr-3 inline" />
+                    <ShoppingCart className="w-5 h-5 md:w-6 md:h-6 mr-2 md:mr-3 inline" />
                     Add to Cart
                   </button>
                   <button 
-                    className="flex-1 border-2 border-brand-gold/30 text-brand-forest hover:bg-brand-gold/5 py-8 text-xl rounded-[1.5rem] transition-all"
+                    className="flex-1 border-2 border-brand-gold/30 text-brand-forest hover:bg-brand-gold/5 py-5 md:py-8 text-lg md:text-xl rounded-xl md:rounded-[1.5rem] transition-all"
                     onClick={() => {
                       const message = `Namaste! I'm interested in ${product?.name}. Please share more details.`;
                       window.open(`https://wa.me/917015001978?text=${encodeURIComponent(message)}`, '_blank');
@@ -221,18 +221,18 @@ const ProductDetailPage = () => {
                 </div>
 
                 {/* Trust Badges */}
-                <div className="grid grid-cols-2 gap-6 bg-white/40 backdrop-blur-xl p-8 rounded-[2rem] border border-brand-gold/5 shadow-xl">
+                <div className="grid grid-cols-2 gap-4 md:gap-6 bg-white/40 backdrop-blur-xl p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border border-brand-gold/5 shadow-xl">
                   {[
                     { icon: ShieldCheck, label: "GMP Certified" },
                     { icon: Truck, label: "Fast Shipping" },
                     { icon: RefreshCw, label: "Quality Lab Tested" },
                     { icon: CheckCircle2, label: "100% Ayurvedic" }
                   ].map((badge, i) => (
-                    <div key={i} className="flex items-center gap-4 group">
-                      <div className="w-10 h-10 rounded-xl bg-brand-forest/5 flex items-center justify-center group-hover:bg-brand-gold/10 transition-colors">
-                        <badge.icon className="text-brand-gold w-5 h-5" />
+                    <div key={i} className="flex items-center gap-3 md:gap-4 group">
+                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-brand-forest/5 flex items-center justify-center group-hover:bg-brand-gold/10 transition-colors">
+                        <badge.icon className="text-brand-gold w-4 h-4 md:w-5 md:h-5" />
                       </div>
-                      <span className="text-brand-forest font-bold text-xs uppercase tracking-widest leading-none">{badge.label}</span>
+                      <span className="text-brand-forest font-bold text-[10px] md:text-xs uppercase tracking-widest leading-none">{badge.label}</span>
                     </div>
                   ))}
                 </div>
@@ -240,76 +240,76 @@ const ProductDetailPage = () => {
             </div>
 
             {/* Detailed Tabs Section */}
-            <div className="bg-white rounded-[4rem] shadow-xl p-10 md:p-20 mb-32 border border-brand-gold/5 relative overflow-hidden">
-              <div className="flex flex-wrap items-center justify-center gap-4 md:gap-10 border-b border-brand-gold/10 pb-10 mb-16 relative z-10">
+            <div className="bg-white rounded-[2rem] md:rounded-[4rem] shadow-xl p-6 md:p-20 mb-16 md:mb-32 border border-brand-gold/5 relative overflow-hidden">
+              <div className="flex flex-wrap items-center justify-center gap-3 md:gap-10 border-b border-brand-gold/10 pb-6 md:pb-10 mb-8 md:mb-16 relative z-10">
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
                     className={cn(
-                      "flex items-center gap-3 px-8 py-4 rounded-2xl transition-all text-sm uppercase tracking-[0.2em] font-bold",
+                      "flex items-center gap-2 md:gap-3 px-4 md:px-8 py-2 md:py-4 rounded-xl md:rounded-2xl transition-all text-[10px] md:text-sm uppercase tracking-[0.1em] md:tracking-[0.2em] font-bold",
                       activeTab === tab.id ? "bg-brand-forest text-brand-gold" : "text-brand-black/30 hover:text-brand-forest"
                     )}
                   >
-                    <tab.icon className="w-4 h-4" />
+                    <tab.icon className="w-3 h-3 md:w-4 md:h-4" />
                     {tab.label}
                   </button>
                 ))}
               </div>
 
-              <div className="relative z-10 min-h-[300px]">
+              <div className="relative z-10 min-h-[200px] md:min-h-[300px]">
                 {activeTab === 'description' && (
-                  <div className="space-y-10 max-w-4xl">
+                  <div className="space-y-6 md:space-y-10 max-w-4xl">
                     <div 
-                      className="text-brand-black/70 text-xl leading-relaxed prose prose-green prose-xl max-w-none font-light"
+                      className="text-brand-black/70 text-lg md:text-xl leading-relaxed prose prose-green prose-xl max-w-none font-light"
                       dangerouslySetInnerHTML={{ __html: product?.description || "" }}
                     />
                   </div>
                 )}
 
                 {activeTab === 'ingredients' && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                     {(product?.ingredients || []).map((ing: string, i: number) => (
-                      <div key={i} className="flex items-center gap-6 p-8 bg-brand-cream rounded-[2rem] hover:bg-brand-gold/10 transition-all">
-                        <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg">
-                          <Leaf className="text-brand-gold w-8 h-8" />
+                      <div key={i} className="flex items-center gap-4 md:gap-6 p-6 md:p-8 bg-brand-cream rounded-[1.5rem] md:rounded-[2rem] hover:bg-brand-gold/10 transition-all">
+                        <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg">
+                          <Leaf className="text-brand-gold w-6 h-6 md:w-8 md:h-8" />
                         </div>
-                        <span className="text-brand-forest font-bold text-xl">{ing}</span>
+                        <span className="text-brand-forest font-bold text-lg md:text-xl">{ing}</span>
                       </div>
                     ))}
                   </div>
                 )}
 
                 {activeTab === 'faq' && (
-                  <div className="max-w-4xl mx-auto space-y-8">
+                  <div className="max-w-4xl mx-auto space-y-4 md:space-y-8">
                     {(product?.faq || []).map((faq: any, i: number) => (
-                      <div key={i} className="bg-brand-cream/50 p-10 rounded-[2.5rem] border border-brand-gold/10">
-                        <h5 className="text-brand-forest font-bold text-2xl mb-6 flex items-start gap-5">
-                          <span className="w-10 h-10 rounded-2xl bg-brand-gold text-brand-black flex items-center justify-center shrink-0 font-bold">Q</span>
+                      <div key={i} className="bg-brand-cream/50 p-6 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] border border-brand-gold/10">
+                        <h5 className="text-brand-forest font-bold text-lg md:text-2xl mb-3 md:mb-6 flex items-start gap-3 md:gap-5">
+                          <span className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-2xl bg-brand-gold text-brand-black flex items-center justify-center shrink-0 font-bold">Q</span>
                           {faq.q}
                         </h5>
-                        <p className="text-brand-black/60 text-lg leading-relaxed pl-16">{faq.a}</p>
+                        <p className="text-brand-black/60 text-base md:text-lg leading-relaxed pl-11 md:pl-16">{faq.a}</p>
                       </div>
                     ))}
                   </div>
                 )}
 
                 {activeTab === 'reviews' && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                     {(product?.reviews || []).map((review: any, i: number) => (
-                      <div key={i} className="p-10 rounded-[3rem] bg-brand-forest/[0.02] border border-brand-gold/5">
-                        <div className="flex justify-between items-start mb-8">
+                      <div key={i} className="p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] bg-brand-forest/[0.02] border border-brand-gold/5">
+                        <div className="flex justify-between items-start mb-6 md:mb-8">
                           <div>
-                            <div className="flex gap-1 mb-3">
+                            <div className="flex gap-1 mb-2 md:mb-3">
                               {[...Array(review.rating || 5)].map((_, s) => (
-                                <Star key={s} className="w-4 h-4 text-brand-gold fill-brand-gold" />
+                                <Star key={s} className="w-3 h-3 md:w-4 h-4 text-brand-gold fill-brand-gold" />
                               ))}
                             </div>
-                            <h6 className="text-brand-forest font-bold text-2xl">{review.name}</h6>
+                            <h6 className="text-brand-forest font-bold text-xl md:text-2xl">{review.name}</h6>
                           </div>
-                          <span className="text-brand-black/20 text-xs font-bold uppercase">{review.date}</span>
+                          <span className="text-brand-black/20 text-[10px] md:text-xs font-bold uppercase">{review.date}</span>
                         </div>
-                        <p className="text-brand-black/70 text-lg italic">"{review.comment}"</p>
+                        <p className="text-brand-black/70 text-base md:text-lg italic">"{review.comment}"</p>
                       </div>
                     ))}
                   </div>
@@ -324,10 +324,10 @@ const ProductDetailPage = () => {
       
       <Dialog open={isLightboxOpen} onOpenChange={setIsLightboxOpen}>
         <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-brand-black/95 border-none flex items-center justify-center">
-          <button onClick={() => setIsLightboxOpen(false)} className="absolute top-4 right-4 text-white/50 hover:text-white"><X className="w-8 h-8" /></button>
-          <button onClick={handlePrev} className="absolute left-4 text-white/50 hover:text-white p-2"><ChevronLeft className="w-12 h-12" /></button>
+          <button onClick={() => setIsLightboxOpen(false)} className="absolute top-4 right-4 text-white/50 hover:text-white z-50"><X className="w-8 h-8" /></button>
+          <button onClick={handlePrev} className="absolute left-4 text-white/50 hover:text-white p-2 z-50"><ChevronLeft className="w-12 h-12" /></button>
           <img src={product?.images?.[lightboxIndex]} alt="Gallery" className="max-w-full max-h-[85vh] object-contain" />
-          <button onClick={handleNext} className="absolute right-4 text-white/50 hover:text-white p-2"><ChevronRight className="w-12 h-12" /></button>
+          <button onClick={handleNext} className="absolute right-4 text-white/50 hover:text-white p-2 z-50"><ChevronRight className="w-12 h-12" /></button>
         </DialogContent>
       </Dialog>
     </div>
