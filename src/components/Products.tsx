@@ -2,75 +2,141 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart, Info, X, CheckCircle2 } from 'lucide-react';
+import { ShoppingCart, Info, CheckCircle2, ChevronRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { cn } from '@/lib/utils';
+import { useWCProducts } from '@/lib/woocommerce';
 
-const categories = ["All", "Wellness", "Performance", "Pain Relief", "Sexual Health"];
+import { useNavigate, Link } from 'react-router-dom';
+import { useCart } from '@/contexts/CartContext';
+import { toast } from 'sonner';
 
-const products = [
+const categories = ["All", "Wellness", "Performance", "Pain Relief", "Respiratory Care", "Digestive / Detox", "Immunity Booster"];
+
+const staticProducts = [
   {
     id: 1,
-    name: "Swarna Bhasma Capsules",
-    category: "Performance",
-    price: "₹2,499",
-    description: "Pure 24K gold bhasma for ultimate strength and vitality. Enhances immunity and mental clarity.",
-    benefits: ["Boosts Stamina", "Improves Immunity", "Mental Clarity", "Anti-aging"],
-    image: "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=400",
+    name: "OMEGA 3",
+    category: "Wellness",
+    price: "899",
+    description: "Premium OMEGA 3 (1000mg) for heart, brain, and joint health. Rich in EPA & DHA.",
+    image: "/images/products/omega-3-front.png",
+    benefits: ["Heart Health", "Brain Function", "Joint Flexibility"]
   },
   {
     id: 2,
-    name: "Joint Relief Oil",
-    category: "Pain Relief",
-    price: "₹899",
-    description: "Deep penetrating herbal oil for chronic joint and muscle pain. Formulated with 32 rare herbs.",
-    benefits: ["Reduces Inflammation", "Eases Stiffness", "Improves Mobility", "Fast Acting"],
-    image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&q=80&w=400",
+    name: "Liver Tablets",
+    category: "Wellness",
+    price: "750",
+    description: "Herbal Liver Tablets for detox & support with Milk Thistle and Kalmegh.",
+    image: "/images/products/liver -front.png",
+    benefits: ["Detoxification", "Improved Digestion", "Liver Support"]
   },
   {
     id: 3,
-    name: "Stamina Booster",
-    category: "Performance",
-    price: "₹1,299",
-    description: "Ashwagandha and Shilajit blend for peak physical performance and stress management.",
-    benefits: ["Natural Energy", "Stress Relief", "Muscle Strength", "Better Sleep"],
-    image: "https://images.unsplash.com/photo-1584017945516-60a7d46273b4?auto=format&fit=crop&q=80&w=400",
+    name: "JOINT Pro",
+    category: "Pain Relief",
+    price: "1,450",
+    description: "Advanced Ayurvedic support for JOINT Pro Relief & Mobility. Contains 90 premium golden tablets.",
+    image: "/images/products/joint-pro-front.png",
+    benefits: ["Pain Relief", "Bone Strength", "Reduces Inflammation"]
   },
   {
     id: 4,
-    name: "Immunity Kadha",
-    category: "Wellness",
-    price: "₹450",
-    description: "Traditional herbal decoction for strong natural defenses against seasonal illnesses.",
-    benefits: ["Respiratory Health", "Detoxification", "Rich in Antioxidants", "Pure Herbs"],
-    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=400",
+    name: "ORTHO",
+    category: "Pain Relief",
+    price: "950",
+    description: "ORTHO Joint Pain Relief & Bone Support with Swarnamakshik Bhasma and Shallaki.",
+    image: "/images/products/ortho-front.png",
+    benefits: ["Reduces Pain", "Eases Stiffness", "Tissue Nourishment"]
   },
   {
     id: 5,
-    name: "Men's Wellness Kit",
-    category: "Sexual Health",
-    price: "₹3,999",
-    description: "Complete Ayurvedic regimen for male reproductive health and overall vitality.",
-    benefits: ["Hormonal Balance", "Vitality Boost", "Nervine Tonic", "Holistic Care"],
-    image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&q=80&w=400",
+    name: "OM COUGH HAR",
+    category: "Respiratory Care",
+    price: "150",
+    description: "OM COUGH HAR Ayurvedic syrup with natural herbs for relief from cough & cold.",
+    image: "/images/products/cough-har-box.png",
+    benefits: ["Relieves Cough", "Supports Respiratory Health", "Soothes Throat"]
   },
   {
     id: 6,
-    name: "Herbal Detox Pack",
+    name: "OM HAIR OIL",
     category: "Wellness",
-    price: "₹1,599",
-    description: "30-day internal cleansing and rejuvenation program to restore metabolic balance.",
-    benefits: ["Digestive Health", "Clear Skin", "Weight Management", "Toxin Removal"],
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=400",
+    price: "450",
+    description: "OM HAIR OIL anti-hair fall and growth oil with Bhringraj, Amla, and easy comb applicator.",
+    image: "/images/products/hair-oil-front.png",
+    benefits: ["Reduces Hair Fall", "Promotes Growth", "Prevents Dandruff"]
+  },
+  {
+    id: 7,
+    name: "OM POWER OIL",
+    category: "Performance",
+    price: "1,200",
+    description: "OM POWER OIL Ayurvedic massage oil for strength and vitality with Ashwagandha and Bala.",
+    image: "/images/products/om power oil  -front.png",
+    benefits: ["Enhanced Vitality", "Improved Circulation", "Stress Relief"]
+  },
+  {
+    id: 8,
+    name: "OM INJURY OIL",
+    category: "Pain Relief",
+    price: "550",
+    description: "OM INJURY OIL fast-absorbing oil for joint and muscle pain relief from injuries.",
+    image: "/images/products/om injury-front.png",
+    benefits: ["Heals Sprains", "Relieves Pain", "Reduces Bruising"]
+  },
+  {
+    id: 9,
+    name: "OM DETOX ( CHURNA )",
+    category: "Digestive / Detox",
+    price: "350",
+    description: "OM DETOX ( CHURNA ) Ayurvedic digestive powder for gut cleanse and bowel support.",
+    image: "/images/products/detox-churna-front.png",
+    benefits: ["Supports Detox", "Improves Digestion", "Relieves Acidity"]
+  },
+  {
+    id: 10,
+    name: "GOKSHURA",
+    category: "Wellness",
+    price: "650",
+    description: "GOKSHURA extract for urinary health and natural vitality support.",
+    image: "/images/products/gokshura-front.png",
+    benefits: ["Urinary Health", "Natural Strength", "Kidney Support"]
+  },
+  {
+    id: 11,
+    name: "SWARN SHAKTIRRASH",
+    category: "Immunity Booster",
+    price: "2,500",
+    description: "SWARN SHAKTIRRASH enriched Ayurvedic immunity booster with Swarn (Gold) and 40+ herbs.",
+    image: "/images/products/swranprash front.png",
+    benefits: ["Boosts Immunity", "Improves Stamina", "Brain Support"]
   }
 ];
 
 const Products = () => {
+  const { products: wcProducts, loading } = useWCProducts();
+  const { addToCart } = useCart();
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
+  // Use WooCommerce products if available, otherwise use static placeholders
+  const currentProducts: any[] = (!loading && wcProducts.length > 0) 
+    ? wcProducts.map(p => ({
+        id: p.id,
+        name: p.name,
+        category: p.categories?.[0]?.name || "Wellness",
+        price: p.price || "999",
+        description: p.short_description || p.description || "Authentic Ayurvedic formulation.",
+        image: p.images?.[0]?.src || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=400",
+        benefits: ["Natural Ingredients", "Traditional Method", "Quality Assured", "Scientifically Tested"]
+      }))
+    : staticProducts;
+
   const filteredProducts = activeCategory === "All" 
-    ? products 
-    : products.filter(p => p.category === activeCategory);
+    ? currentProducts 
+    : currentProducts.filter(p => p.category === activeCategory);
 
   const handleEnquire = (product: any) => {
     const message = `Hi Om Ayurveda, I'm interested in ${product.name}. Please provide more details.`;
@@ -78,69 +144,89 @@ const Products = () => {
   };
 
   return (
-    <section id="products" className="py-24 bg-brand-forest relative">
-      <div className="container px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-brand-gold font-serif text-lg uppercase tracking-[0.3em] mb-4">Our Apothecary</h2>
-          <h3 className="text-brand-cream font-serif text-4xl md:text-5xl mb-6">Premium Ayurvedic Products</h3>
-          <div className="w-24 h-1 bg-brand-gold mx-auto rounded-full mb-10" />
-          
-          {/* Filters */}
-          <div className="flex flex-wrap justify-center gap-3">
-            {categories.map(cat => (
+    <section id="products" className="py-16 md:py-32 bg-brand-forest relative overflow-hidden">
+      {/* Abstract Design Elements */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 opacity-50 md:opacity-100" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-gold/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 opacity-50 md:opacity-100" />
+
+      <div className="container px-4 md:px-6 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20">
+          <h2 className="text-brand-gold font-serif text-xs md:text-sm uppercase tracking-[0.4em] mb-3 md:mb-4 font-bold">Clinical Formularies</h2>
+          <h3 className="text-brand-cream font-serif text-3xl md:text-5xl lg:text-6xl mb-6 md:mb-8 leading-tight">Authentic Ayurvedic Solutions</h3>
+          <p className="text-brand-cream/60 text-base md:text-lg lg:text-xl font-light italic">
+            "Bridging ancient Vedic tradition with clinical precision for holistic healing."
+          </p>
+          <div className="w-12 md:w-16 h-1 bg-brand-gold mx-auto rounded-full mt-6 md:mt-8" />
+        </div>
+        
+        {/* Professional Category Tabs - Scrollable on mobile */}
+        <div className="max-w-4xl mx-auto mb-12 md:mb-20 overflow-x-auto pb-4 scrollbar-hide">
+          <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-4 bg-brand-cream/[0.03] p-2 md:p-3 rounded-full border border-brand-gold/10 backdrop-blur-sm min-w-max md:min-w-0 mx-auto">
+            {categories.map((category) => (
               <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-6 py-2 rounded-full text-sm font-bold transition-all border ${
-                  activeCategory === cat 
-                    ? "bg-brand-gold text-brand-black border-brand-gold" 
-                    : "bg-transparent text-brand-cream border-brand-cream/30 hover:border-brand-gold"
-                }`}
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={cn(
+                  "px-4 md:px-6 py-2 md:py-2.5 rounded-full transition-all duration-500 text-xs md:text-sm font-bold tracking-wider whitespace-nowrap",
+                  activeCategory === category
+                    ? "bg-brand-gold text-brand-black shadow-[0_4px_20px_rgba(212,175,55,0.4)]"
+                    : "text-brand-cream/50 hover:text-brand-gold hover:bg-brand-gold/5"
+                )}
               >
-                {cat}
+                {category}
               </button>
             ))}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
           {filteredProducts.map((product) => (
-            <div key={product.id} className="group bg-brand-cream/5 rounded-3xl overflow-hidden border border-brand-gold/20 hover:border-brand-gold transition-all duration-500">
-              <div className="relative h-72 overflow-hidden">
+            <div key={product.id} className="group flex flex-col bg-brand-cream/[0.02] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-brand-gold/10 hover:border-brand-gold/40 transition-all duration-700 hover:-translate-y-2 relative">
+              <Link to={`/product/${product.id}`} className="block relative aspect-[4/5] overflow-hidden bg-brand-cream/5">
                 <img 
                   src={product.image} 
                   alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-contain p-4 md:p-6 transition-transform duration-1000 group-hover:scale-105 bg-white"
+                  onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = '/images/products/placeholder.png'; }}
                 />
-                <div className="absolute top-4 right-4 bg-brand-gold text-brand-black font-bold px-3 py-1 rounded-full text-sm">
-                  {product.category}
-                </div>
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-forest via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              </Link>
               
-              <div className="p-8">
-                <div className="flex justify-between items-start mb-4">
-                  <h4 className="text-brand-cream font-serif text-2xl font-bold">{product.name}</h4>
-                  <span className="text-brand-gold font-bold text-xl">{product.price}</span>
+              <div className="p-6 md:p-10 flex flex-col flex-1 bg-gradient-to-b from-transparent to-brand-forest/40">
+                <div className="mb-4">
+                  <span className="text-brand-gold text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-bold block mb-2">{product.category}</span>
+                  <Link to={`/product/${product.id}`} className="block group/title">
+                    <h4 className="text-brand-cream font-serif text-2xl md:text-3xl font-bold leading-tight group-hover/title:text-brand-gold transition-colors">
+                      {product.name}
+                    </h4>
+                  </Link>
                 </div>
-                <p className="text-brand-cream/70 mb-8 line-clamp-2">
-                  {product.description}
-                </p>
+
+                <div 
+                  className="text-brand-cream/40 mb-6 md:mb-10 text-xs md:text-sm leading-relaxed line-clamp-2 font-light italic"
+                  dangerouslySetInnerHTML={{ __html: product.description }}
+                />
                 
-                <div className="flex gap-3">
-                  <Button 
-                    className="flex-1 bg-brand-gold hover:bg-brand-goldDark text-brand-black font-bold"
-                    onClick={() => handleEnquire(product)}
-                  >
-                    <ShoppingCart className="w-4 h-4 mr-2" />
-                    Enquire Now
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="border-brand-gold text-brand-gold hover:bg-brand-gold/10"
-                    onClick={() => setSelectedProduct(product)}
-                  >
-                    <Info className="w-4 h-4" />
-                  </Button>
+                <div className="mt-auto flex items-center justify-between gap-4 md:gap-6">
+                  <div className="flex flex-col">
+                    <span className="text-brand-cream/30 text-[9px] md:text-[10px] uppercase font-bold tracking-widest leading-none mb-1">M.R.P</span>
+                    <span className={product.pricingTable ? "text-brand-gold font-serif text-xl md:text-2xl font-bold" : "text-brand-gold font-serif text-2xl md:text-3xl font-bold"}>
+                      {product.price.startsWith('From') ? product.price : `₹${product.price}`}
+                    </span>
+                  </div>
+                  
+                  <div className="flex-1 max-w-[140px] md:max-w-none">
+                    <Button 
+                      className="w-full bg-brand-gold hover:bg-brand-gold/90 text-brand-black font-bold h-12 md:h-14 rounded-xl md:rounded-2xl px-4 md:px-8 shadow-lg transition-transform active:scale-95 group-hover:shadow-brand-gold/20"
+                      onClick={() => {
+                        addToCart(product);
+                        toast.success(`${product.name} added to cart`);
+                      }}
+                    >
+                      <ShoppingCart className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+                      Add to Cart
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -148,45 +234,65 @@ const Products = () => {
         </div>
       </div>
 
-      {/* Product Detail Modal */}
       <Dialog open={!!selectedProduct} onOpenChange={() => setSelectedProduct(null)}>
-        <DialogContent className="bg-brand-cream border-brand-gold/30 max-w-2xl">
+        <DialogContent className="bg-brand-cream border-brand-gold/30 max-w-4xl max-h-[90vh] overflow-y-auto">
           {selectedProduct && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
-              <div className="rounded-2xl overflow-hidden h-64 md:h-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+              <div className="rounded-2xl overflow-hidden h-48 md:h-[400px] lg:h-full">
                 <img 
                   src={selectedProduct.image} 
                   alt={selectedProduct.name} 
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="space-y-6">
+              <div className="space-y-4 text-brand-black">
                 <div>
-                  <span className="text-brand-goldDark font-bold text-sm uppercase tracking-widest">{selectedProduct.category}</span>
-                  <DialogTitle className="text-brand-forest font-serif text-3xl font-bold mt-1">{selectedProduct.name}</DialogTitle>
-                  <p className="text-brand-gold font-bold text-2xl mt-2">{selectedProduct.price}</p>
+                  <span className="text-brand-goldDark font-bold text-xs md:text-sm uppercase tracking-widest">{selectedProduct.category}</span>
+                  <DialogTitle className="text-brand-forest font-serif text-2xl md:text-3xl font-bold mt-1 leading-tight">{selectedProduct.name}</DialogTitle>
+                  <p className="text-brand-goldDark font-bold text-xl md:text-2xl mt-1">
+                    {selectedProduct.price.startsWith('From') ? selectedProduct.price : `₹${selectedProduct.price}`}
+                  </p>
                 </div>
                 
-                <DialogDescription className="text-brand-black/70 text-lg leading-relaxed">
-                  {selectedProduct.description}
-                </DialogDescription>
+                <div 
+                  className="text-brand-black/70 text-sm md:text-base leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: selectedProduct.description }}
+                />
 
-                <div className="space-y-3">
-                  <p className="font-bold text-brand-forest">Key Benefits:</p>
-                  {selectedProduct.benefits.map((benefit: string, i: number) => (
-                    <div key={i} className="flex items-center gap-2">
-                      <CheckCircle2 className="text-brand-leaf w-5 h-5" />
-                      <span className="text-brand-black/80">{benefit}</span>
-                    </div>
-                  ))}
+                <div className="space-y-2">
+                  <p className="font-bold text-brand-forest text-sm uppercase tracking-widest">Key Benefits</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {selectedProduct.benefits.map((benefit: string, i: number) => (
+                      <div key={i} className="flex items-start gap-1.5">
+                        <CheckCircle2 className="text-brand-gold w-4 h-4 mt-0.5 flex-shrink-0" />
+                        <span className="text-brand-black/80 text-xs md:text-sm leading-snug">{benefit}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                <Button 
-                  className="w-full bg-brand-forest hover:bg-brand-forest/90 text-brand-cream font-bold py-6"
-                  onClick={() => handleEnquire(selectedProduct)}
-                >
-                  Enquire on WhatsApp
-                </Button>
+                <div className="flex flex-col gap-2 pt-4">
+                  <Button 
+                    className="snipcart-add-item w-full bg-brand-forest hover:bg-brand-forest/90 text-brand-cream font-bold py-5 md:py-6 h-auto text-base md:text-lg rounded-xl"
+                    data-item-id={selectedProduct.id}
+                    data-item-name={selectedProduct.name}
+                    data-item-price={selectedProduct.price}
+                    data-item-url={`${window.location.origin}/products`}
+                    data-item-description={selectedProduct.description.replace(/<[^>]*>?/gm, '')}
+                    data-item-image={selectedProduct.image}
+                    onClick={() => setSelectedProduct(null)}
+                  >
+                    <ShoppingCart className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3" />
+                    Add to Cart
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    className="w-full font-bold py-3 md:py-4 h-auto rounded-xl border-brand-forest text-brand-forest hover:bg-brand-forest/5"
+                    onClick={() => handleEnquire(selectedProduct)}
+                  >
+                    Enquire on WhatsApp
+                  </Button>
+                </div>
               </div>
             </div>
           )}

@@ -1,6 +1,5 @@
-"use client";
-
 import React from 'react';
+import InfiniteScroll from './react-bits/InfiniteScroll';
 
 const Marquee = () => {
   const specialties = [
@@ -16,21 +15,17 @@ const Marquee = () => {
   ];
 
   return (
-    <div className="bg-brand-goldDark py-4 overflow-hidden border-y border-brand-gold/50">
-      <div className="flex whitespace-nowrap animate-marquee">
-        {[...Array(4)].map((_, i) => (
-          <div key={i} className="flex items-center">
-            {specialties.map((item, index) => (
-              <React.Fragment key={index}>
-                <span className="text-brand-cream font-serif text-xl md:text-2xl mx-8 font-bold uppercase tracking-wider">
-                  {item}
-                </span>
-                <span className="text-brand-forest text-2xl">✦</span>
-              </React.Fragment>
-            ))}
+    <div className="bg-brand-goldDark overflow-hidden border-y border-brand-gold/50">
+      <InfiniteScroll speed={40} pauseOnHover={false}>
+        {specialties.map((item, index) => (
+          <div key={index} className="flex items-center">
+            <span className="text-brand-cream font-serif text-xl md:text-2xl mx-8 font-bold uppercase tracking-wider">
+              {item}
+            </span>
+            <span className="text-brand-forest text-2xl">✦</span>
           </div>
         ))}
-      </div>
+      </InfiniteScroll>
     </div>
   );
 };

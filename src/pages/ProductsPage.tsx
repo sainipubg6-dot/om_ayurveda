@@ -5,8 +5,7 @@ import Navbar from '@/components/Navbar';
 import Products from '@/components/Products';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { MadeWithDyad } from "@/components/made-with-dyad";
-
+import Seo from '@/components/Seo';
 const ProductsPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -14,6 +13,7 @@ const ProductsPage = () => {
 
   return (
     <div className="min-h-screen bg-brand-cream font-sans selection:bg-brand-gold selection:text-brand-black">
+      <Seo title="Apothecary - Ayurveda Veda" description="Premium Ayurvedic formulations prepared with authentic Shastric methods." />
       <Navbar />
       <main className="pt-20">
         <div className="bg-brand-forest py-20 text-center">
@@ -24,7 +24,6 @@ const ProductsPage = () => {
       </main>
       <Footer />
       <WhatsAppButton />
-      <MadeWithDyad />
     </div>
   );
 };

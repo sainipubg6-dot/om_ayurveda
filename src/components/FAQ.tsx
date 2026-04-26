@@ -38,28 +38,28 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <section className="py-24 bg-white relative">
-      <div className="container px-6 max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-brand-gold font-serif text-lg uppercase tracking-[0.3em] mb-4">Common Queries</h2>
-          <h3 className="text-brand-forest font-serif text-4xl md:text-5xl mb-6">Frequently Asked Questions</h3>
-          <div className="w-24 h-1 bg-brand-gold mx-auto rounded-full" />
+    <section className="py-12 md:py-24 bg-white relative">
+      <div className="container px-4 md:px-6 max-w-4xl mx-auto">
+        <div className="text-center mb-8 md:mb-16">
+          <h2 className="text-brand-gold font-serif text-xs md:text-lg uppercase tracking-[0.3em] mb-2 md:mb-4">Common Queries</h2>
+          <h3 className="text-brand-forest font-serif text-2xl md:text-5xl mb-3 md:mb-6 leading-tight">Frequently Asked Questions</h3>
+          <div className="w-16 h-0.5 md:w-24 md:h-1 bg-brand-gold mx-auto rounded-full" />
         </div>
 
-        <Accordion type="single" collapsible className="w-full space-y-4">
+        <Accordion type="single" collapsible className="w-full space-y-2 md:space-y-4">
           {faqs.map((faq, index) => (
             <AccordionItem 
               key={index} 
               value={`item-${index}`}
-              className="border border-brand-gold/20 rounded-2xl px-6 bg-brand-cream/20 overflow-hidden"
+              className="border border-brand-gold/20 rounded-xl md:rounded-2xl px-4 md:px-6 bg-brand-cream/20 overflow-hidden"
             >
-              <AccordionTrigger className="hover:no-underline py-6">
+              <AccordionTrigger className="hover:no-underline py-3 md:py-6">
                 <div className="text-left">
-                  <p className="text-brand-gold font-hindi text-lg mb-1">{faq.hindi}</p>
-                  <p className="text-brand-forest font-serif text-xl font-bold">{faq.question}</p>
+                  <p className="text-brand-gold font-hindi text-sm md:text-lg mb-0.5">{faq.hindi}</p>
+                  <p className="text-brand-forest font-serif text-sm md:text-xl font-bold leading-tight">{faq.question}</p>
                 </div>
               </AccordionTrigger>
-              <AccordionContent className="text-brand-black/70 text-lg pb-6 leading-relaxed">
+              <AccordionContent className="text-brand-black/70 text-sm md:text-lg pb-3 md:pb-6 leading-relaxed">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>

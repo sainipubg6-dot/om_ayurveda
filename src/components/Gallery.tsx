@@ -31,24 +31,24 @@ const images = [
 
 const Gallery = () => {
   return (
-    <section className="py-24 bg-brand-cream">
-      <div className="container px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-brand-gold font-serif text-lg uppercase tracking-[0.3em] mb-4">Visual Journey</h2>
-          <h3 className="text-brand-forest font-serif text-4xl md:text-5xl mb-6">Inside Om Ayurveda</h3>
-          <div className="w-24 h-1 bg-brand-gold mx-auto rounded-full" />
+    <section className="py-10 md:py-24 bg-brand-cream">
+      <div className="container px-4 md:px-6">
+        <div className="text-center max-w-3xl mx-auto mb-6 md:mb-16">
+          <h2 className="text-brand-gold font-serif text-xs md:text-lg uppercase tracking-[0.3em] mb-2 md:mb-4">Visual Journey</h2>
+          <h3 className="text-brand-forest font-serif text-2xl md:text-5xl mb-3 md:mb-6 leading-tight">Inside Om Ayurveda</h3>
+          <div className="w-16 h-0.5 md:w-24 md:h-1 bg-brand-gold mx-auto rounded-full" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
           {images.map((img, index) => (
-            <div key={index} className="group relative h-80 rounded-3xl overflow-hidden shadow-xl">
+            <div key={index} className="group relative h-48 md:h-80 rounded-xl md:rounded-3xl overflow-hidden shadow-xl">
               <img 
                 src={img.url} 
                 alt={img.title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                <h4 className="text-brand-cream font-serif text-2xl font-bold">{img.title}</h4>
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4 md:p-8">
+                <h4 className="text-brand-cream font-serif text-sm md:text-2xl font-bold">{img.title}</h4>
               </div>
             </div>
           ))}

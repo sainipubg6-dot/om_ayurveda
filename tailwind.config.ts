@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -12,12 +13,53 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
+      padding: {
+        DEFAULT: "1rem",
+        sm: "1.5rem",
+        md: "2rem",
+        lg: "2.5rem",
+        xl: "3rem",
+        "2xl": "3rem",
       },
     },
+    screens: {
+      xs: "375px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1400px",
+    },
     extend: {
+      spacing: {
+        "18": "4.5rem",
+        "22": "5.5rem",
+        "30": "7.5rem",
+        "88": "22rem",
+        "128": "32rem",
+      },
+      minHeight: {
+        "screen": "100vh",
+        "screen-90": "90vh",
+        "screen-80": "80vh",
+      },
+      minWidth: {
+        "screen": "100vw",
+      },
+      maxWidth: {
+        "xs": "20rem",
+        "sm": "24rem",
+        "md": "28rem",
+        "lg": "32rem",
+        "xl": "36rem",
+        "2xl": "42rem",
+        "3xl": "48rem",
+        "4xl": "56rem",
+        "5xl": "64rem",
+        "6xl": "72rem",
+        "7xl": "80rem",
+        "prose": "65ch",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -25,8 +67,11 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         brand: {
-          gold: "#C9A84C",
-          goldDark: "#A0722A",
+          gold: "#B8860B",
+          goldDark: "#704214",
+          goldLight: "#DAA520",
+          goldRich: "#996515",
+          goldMetallic: "linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C)",
           cream: "#FDF6E3",
           forest: "#2D6A4F",
           leaf: "#52B788",
@@ -38,7 +83,7 @@ export default {
           foreground: "#FDF6E3",
         },
         secondary: {
-          DEFAULT: "#C9A84C",
+          DEFAULT: "#B8860B",
           foreground: "#1A1A1A",
         },
         destructive: {
@@ -50,7 +95,7 @@ export default {
           foreground: "#2D6A4F",
         },
         accent: {
-          DEFAULT: "#C9A84C",
+          DEFAULT: "#B8860B",
           foreground: "#FDF6E3",
         },
         popover: {
@@ -92,6 +137,11 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        scroll: {
+          to: {
+            transform: "translate(calc(-50% - 0.5rem))",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -99,8 +149,9 @@ export default {
         marquee: "marquee 25s linear infinite",
         shimmer: "shimmer 2s infinite",
         float: "float 3s ease-in-out infinite",
+        scroll: "scroll var(--speed) var(--direction) linear infinite",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

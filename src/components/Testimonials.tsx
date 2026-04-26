@@ -33,57 +33,57 @@ const Testimonials = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+    }, 7000); // keep each testimonial visible at least 7 seconds for readability
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="py-24 bg-brand-cream overflow-hidden">
-      <div className="container px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-brand-gold font-serif text-lg uppercase tracking-[0.3em] mb-4">Patient Stories</h2>
-          <h3 className="text-brand-forest font-serif text-4xl md:text-5xl">Trusted by Thousands</h3>
+    <section className="py-12 md:py-24 bg-brand-cream overflow-hidden">
+      <div className="container px-4 md:px-6">
+        <div className="text-center mb-8 md:mb-16">
+          <h2 className="text-brand-gold font-serif text-xs md:text-lg uppercase tracking-[0.3em] mb-2 md:mb-4">Patient Stories</h2>
+          <h3 className="text-brand-forest font-serif text-2xl md:text-5xl leading-tight">Trusted by Thousands</h3>
         </div>
 
-        <div className="max-w-4xl mx-auto relative">
-          <div className="relative h-[400px] md:h-[300px]">
+        <div className="max-w-4xl mx-auto">
+          <div className="min-h-[280px] sm:min-h-[340px] md:min-h-[360px]">
             {testimonials.map((t, i) => (
               <div
                 key={i}
-                className={`absolute inset-0 transition-all duration-1000 flex flex-col items-center text-center ${
-                  i === activeIndex ? "opacity-100 translate-x-0" : "opacity-0 translate-x-20 pointer-events-none"
+                className={`transition-all duration-700 flex flex-col items-center text-center px-4 py-6 sm:px-6 sm:py-8 ${
+                  i === activeIndex ? "opacity-100" : "opacity-0 hidden"
                 }`}
               >
-                <Quote className="text-brand-gold w-16 h-16 mb-8 opacity-20" />
+                <Quote className="text-brand-gold w-8 h-8 md:w-16 md:h-16 mb-3 md:mb-8 opacity-20" />
                 
-                <div className="flex gap-1 mb-6">
+                <div className="flex gap-1 mb-3 md:mb-6">
                   {[...Array(t.rating)].map((_, star) => (
-                    <Star key={star} className="w-5 h-5 fill-brand-gold text-brand-gold" />
+                    <Star key={star} className="w-3 h-3 md:w-5 md:h-5 fill-brand-gold text-brand-gold" />
                   ))}
                 </div>
                 
-                <p className="text-brand-forest font-hindi text-2xl md:text-3xl mb-4 italic">
+                <p className="text-brand-forest font-hindi text-base md:text-3xl mb-2 md:mb-4 italic break-words leading-normal">
                   "{t.hindi}"
                 </p>
-                <p className="text-brand-black/70 text-lg mb-8 max-w-2xl">
+                <p className="text-brand-black/70 text-xs md:text-lg mb-3 md:mb-8 max-w-2xl break-words leading-relaxed">
                   {t.text}
                 </p>
                 
                 <div>
-                  <h4 className="text-brand-forest font-bold text-xl">{t.name}</h4>
-                  <p className="text-brand-goldDark font-medium">{t.city}</p>
+                  <h4 className="text-brand-forest font-bold text-sm md:text-xl">{t.name}</h4>
+                  <p className="text-brand-goldDark font-medium text-xs md:text-base">{t.city}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="flex justify-center gap-3 mt-8">
+          <div className="flex justify-center gap-2 md:gap-3 mt-4 md:mt-8">
             {testimonials.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActiveIndex(i)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  i === activeIndex ? "bg-brand-gold w-8" : "bg-brand-gold/30"
+                className={`h-2 md:h-3 rounded-full transition-all ${
+                  i === activeIndex ? "bg-brand-gold w-6 md:w-8" : "bg-brand-gold/30 w-2 md:w-3"
                 }`}
               />
             ))}
