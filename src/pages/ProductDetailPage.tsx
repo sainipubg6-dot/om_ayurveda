@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
-import { ShoppingCart, ArrowLeft, CheckCircle2, ShieldCheck, Truck, RefreshCw, Star, Info, List, HelpCircle, MessageSquare, ChevronRight, Maximize2, X, ChevronLeft } from 'lucide-react';
+import { ShoppingCart, ArrowLeft, CheckCircle2, ShieldCheck, Truck, RefreshCw, Star, Info, List, HelpCircle, MessageSquare, ChevronRight, Maximize2, X, ChevronLeft, Leaf } from 'lucide-react';
 import { useWCProducts } from '@/lib/woocommerce';
 import { useCart } from '@/contexts/CartContext';
 import { toast } from 'sonner';
@@ -62,12 +62,12 @@ const ProductDetailPage = () => {
 
   const handlePrev = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    setLightboxIndex((prev) => (prev > 0 ? prev - 1 : product.images.length - 1));
+    setLightboxIndex((prev) => (prev > 0 ? prev - 1 : (product?.images?.length || 1) - 1));
   };
 
   const handleNext = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    setLightboxIndex((prev) => (prev < product.images.length - 1 ? prev + 1 : 0));
+    setLightboxIndex((prev) => (prev < (product?.images?.length || 1) - 1 ? prev + 1 : 0));
   };
 
   if (loading) {
@@ -277,7 +277,7 @@ const ProductDetailPage = () => {
                       {product.ingredients?.map((ing: string, i: number) => (
                         <div key={i} className="flex items-center gap-6 p-8 bg-brand-cream rounded-[2rem] group hover:bg-brand-gold/10 transition-all duration-500 hover:shadow-xl">
                           <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg group-hover:rotate-[15deg] transition-transform">
-                            <LeafIcon className="text-brand-gold w-8 h-8" />
+                            <Leaf className="text-brand-gold w-8 h-8" />
                           </div>
                           <span className="text-brand-forest font-bold text-xl">{ing}</span>
                         </div>
