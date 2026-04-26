@@ -98,7 +98,10 @@ const ProductDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-brand-cream selection:bg-brand-gold selection:text-brand-black">
-      <Seo title={product.name + " - Ayurveda Veda"} description={product.shortDescription} />
+      <Seo 
+        title={(product?.name || "Product") + " - Ayurveda Veda"} 
+        description={product?.shortDescription || "Authentic Ayurvedic formulation."} 
+      />
       <Navbar />
       
       <main className="pt-32 pb-24">
@@ -123,10 +126,10 @@ const ProductDetailPage = () => {
                   }}
                 >
                   <img 
-                    src={product.images[activeImage]} 
-                    alt={product.name} 
+                    src={product?.images?.[activeImage] || "/placeholder.svg"} 
+                    alt={product?.name || "Product"} 
                     className="w-full h-full object-contain bg-white transition-transform duration-700 group-hover:scale-105"
-                    onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = '/images/products/placeholder.png'; }}
+                    onError={e => { e.currentTarget.onerror = null; e.currentTarget.src = '/placeholder.svg'; }}
                   />
                   <div className="absolute inset-0 bg-brand-black/0 group-hover:bg-brand-black/5 transition-colors duration-500" />
                   <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/90 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-brand-gold/10">
@@ -135,7 +138,7 @@ const ProductDetailPage = () => {
                 </div>
 
                 <div className="grid grid-cols-4 gap-4">
-                  {product.images.map((img: string, i: number) => (
+                  {(product?.images || []).map((img: string, i: number) => (
                     <button
                       key={i}
                       onClick={() => setActiveImage(i)}
@@ -156,7 +159,7 @@ const ProductDetailPage = () => {
               <div className="flex flex-col">
                 <div className="mb-4 flex items-center gap-2">
                   <span className="bg-brand-gold/10 text-brand-gold font-bold text-[10px] uppercase tracking-[0.3em] px-4 py-1.5 rounded-full border border-brand-gold/20">
-                    {product.category}
+                    {product?.category || "Wellness"}
                   </span>
                   <div className="flex gap-1 ml-4">
                     {[...Array(5)].map((_, i) => (
@@ -166,13 +169,13 @@ const ProductDetailPage = () => {
                 </div>
 
                 <h1 className="text-brand-forest font-serif text-5xl md:text-7xl font-bold mb-8 leading-[1.1]">
-                  {product.name}
+                  {product?.name}
                 </h1>
                 
                 <div className="flex items-center gap-8 mb-12">
                   <div className="flex flex-col">
                     <span className="text-brand-black/30 text-[10px] uppercase font-bold tracking-[0.2em] mb-1">Clinic Price</span>
-                    <span className="text-brand-forest text-5xl font-bold font-serif whitespace-nowrap">₹{product.price}</span>
+                    <span className="text-brand-forest text-5xl font-bold font-serif whitespace-nowrap">₹{product?.price}</span>
                   </div>
                   <div className="h-16 w-px bg-brand-gold/20" />
                   <div className="flex flex-col">
@@ -185,7 +188,7 @@ const ProductDetailPage = () => {
                 </div>
 
                 <p className="text-brand-black/70 text-xl mb-12 leading-relaxed font-light border-l-4 border-brand-gold/30 pl-8 italic">
-                  {product.shortDescription || product.name}
+                  {product?.shortDescription || product?.name}
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 mb-16">
@@ -193,7 +196,7 @@ const ProductDetailPage = () => {
                     className="flex-1 bg-brand-forest hover:bg-brand-forest/95 text-brand-gold font-bold py-10 text-2xl rounded-[1.5rem] shadow-[0_20px_40px_rgba(26,47,35,0.2)] transition-all hover:-translate-y-1 active:translate-y-0"
                     onClick={() => {
                       addToCart(product);
-                      toast.success(`${product.name} added to cart`);
+                      toast.success(`${product?.name} added to cart`);
                     }}
                   >
                     <ShoppingCart className="w-7 h-7 mr-4" />
@@ -265,7 +268,7 @@ const ProductDetailPage = () => {
                     </div>
                     <div 
                       className="text-brand-black/70 text-xl leading-relaxed prose prose-green prose-xl max-w-none font-light"
-                      dangerouslySetInnerHTML={{ __html: product.description }}
+                      dangerouslySetInnerHTML={{ __html: product?.description || "" }}
                     />
                   </div>
                 )}
@@ -328,7 +331,7 @@ const ProductDetailPage = () => {
                           <div className="flex justify-between items-start mb-8">
                             <div>
                               <div className="flex gap-1 mb-3">
-                                {[...Array(review.rating)].map((_, i) => (
+                                {[...Array(Number(review?.rating || 5))].map((_, i) => (
                                   <Star key={i} className="w-4 h-4 text-brand-gold fill-brand-gold" />
                                 ))}
                               </div>

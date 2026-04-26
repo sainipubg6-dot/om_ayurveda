@@ -11,9 +11,8 @@ import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription,
 } from '@/components/ui/dialog';
 import {
-  Gift, Star, Quote, ChevronRight, X,
+  Gift, Star, Quote, ChevronRight, X, Clock, PhoneCall, Activity, Sparkles, CheckCircle2
 } from 'lucide-react';
-import Seo from '@/components/Seo';
 
 /* ═══════════════════════════════════════════════════════════
    DATA
