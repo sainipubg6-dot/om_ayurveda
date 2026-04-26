@@ -1,13 +1,14 @@
+"use client";
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ShieldCheck, Leaf, UserCheck, Award } from 'lucide-react';
 import DotPattern from './react-bits/DotPattern';
 import BlurText from './react-bits/BlurText';
-import Magnetic from './react-bits/Magnetic';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-forest pt-16 md:pt-20">
+    <section id="home" className="relative min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-brand-forest pt-12 md:pt-20">
       {/* Background Pattern */}
       <DotPattern
         className="fill-brand-gold/10 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]"
@@ -23,11 +24,11 @@ const Hero = () => {
       </div>
 
       <div className="container relative z-10 px-4 md:px-6 text-center">
-        <div className="inline-block px-3 py-1 mb-4 md:mb-6 border border-brand-gold/30 rounded-full bg-brand-gold/5 backdrop-blur-sm">
-          <span className="text-brand-gold text-[10px] md:text-sm font-medium tracking-widest uppercase">Ancient Wisdom • Modern Healing</span>
+        <div className="inline-block px-2 md:px-3 py-1 mb-3 md:mb-6 border border-brand-gold/30 rounded-full bg-brand-gold/5 backdrop-blur-sm">
+          <span className="text-brand-gold text-[9px] md:text-sm font-medium tracking-widest uppercase">Ancient Wisdom • Modern Healing</span>
         </div>
         
-        <div className="flex flex-wrap justify-center mb-3 md:mb-6 gap-x-2">
+        <div className="flex flex-wrap justify-center mb-2 md:mb-6 gap-x-2">
           <BlurText
             text="पहला सुख"
             className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-8xl text-brand-cream leading-tight"
@@ -44,39 +45,37 @@ const Hero = () => {
           />
         </div>
         
-        <p className="text-brand-cream/80 text-sm md:text-base lg:text-xl max-w-2xl mx-auto mb-6 md:mb-10 font-sans leading-relaxed px-2">
-          Experience the pinnacle of Ayurvedic excellence. Traditional Swarna Bhasma treatments with modern holistic care.
+        <p className="text-brand-cream/70 text-xs md:text-base lg:text-xl max-w-xl mx-auto mb-6 md:mb-10 font-sans leading-relaxed px-4">
+          Experience Ayurvedic excellence with traditional Swarna Bhasma treatments.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-8 md:mb-16">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8 md:mb-16">
           <Button 
-            size="lg" 
-            className="w-full sm:w-auto bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-black font-bold text-sm md:text-base px-6 md:px-10 py-3 md:py-7 rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(201,168,76,0.3)] h-auto"
+            className="w-full sm:w-auto bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-black font-bold text-sm h-12 md:h-16 px-8 md:px-12 rounded-full shadow-lg"
             onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
           >
             Explore Treatments
           </Button>
           <Button 
-            size="lg" 
             variant="outline" 
-            className="w-full sm:w-auto border-brand-gold text-brand-gold hover:bg-brand-gold/10 font-bold text-sm md:text-base px-6 md:px-10 py-3 md:py-7 rounded-full h-auto"
+            className="w-full sm:w-auto border-brand-gold text-brand-gold hover:bg-brand-gold/10 font-bold text-sm h-12 md:h-16 px-8 md:px-12 rounded-full"
             onClick={() => window.location.href = 'tel:7015001978'}
           >
             Call Now
           </Button>
         </div>
 
-        {/* Trust Badges */}
-        <div className="grid grid-cols-4 gap-3 md:gap-8 max-w-4xl mx-auto pt-6 md:pt-10 border-t border-brand-cream/10">
+        {/* Trust Badges - More Compact */}
+        <div className="grid grid-cols-4 gap-2 md:gap-8 max-w-2xl mx-auto pt-6 md:pt-10 border-t border-brand-cream/10">
           {[
             { icon: ShieldCheck, label: "Registered" },
-            { icon: Leaf, label: "100% Ayurvedic" },
-            { icon: UserCheck, label: "Expert Doctors" },
+            { icon: Leaf, label: "Ayurvedic" },
+            { icon: UserCheck, label: "Expert" },
             { icon: Award, label: "Trusted" },
           ].map(({ icon: Icon, label }) => (
-            <div key={label} className="flex flex-col items-center gap-1 md:gap-2">
-              <Icon className="text-brand-gold w-5 h-5 md:w-8 md:h-8" />
-              <span className="text-brand-cream/70 text-[9px] md:text-sm font-medium leading-tight text-center">{label}</span>
+            <div key={label} className="flex flex-col items-center gap-1">
+              <Icon className="text-brand-gold w-4 h-4 md:w-8 md:h-8" />
+              <span className="text-brand-cream/50 text-[8px] md:text-xs font-medium leading-tight">{label}</span>
             </div>
           ))}
         </div>

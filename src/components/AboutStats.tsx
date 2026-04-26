@@ -7,7 +7,7 @@ const stats = [
   { label: "Patients Treated", value: "1M+", icon: Users },
   { label: "Vedic Formulas", value: "500+", icon: Leaf },
   { label: "Successful Cases", value: "98%", icon: Heart },
-  { label: "Global Reach", value: "25+", icon: Globe2, suffix: " Countries" }
+  { label: "Presence", value: "Global", icon: Globe2, suffix: " Reach" }
 ];
 
 const AboutStats = () => {

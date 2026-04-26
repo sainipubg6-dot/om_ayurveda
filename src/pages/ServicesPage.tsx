@@ -302,11 +302,6 @@ const premiumSwarnaPackProducts: Service[] = [
   }
 ];
 
-const testimonials = [
-  { name: "Rajesh Kumar", city: "New Delhi", text: "Om Ayurveda's Shirodhara changed my life. My insomnia is completely gone after just 5 sessions.", hindi: "ओम आयुर्वेद की शिरोधारा ने मेरी अनिद्रा को पूरी तरह ठीक कर दिया।", rating: 5 },
-  { name: "Sunita Sharma", city: "Chandigarh", text: "After 3 months of Panchkarma, I can walk without knee support. Truly miraculous.", hindi: "पंचकर्म के 3 महीने बाद, मैं बिना सहारे चल सकती हूँ।", rating: 5 },
-  { name: "Amit Patel", city: "Ahmedabad", text: "The physiotherapy sessions helped me recover from my ACL surgery faster than expected.", hindi: "फिजियोथेरेपी ने मेरी ACL सर्जरी से रिकवरी तेज कर दी।", rating: 5 },
-];
 
 /* ═══════════════════════════════════════════════════════════
    COMPACT SERVICE CARD (name + price + image only)
@@ -486,14 +481,8 @@ const ServiceDetailModal = ({ service, isOpen, onClose }: { service: Service | n
    ═══════════════════════════════════════════════════════════ */
 const ServicesPage = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => setActiveTestimonial(p => (p + 1) % testimonials.length), 5000);
-    return () => clearInterval(timer);
-  }, []);
 
   const handleEnquire = () => {
     const msg = "Namaste! I'd like to book a free consultation. Please share the available slots.";
@@ -647,53 +636,6 @@ const ServicesPage = () => {
               <p className="text-brand-cream/30 text-[10px] mt-6">
                 * GST 18% applicable on all treatments. Prices are per session.
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ═══ 5. TESTIMONIALS ═══ */}
-        <section className="py-12 md:py-20 bg-brand-cream overflow-hidden">
-          <div className="container px-4 md:px-6">
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-brand-gold font-serif text-xs md:text-sm uppercase tracking-[0.3em] mb-2">Patient Stories</h2>
-              <h3 className="text-brand-forest font-serif text-2xl md:text-4xl leading-tight">What Our Patients Say</h3>
-            </div>
-
-            <div className="max-w-3xl mx-auto">
-              <div className="min-h-[280px] sm:min-h-[240px]">
-                {testimonials.map((t, i) => (
-                  <div
-                    key={i}
-                    className={`transition-all duration-700 flex flex-col items-center text-center ${
-                      i === activeTestimonial ? "opacity-100 translate-y-0" : "opacity-0 hidden translate-y-6"
-                    }`}
-                  >
-                    <Quote className="text-brand-gold w-8 h-8 md:w-12 md:h-12 mb-3 md:mb-6 opacity-20" />
-                    <div className="flex gap-1 mb-3">
-                      {[...Array(t.rating)].map((_, s) => (
-                        <Star key={s} className="w-4 h-4 md:w-5 md:h-5 fill-brand-gold text-brand-gold" />
-                      ))}
-                    </div>
-                    <p className="text-brand-forest font-hindi text-base md:text-2xl italic mb-3">"{t.hindi}"</p>
-                    <p className="text-brand-black/70 text-sm md:text-base mb-6 max-w-xl leading-relaxed">{t.text}</p>
-                    <div>
-                      <h4 className="text-brand-forest font-bold text-base md:text-lg">{t.name}</h4>
-                      <p className="text-brand-goldDark text-sm">{t.city}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="flex justify-center gap-2 mt-4">
-                {testimonials.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveTestimonial(i)}
-                    className={`h-2 rounded-full transition-all ${
-                      i === activeTestimonial ? "bg-brand-gold w-6" : "bg-brand-gold/25 w-2"
-                    }`}
-                  />
-                ))}
-              </div>
             </div>
           </div>
         </section>

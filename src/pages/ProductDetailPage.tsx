@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils';
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const ProductDetailPage = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const { products: wcProducts, loading } = useWCProducts();
   const { addToCart } = useCart();
   
@@ -31,20 +31,22 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     if (!loading && wcProducts?.length > 0) {
-      // Find the product by ID
-      const rawProduct = wcProducts.find(p => String(p.id) === String(id));
+      // Find the product by SLUG or ID as fallback
+      const foundProduct = wcProducts.find(p => 
+        (p.slug === slug) || (String(p.id) === String(slug))
+      );
       
-      if (rawProduct) {
+      if (foundProduct) {
         // Deep clean the data to prevent any crashes
         const cleanedProduct = {
-          id: rawProduct.id,
-          name: rawProduct.name || "Ayurvedic Formulation",
-          category: rawProduct.categories?.[0]?.name || "Wellness",
-          price: rawProduct.price || "0",
-          description: rawProduct.description || rawProduct.short_description || "Authentic Ayurvedic formulation.",
-          shortDescription: rawProduct.short_description?.replace(/<[^>]*>?/gm, '') || "Premium Ayurvedic wellness solution.",
-          images: rawProduct.images?.length > 0 
-            ? rawProduct.images.map((img: any) => (typeof img === 'string' ? img : img.src))
+          id: foundProduct.id,
+          name: foundProduct.name || "Ayurvedic Formulation",
+          category: foundProduct.categories?.[0]?.name || "Wellness",
+          price: foundProduct.price || "0",
+          description: foundProduct.description || foundProduct.short_description || "Authentic Ayurvedic formulation.",
+          shortDescription: foundProduct.short_description?.replace(/<[^>]*>?/gm, '') || "Premium Ayurvedic wellness solution.",
+          images: foundProduct.images?.length > 0 
+            ? foundProduct.images.map((img: any) => (typeof img === 'string' ? img : img.src))
             : ["https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"],
           ingredients: ["Natural Extracts", "Vedic Herbs", "Custom Medicated Oil"],
           faq: [

@@ -58,13 +58,6 @@ const AboutPage = () => {
           </div>
         </div>
 
-        <div className="bg-brand-cream py-24">
-          <div className="container px-6 text-center mb-16">
-            <h2 className="text-brand-gold font-serif text-lg uppercase tracking-[0.3em] mb-4">Our Facilities</h2>
-            <h3 className="text-brand-forest font-serif text-4xl md:text-5xl">Healing Spaces</h3>
-          </div>
-          <Gallery />
-        </div>
 
         {/* Professional Social Connect Banner */}
         <div className="bg-brand-forest py-24 relative overflow-hidden">

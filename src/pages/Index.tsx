@@ -2,29 +2,22 @@
 
 import React, { useEffect } from 'react';
 import Seo from '@/components/Seo';
-import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Marquee from '@/components/Marquee';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import Process from '@/components/Process';
-import Gallery from '@/components/Gallery';
 import Team from '@/components/Team';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { Button } from '@/components/ui/button';
-import { TiltedCard } from '@/components/react-bits/TiltedCard';
 import { FadedContent } from '@/components/react-bits/FadedContent';
-import { Trophy, Activity, ShieldPlus, HeartPulse, Sparkles, Zap, CheckCircle2, ShieldCheck, Award, BadgeCheck } from 'lucide-react';
-import { useWCProducts } from '@/lib/woocommerce';
-
-
+import { Trophy, ShieldPlus, CheckCircle2, ShieldCheck, Award, BadgeCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
-  const { products: wcProducts } = useWCProducts();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -35,51 +28,25 @@ const Index = () => {
       <Navbar />
 
       <main>
-        {/* Hero */}
+        {/* 1. Hero Banner */}
         <Hero />
         <Marquee />
 
-
-        <FadedContent>
-          <section className="py-10 md:py-16 bg-brand-gold/5 border-t border-b border-brand-gold/20">
-            <div className="container px-4 md:px-6 text-center">
-              <h2 className="text-brand-forest font-serif text-xs md:text-sm uppercase tracking-[0.3em] mb-3">Certifications & Labels</h2>
-              <h3 className="text-brand-forest font-serif text-3xl md:text-4xl font-bold mb-8">Trusted Quality Assurance</h3>
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-3 max-w-4xl mx-auto">
-                {[
-                  { label: 'FSSAI', icon: ShieldCheck },
-                  { label: 'ISO', icon: BadgeCheck },
-                  { label: 'GMP', icon: Award },
-                  { label: 'WHO', icon: CheckCircle2 },
-                  { label: '100% NATURAL', icon: CheckCircle2 },
-                  { label: 'MAKE IN INDIA', icon: Trophy },
-                  { label: 'AYUSH', icon: ShieldPlus },
-                ].map((badge) => {
-                  const Icon = badge.icon;
-                  return (
-                    <div key={badge.label} className="flex flex-col items-center justify-center gap-1 rounded-2xl border border-brand-forest/20 bg-white/90 p-2 md:p-3 text-center shadow-inner">
-                      <Icon className="text-brand-gold w-5 h-5 md:w-6 md:h-6" />
-                      <span className="text-brand-forest text-[10px] md:text-xs font-semibold tracking-wide leading-tight">{badge.label}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        </FadedContent>
-
+        {/* 2. Why Choose Us */}
         <FadedContent>
           <div className="py-1 md:py-4">
             <WhyChooseUs />
           </div>
         </FadedContent>
+
+        {/* 3. Healing Process */}
         <FadedContent>
           <div className="py-1 md:py-4">
             <Process />
           </div>
         </FadedContent>
         
-        {/* About Preview */}
+        {/* 4. Our Legacy Section */}
         <FadedContent>
           <section className="py-10 md:py-24 bg-white relative overflow-hidden">
             <div className="container px-4 md:px-6">
@@ -129,60 +96,43 @@ const Index = () => {
           </section>
         </FadedContent>
 
-
+        {/* 5. Meet Our Vaidyas */}
         <FadedContent>
           <Team />
         </FadedContent>
 
-        {/* Products Preview */}
+        {/* 6. Certifications Bar */}
         <FadedContent>
-          <div className="bg-brand-forest py-10 md:py-24">
+          <section className="py-10 md:py-24 bg-brand-gold/5 border-t border-b border-brand-gold/20">
             <div className="container px-4 md:px-6 text-center">
-              <h2 className="text-brand-gold font-serif text-xs md:text-lg uppercase tracking-[0.3em] mb-2 md:mb-4">Our Apothecary</h2>
-              <h3 className="text-brand-cream font-serif text-2xl md:text-5xl mb-6 md:mb-12 leading-tight">Premium Ayurvedic Formulations</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-16 text-brand-black">
-                {wcProducts.slice(0, 6).map((p, i) => (
-                  <Link key={i} to={`/product/${p.id}`} className="block group">
-                    <div className="bg-brand-cream/50 backdrop-blur-sm rounded-2xl md:rounded-3xl overflow-hidden border border-brand-gold/20 p-4 md:p-6 text-left hover:border-brand-gold transition-all duration-500 hover:-translate-y-1 md:hover:-translate-y-2 shadow-xl">
-                      <div className="relative h-32 md:h-48 overflow-hidden rounded-xl md:rounded-2xl mb-3 md:mb-4">
-                        <img src={p.images?.[0]?.src || "/placeholder.svg"} alt={p.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                      </div>
-                      <h4 className="text-brand-forest font-serif text-sm md:text-xl font-bold line-clamp-1 mb-1">{p.name}</h4>
-                      <p className="text-brand-gold font-bold text-sm md:text-base">₹{p.price}</p>
+              <h2 className="text-brand-forest font-serif text-xs md:text-sm uppercase tracking-[0.3em] mb-3">Certifications & Labels</h2>
+              <h3 className="text-brand-forest font-serif text-3xl md:text-4xl font-bold mb-8">Trusted Quality Assurance</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-3 max-w-4xl mx-auto">
+                {[
+                  { label: 'FSSAI', icon: ShieldCheck },
+                  { label: 'ISO', icon: BadgeCheck },
+                  { label: 'GMP', icon: Award },
+                  { label: 'WHO', icon: CheckCircle2 },
+                  { label: '100% NATURAL', icon: CheckCircle2 },
+                  { label: 'MAKE IN INDIA', icon: Trophy },
+                  { label: 'AYUSH', icon: ShieldPlus },
+                ].map((badge) => {
+                  const Icon = badge.icon;
+                  return (
+                    <div key={badge.label} className="flex flex-col items-center justify-center gap-1 rounded-2xl border border-brand-forest/20 bg-white/90 p-2 md:p-3 text-center shadow-inner">
+                      <Icon className="text-brand-gold w-5 h-5 md:w-6 md:h-6" />
+                      <span className="text-brand-forest text-[10px] md:text-xs font-semibold tracking-wide leading-tight">{badge.label}</span>
                     </div>
-                  </Link>
-                ))}
+                  );
+                })}
               </div>
-              <Link to="/products">
-                <Button size="lg" className="bg-brand-gold text-brand-black hover:bg-brand-gold/90 font-bold px-8 py-3 md:px-10 md:py-6 rounded-full text-sm md:text-base h-auto">
-                  View Full Apothecary
-                </Button>
-              </Link>
             </div>
-          </div>
+          </section>
         </FadedContent>
 
+        {/* 7. Testimonials */}
         <FadedContent>
           <Testimonials />
-        </FadedContent>
-        <FadedContent>
-          <FAQ />
-        </FadedContent>
-        {/* Newsletter section removed as email signup is not required */}
-
-        {/* Contact CTA */}
-        <FadedContent>
-          <div className="py-12 md:py-24 bg-brand-cream text-center">
-            <div className="container px-4 md:px-6">
-              <h2 className="text-brand-gold font-serif text-xs md:text-lg uppercase tracking-[0.3em] mb-2 md:mb-4">Get In Touch</h2>
-              <h3 className="text-brand-forest font-serif text-2xl md:text-5xl mb-6 md:mb-12 leading-tight">Start Your Healing Journey</h3>
-              <Link to="/contact">
-                <Button size="lg" className="w-full sm:w-auto bg-brand-forest text-brand-gold hover:bg-brand-forest/90 font-bold px-8 py-3 md:px-10 md:py-6 rounded-full text-sm md:text-base h-auto">
-                  Contact & Consultations
-                </Button>
-              </Link>
-            </div>
-          </div>
         </FadedContent>
       </main>
 

@@ -11,13 +11,13 @@ const features = [
   },
   {
     icon: Users,
-    title: "10,000+ Happy Patients",
-    description: "We have successfully treated thousands of patients across India for various chronic conditions."
+    title: "1M+ Happy Patients",
+    description: "We have successfully treated over a million patients across India and globally for various chronic conditions."
   },
   {
     icon: Award,
-    title: "25+ Years Legacy",
-    description: "Decades of experience in traditional Ayurvedic medicine and modern holistic healing."
+    title: "68+ Years Legacy",
+    description: "Established in 1958, bringing decades of traditional Ayurvedic wisdom to the modern world."
   },
   {
     icon: Leaf,
