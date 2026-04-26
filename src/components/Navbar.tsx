@@ -56,7 +56,6 @@ const Navbar = () => {
               <span className="font-serif font-bold text-lg md:text-xl tracking-tight leading-none text-brand-gold">
                 OM AYURVEDA
               </span>
-              <span className="text-[8px] md:text-[10px] uppercase tracking-[0.2em] text-brand-cream/80 leading-none mt-1">Registered Brand</span>
             </div>
           </Link>
 

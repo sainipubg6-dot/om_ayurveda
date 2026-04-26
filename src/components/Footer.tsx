@@ -19,7 +19,6 @@ const Footer = () => {
               />
               <div className="flex flex-col">
                 <span className="font-serif font-bold text-sm md:text-base text-brand-gold tracking-tight leading-none">OM AYURVEDA</span>
-                <span className="text-[6px] md:text-[7px] uppercase tracking-[0.2em] text-brand-cream/30">Vedic Healing</span>
               </div>
             </Link>
             <p className="text-brand-cream/30 text-[10px] md:text-xs leading-tight mb-3">
@@ -57,7 +56,7 @@ const Footer = () => {
             <ul className="space-y-1">
               {['Joint Pain', 'Sexual Wellness', 'Athletes', 'Detox'].map(item => (
                 <li key={item}>
-                  <Link to="/services" className="text-brand-cream/40 hover:text-brand-gold transition-colors text-[10px] md:text-xs">
+                  <Link to="/services" className="text-brand-cream/50 hover:text-brand-gold transition-colors text-[10px] md:text-xs">
                     {item}
                   </Link>
                 </li>
@@ -82,7 +81,7 @@ const Footer = () => {
         </div>
 
         <div className="pt-3 border-t border-brand-cream/5 flex justify-between items-center text-[9px] md:text-xs text-brand-cream/20 font-medium">
-          <p>© 2025 Om Ayurveda®</p>
+          <p>© 2026 Om Ayurveda®</p>
           <p className="italic">Vedic Healing • Modern Precision</p>
         </div>
       </div>

@@ -7,7 +7,7 @@ import Hero from '@/components/Hero';
 import Marquee from '@/components/Marquee';
 import ExcellenceAndProcess from '@/components/ExcellenceAndProcess';
 import Team from '@/components/Team';
-import Testimonials from '@/components/Testimonials';
+import TrustAndResults from '@/components/TrustAndResults';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { Button } from '@/components/ui/button';
@@ -21,11 +21,11 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-brand-cream font-sans selection:bg-brand-gold selection:text-brand-black">
+    <div className="min-h-screen flex flex-col bg-brand-cream font-sans selection:bg-brand-gold selection:text-brand-black">
       <Seo title="Home - Ayurveda Veda" description="Premium Ayurvedic products for wellness, immunity, and holistic health." />
       <Navbar />
 
-      <main>
+      <main className="flex-1">
         {/* 1. Hero Banner */}
         <Hero />
         <Marquee />
@@ -84,45 +84,14 @@ const Index = () => {
 
         {/* 4. Meet Our Vaidyas (Tight Padding) */}
         <FadedContent>
-          <div className="py-1">
+          <div className="py-4 md:py-8">
             <Team />
           </div>
         </FadedContent>
 
-        {/* 5. Certifications Bar (Tight Padding) */}
+        {/* 5. Trust & Results (Merged Certifications & Testimonials) */}
         <FadedContent>
-          <section className="py-8 md:py-16 bg-brand-gold/5 border-t border-b border-brand-gold/10">
-            <div className="container px-4 md:px-6 text-center">
-              <h2 className="text-brand-forest font-serif text-[10px] md:text-sm uppercase tracking-[0.3em] mb-2 font-bold">Certifications</h2>
-              <h3 className="text-brand-forest font-serif text-2xl md:text-4xl font-bold mb-6">Trusted Quality Assurance</h3>
-              <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-3 max-w-4xl mx-auto">
-                {[
-                  { label: 'FSSAI', icon: ShieldCheck },
-                  { label: 'ISO', icon: BadgeCheck },
-                  { label: 'GMP', icon: Award },
-                  { label: 'WHO', icon: CheckCircle2 },
-                  { label: 'NATURAL', icon: CheckCircle2 },
-                  { label: 'INDIA', icon: Trophy },
-                  { label: 'AYUSH', icon: ShieldPlus },
-                ].map((badge) => {
-                  const Icon = badge.icon;
-                  return (
-                    <div key={badge.label} className="flex flex-col items-center justify-center gap-1 rounded-xl border border-brand-forest/10 bg-white/90 p-2 md:p-3 text-center shadow-sm">
-                      <Icon className="text-brand-gold w-4 h-4 md:w-5 md:h-5" />
-                      <span className="text-brand-forest text-[8px] md:text-xs font-bold tracking-wide uppercase">{badge.label}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        </FadedContent>
-
-        {/* 6. Testimonials (Tight Padding) */}
-        <FadedContent>
-          <div className="py-1">
-            <Testimonials />
-          </div>
+          <TrustAndResults />
         </FadedContent>
       </main>
 

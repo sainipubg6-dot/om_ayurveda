@@ -13,6 +13,7 @@ import {
 import {
   Gift, Star, Quote, ChevronRight, X, Clock, PhoneCall, Activity, Sparkles, CheckCircle2
 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 /* ═══════════════════════════════════════════════════════════
    DATA
@@ -181,7 +182,7 @@ const swarnaBhasmaProducts: Service[] = [
     name: "Hirak Bhasma", hindi: "हीरक भस्म", price: "From ₹16,200", duration: "Premium",
     image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&q=80&w=800",
     description: "OM AYURVEDA – SWARNA BHASMA SCHEDULE. Processed Diamond (Hirak) traditionally used for severe ailments and remarkable strength.",
-    benefits: ["Cellular Regeneration", "Immunity Boost", "Chronic Ailments Support", "Lifespan Support"],
+    benefits: ["Cellular Regeneration", "Immunity Boost", "Chronic Ailments Support", "Remarkable Strength"],
     pricingTable: {
       headers: ["Sr No", "Price", "Hirak Bhasma"],
       rows: [
@@ -490,33 +491,32 @@ const ServicesPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-brand-cream font-sans overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-brand-cream font-sans overflow-x-hidden">
       <Seo title="Treatments & Services - Ayurveda Veda" description="Expert Physiotherapy and ancient Panchkarma treatments." />
       <Navbar />
 
-      <main className="pt-16 md:pt-20">
+      <main className="flex-1 pt-16 md:pt-20">
         {/* ═══ 1. HERO ═══ */}
-        <section className="relative py-16 md:py-32 bg-brand-forest overflow-hidden">
+        <section className="relative py-12 md:py-20 bg-brand-forest overflow-hidden">
           <div className="absolute inset-0 opacity-5 pointer-events-none">
             <div className="absolute top-10 left-10 w-40 h-40 border-2 border-brand-gold rounded-full" />
             <div className="absolute bottom-10 right-10 w-72 h-72 border-2 border-brand-gold rounded-full" />
           </div>
           <div className="container px-4 md:px-6 relative z-10 text-center">
-            <span className="inline-block px-3 py-1 mb-4 border border-brand-gold/40 rounded-full bg-brand-gold/10 text-brand-gold text-[10px] md:text-xs font-medium tracking-widest uppercase">
+            <span className="inline-block px-3 py-1 mb-4 border border-brand-gold/40 rounded-full bg-brand-gold/10 text-brand-gold text-[9px] md:text-[10px] font-medium tracking-widest uppercase font-bold">
               GST 18% Extra · Per Session
             </span>
-            <h1 className="text-brand-cream font-serif text-3xl sm:text-4xl md:text-6xl mb-4 leading-tight">
+            <h1 className="text-brand-cream font-serif text-3xl md:text-6xl mb-4 leading-tight font-bold">
               Our Expert <span className="text-brand-gold">Treatments</span>
             </h1>
-            <p className="text-brand-cream/70 text-sm md:text-base max-w-2xl mx-auto leading-relaxed mb-6">
-              Modern <strong className="text-brand-gold">Physiotherapy</strong> for injury recovery and ancient <strong className="text-brand-gold">Panchkarma</strong> for deep holistic healing — all under one roof.
+            <p className="text-brand-cream/70 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed mb-6">
+              Modern <strong className="text-brand-gold">Physiotherapy</strong> for injury recovery and ancient <strong className="text-brand-gold">Panchkarma</strong> for deep holistic healing.
             </p>
-            <p className="text-brand-cream/40 text-xs">Tap any treatment card to see full details</p>
           </div>
         </section>
 
         {/* ═══ 2. PHYSIOTHERAPY ═══ */}
-        <section className="py-12 md:py-20 bg-white">
+        <section className="py-10 md:py-16 bg-white">
           <div className="container px-4 md:px-6">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 bg-brand-forest rounded-xl flex items-center justify-center flex-shrink-0">
@@ -527,7 +527,7 @@ const ServicesPage = () => {
                 <p className="text-brand-gold font-hindi text-sm">फिजियोथेरेपी</p>
               </div>
             </div>
-            <p className="text-brand-black/60 text-xs md:text-sm max-w-2xl mb-8 md:mb-12 ml-0 md:ml-[52px]">
+            <p className="text-brand-black/60 text-[10px] md:text-sm max-w-2xl mb-6 md:mb-10 ml-0 md:ml-[52px]">
               Science-backed physical therapy — supervised by certified physiotherapists.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
@@ -539,7 +539,7 @@ const ServicesPage = () => {
         </section>
 
         {/* ═══ 3. PANCHKARMA ═══ */}
-        <section className="py-12 md:py-20 bg-brand-cream">
+        <section className="py-10 md:py-16 bg-brand-cream">
           <div className="container px-4 md:px-6">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 bg-brand-forest rounded-xl flex items-center justify-center flex-shrink-0">
@@ -550,7 +550,7 @@ const ServicesPage = () => {
                 <p className="text-brand-gold font-hindi text-sm">पंचकर्म</p>
               </div>
             </div>
-            <p className="text-brand-black/60 text-xs md:text-sm max-w-2xl mb-8 md:mb-12 ml-0 md:ml-[52px]">
+            <p className="text-brand-black/60 text-[10px] md:text-sm max-w-2xl mb-6 md:mb-10 ml-0 md:ml-[52px]">
               Ancient Vedic detox & rejuvenation therapies — including combo packages for better value.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
@@ -562,19 +562,19 @@ const ServicesPage = () => {
         </section>
 
         {/* ═══ 4. SWARNA BHASMA SCHEDULE ═══ */}
-        <section className="py-12 md:py-20 bg-white">
+        <section className="py-10 md:py-16 bg-white">
           <div className="container px-4 md:px-6">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 bg-brand-forest rounded-xl flex items-center justify-center flex-shrink-0">
                 <Star className="text-brand-gold w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-brand-forest font-serif text-2xl md:text-3xl font-bold leading-tight">Swarna Bhasma Schedule</h2>
-                <p className="text-brand-gold font-hindi text-sm">स्वर्ण भस्म अनुसूची</p>
+                <h2 className="text-brand-forest font-serif text-2xl md:text-4xl font-bold leading-tight">Swarna Bhasma</h2>
+                <p className="text-brand-gold font-hindi text-sm">स्वर्ण भस्म</p>
               </div>
             </div>
-            <p className="text-brand-black/60 text-xs md:text-sm max-w-2xl mb-8 md:mb-12 ml-0 md:ml-[52px]">
-              Elite Ayurvedic regimens originally formulated for profound rejuvenation and absolute peak performance.
+            <p className="text-brand-black/60 text-[10px] md:text-sm max-w-2xl mb-6 md:mb-10 ml-0 md:ml-[52px]">
+              Elite Ayurvedic regimens for profound rejuvenation and absolute peak performance.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5 ml-0 md:ml-[52px]">
               {swarnaBhasmaProducts.map((s, i) => (
@@ -585,19 +585,19 @@ const ServicesPage = () => {
         </section>
 
         {/* ═══ 5. PREMIUM SWARNA PACK ═══ */}
-        <section className="py-12 md:py-20 bg-brand-cream">
+        <section className="py-10 md:py-16 bg-brand-cream">
           <div className="container px-4 md:px-6">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 bg-brand-forest rounded-xl flex items-center justify-center flex-shrink-0">
                 <Gift className="text-brand-gold w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-brand-forest font-serif text-2xl md:text-3xl font-bold leading-tight">Premium Swarna Pack</h2>
+                <h2 className="text-brand-forest font-serif text-2xl md:text-4xl font-bold leading-tight">Premium Swarna Pack</h2>
                 <p className="text-brand-gold font-hindi text-sm">प्रीमियम स्वर्ण पाक</p>
               </div>
             </div>
-            <p className="text-brand-black/60 text-xs md:text-sm max-w-2xl mb-8 md:mb-12 ml-0 md:ml-[52px]">
-              A potent formulation combining the essence of precious Bhasmas and Keeda Jadi for ultimate strength.
+            <p className="text-brand-black/60 text-[10px] md:text-sm max-w-2xl mb-6 md:mb-10 ml-0 md:ml-[52px]">
+              A potent formulation of precious Bhasmas and Keeda Jadi for ultimate strength.
             </p>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 ml-0 md:ml-[52px]">
               {premiumSwarnaPackProducts.map((s, i) => (
@@ -611,14 +611,14 @@ const ServicesPage = () => {
         <section className="py-12 md:py-20 bg-brand-forest relative overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/5 rounded-full -mr-32 -mt-32" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-leaf/5 rounded-full -ml-32 -mb-32" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-gold/5 rounded-full -ml-32 -mb-32" />
           </div>
           <div className="container px-4 md:px-6 relative z-10 text-center">
             <div className="max-w-2xl mx-auto">
-              <p className="text-brand-gold font-hindi text-base md:text-xl mb-2">निःशुल्क परामर्श</p>
-              <h2 className="text-brand-cream font-serif text-2xl md:text-4xl mb-4 leading-tight">Book a Free Consultation</h2>
-              <p className="text-brand-cream/60 text-sm md:text-base mb-8 leading-relaxed">
-                Not sure which treatment is right for you? Our senior Ayurvedic physicians and certified physiotherapists offer a free introductory consultation to understand your condition and recommend the perfect healing path.
+              <p className="text-brand-gold font-hindi text-sm md:text-lg mb-2">निःशुल्क परामर्श</p>
+              <h2 className="text-brand-cream font-serif text-2xl md:text-4xl mb-4 leading-tight font-bold">Book a Free Consultation</h2>
+              <p className="text-brand-cream/60 text-[11px] md:text-sm mb-8 leading-relaxed">
+                Not sure which treatment is right for you? Our senior physicians offer a free introductory consultation to recommend the perfect healing path.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button
@@ -633,9 +633,6 @@ const ServicesPage = () => {
                   </Button>
                 </a>
               </div>
-              <p className="text-brand-cream/30 text-[10px] mt-6">
-                * GST 18% applicable on all treatments. Prices are per session.
-              </p>
             </div>
           </div>
         </section>
