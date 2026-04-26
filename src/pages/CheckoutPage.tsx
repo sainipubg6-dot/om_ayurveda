@@ -60,6 +60,9 @@ const CheckoutPage = () => {
         currency: 'INR',
         name: 'Ayurveda Veda',
         description: `Order for ${cart.length} items`,
+        prefill: {
+          name: formData.name,
+          email: formData.email,
           contact: formData.phone.replace(/[^0-9]/g, '')
         },
         handler: async function (response: any) {
