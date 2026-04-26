@@ -31,13 +31,26 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     if (!loading && wcProducts?.length > 0) {
-      // Find the product by SLUG or ID as fallback
       const foundProduct = wcProducts.find(p => 
         (p.slug === slug) || (String(p.id) === String(slug))
       );
       
       if (foundProduct) {
-        // Deep clean the data to prevent any crashes
+        // Extract Ingredients from Attributes if they exist
+        const ingredientAttr = foundProduct.attributes?.find((a: any) => a.name.toLowerCase() === 'ingredients');
+        const ingredientsList = ingredientAttr 
+          ? (typeof ingredientAttr.options === 'string' ? [ingredientAttr.options] : ingredientAttr.options)
+          : ["Natural Extracts", "Vedic Herbs", "Custom Medicated Oil"];
+
+        // Extract FAQ from Attributes if they exist
+        const faqAttr = foundProduct.attributes?.find((a: any) => a.name.toLowerCase() === 'faq');
+        const faqList = faqAttr
+          ? (typeof faqAttr.options === 'string' ? [{q: "Information", a: faqAttr.options}] : faqAttr.options.map((opt: string) => ({q: "Usage Guide", a: opt})))
+          : [
+              { q: "Usage Instructions", a: "Take 1-2 capsules daily with lukewarm water or as directed by your physician." },
+              { q: "Safety Information", a: "Store in a cool, dry place. Consult a physician if pregnant or on medication." }
+            ];
+
         const cleanedProduct = {
           id: foundProduct.id,
           name: foundProduct.name || "Ayurvedic Formulation",
@@ -48,11 +61,8 @@ const ProductDetailPage = () => {
           images: foundProduct.images?.length > 0 
             ? foundProduct.images.map((img: any) => (typeof img === 'string' ? img : img.src))
             : ["https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"],
-          ingredients: ["Natural Extracts", "Vedic Herbs", "Custom Medicated Oil"],
-          faq: [
-            { q: "Usage Instructions", a: "Take 1-2 capsules daily with lukewarm water or as directed by your physician." },
-            { q: "Safety Information", a: "Store in a cool, dry place. Consult a physician if pregnant or on medication." }
-          ],
+          ingredients: ingredientsList,
+          faq: faqList,
           reviews: [
             { name: "Suresh K.", rating: 5, comment: "Genuine product. I can feel the difference in energy levels.", date: "4 days ago" },
             { name: "Priya M.", rating: 5, comment: "High quality herbs. Definitely recommending.", date: "1 week ago" }
@@ -240,7 +250,7 @@ const ProductDetailPage = () => {
             </div>
 
             {/* Detailed Tabs Section */}
-            <div className="bg-white rounded-[2rem] md:rounded-[4rem] shadow-xl p-6 md:p-20 mb-16 md:mb-32 border border-brand-gold/5 relative overflow-hidden">
+            <div className="bg-white rounded-[2rem] md:rounded-[4rem] shadow-xl p-6 md:p-10 md:p-20 mb-16 md:mb-32 border border-brand-gold/5 relative overflow-hidden">
               <div className="flex flex-wrap items-center justify-center gap-3 md:gap-10 border-b border-brand-gold/10 pb-6 md:pb-10 mb-8 md:mb-16 relative z-10">
                 {tabs.map((tab) => (
                   <button
@@ -261,9 +271,13 @@ const ProductDetailPage = () => {
                 {activeTab === 'description' && (
                   <div className="space-y-6 md:space-y-10 max-w-4xl">
                     <div 
-                      className="text-brand-black/70 text-lg md:text-xl leading-relaxed prose prose-green prose-xl max-w-none font-light"
-                      dangerouslySetInnerHTML={{ __html: product?.description || "" }}
-                    />
+                      className="text-brand-black/80 text-lg md:text-xl leading-relaxed prose prose-stone prose-xl max-w-none font-medium"
+                    >
+                      <div 
+                        className="description-content [&>h1]:text-brand-forest [&>h2]:text-brand-forest [&>h3]:text-brand-forest [&>p]:text-brand-black/70 [&>ul]:text-brand-black/70"
+                        dangerouslySetInnerHTML={{ __html: product?.description || "" }} 
+                      />
+                    </div>
                   </div>
                 )}
 
