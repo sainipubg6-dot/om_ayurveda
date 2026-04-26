@@ -19,7 +19,7 @@ export const fetchWCProducts = async (): Promise<WCProduct[]> => {
 
   try {
     const auth = btoa(`${WC_CONSUMER_KEY}:${WC_CONSUMER_SECRET}`);
-    const response = await fetch(`${WC_ROOT_URL}/wp-json/wc/v3/products`, {
+    const response = await fetch(`${WC_ROOT_URL}/wp-json/wc/v3/products?per_page=100`, {
       headers: {
         'Authorization': `Basic ${auth}`
       }

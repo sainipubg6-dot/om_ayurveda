@@ -234,9 +234,7 @@ const ProductDetailPage = () => {
               </div>
 
               <div className="relative z-10">
-                <div 
-                  className="text-black text-lg md:text-xl leading-relaxed font-medium"
-                >
+                <div className="text-black text-lg md:text-xl leading-relaxed font-medium">
                   <div 
                     className="description-content [&_*]:text-black [&_h1]:text-black [&_h2]:text-black [&_h3]:text-black [&_p]:text-black [&_ul]:text-black [&_ol]:text-black [&_span]:text-black"
                     style={{ color: 'black' }}

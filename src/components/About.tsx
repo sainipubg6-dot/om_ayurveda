@@ -10,8 +10,8 @@ const About = () => {
           <div className="w-full lg:w-1/2 relative">
             <div className="relative z-10 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-4 md:border-8 border-brand-cream">
               <img 
-                src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&q=80&w=800" 
-                alt="Ayurvedic Consultation"
+                src="/images/inmark.JPEG" 
+                alt="Om Ayurveda Legacy"
                 className="w-full h-auto"
               />
             </div>

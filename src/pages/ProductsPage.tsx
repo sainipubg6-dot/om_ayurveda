@@ -113,11 +113,7 @@ const ProductsPage = () => {
                           alt={product.name} 
                           className="w-full h-full object-contain transition-transform duration-1000 group-hover:scale-105"
                         />
-                        <div className="absolute top-4 left-4">
-                          <span className="bg-brand-forest/80 backdrop-blur-md text-brand-gold text-[8px] md:text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
-                            {product.categories?.[0]?.name || 'Uncategorized'}
-                          </span>
-                        </div>
+                        {/* Category badge removed */}
                       </div>
                       
                       <div className="flex-1 px-2">

@@ -80,8 +80,8 @@ const staticPriceMap: Record<number, number> = {
           name: product.name,
           price: Number(String(product.price).replace(/,/g, '')),
           quantity: 1,
-          image: product.image,
-          category: product.category,
+          image: product.image || (product.images?.[0]?.src || product.images?.[0] || ''),
+          category: product.category || (product.categories?.[0]?.name || 'Uncategorized'),
         },
       ];
     });
