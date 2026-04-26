@@ -18,10 +18,13 @@ import { Button } from '@/components/ui/button';
 import { TiltedCard } from '@/components/react-bits/TiltedCard';
 import { FadedContent } from '@/components/react-bits/FadedContent';
 import { Trophy, Activity, ShieldPlus, HeartPulse, Sparkles, Zap, CheckCircle2, ShieldCheck, Award, BadgeCheck } from 'lucide-react';
+import { useWCProducts } from '@/hooks/useWCProducts';
 
 
 
 const Index = () => {
+  const { products: wcProducts } = useWCProducts();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -138,21 +141,14 @@ const Index = () => {
               <h2 className="text-brand-gold font-serif text-xs md:text-lg uppercase tracking-[0.3em] mb-2 md:mb-4">Our Apothecary</h2>
               <h3 className="text-brand-cream font-serif text-2xl md:text-5xl mb-6 md:mb-12 leading-tight">Premium Ayurvedic Formulations</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-16 text-brand-black">
-                {[
-                  { id: 5,  name: "OM COUGH HAR",       category: "Respiratory Care",  price: "₹150",   image: "/images/products/cough-har-box.png" },
-                  { id: 3,  name: "JOINT Pro",           category: "Pain Relief",       price: "₹1,450", image: "/images/products/joint-pro-front.png" },
-                  { id: 6,  name: "OM HAIR OIL",         category: "Hair Care",         price: "₹450",   image: "/images/products/hair-oil-front.png" },
-                  { id: 7,  name: "OM POWER OIL",        category: "Performance",       price: "₹1,200", image: "/images/products/om power oil  -front.png" },
-                  { id: 9,  name: "OM DETOX (CHURNA)",   category: "Digestive / Detox", price: "₹350",   image: "/images/products/detox-churna-front.png" },
-                  { id: 11, name: "SWARN SHAKTIRRASH",   category: "Immunity Booster",  price: "₹2,500", image: "/images/products/swranprash front.png" }
-                ].map((p, i) => (
+                {wcProducts.slice(0, 6).map((p, i) => (
                   <Link key={i} to={`/product/${p.id}`} className="block group">
                     <div className="bg-brand-cream/50 backdrop-blur-sm rounded-2xl md:rounded-3xl overflow-hidden border border-brand-gold/20 p-4 md:p-6 text-left hover:border-brand-gold transition-all duration-500 hover:-translate-y-1 md:hover:-translate-y-2 shadow-xl">
                       <div className="relative h-32 md:h-48 overflow-hidden rounded-xl md:rounded-2xl mb-3 md:mb-4">
-                        <img src={p.image} alt={p.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                        <img src={p.images?.[0]?.src || "/placeholder.svg"} alt={p.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                       </div>
                       <h4 className="text-brand-forest font-serif text-sm md:text-xl font-bold line-clamp-1 mb-1">{p.name}</h4>
-                      <p className="text-brand-gold font-bold text-sm md:text-base">{p.price}</p>
+                      <p className="text-brand-gold font-bold text-sm md:text-base">₹{p.price}</p>
                     </div>
                   </Link>
                 ))}

@@ -13,126 +13,21 @@ import { toast } from 'sonner';
 
 const categories = ["All", "Wellness", "Performance", "Pain Relief", "Respiratory Care", "Digestive / Detox", "Immunity Booster"];
 
-const staticProducts = [
-  {
-    id: 1,
-    name: "OMEGA 3",
-    category: "Wellness",
-    price: "899",
-    description: "Premium OMEGA 3 (1000mg) for heart, brain, and joint health. Rich in EPA & DHA.",
-    image: "/images/products/omega-3-front.png",
-    benefits: ["Heart Health", "Brain Function", "Joint Flexibility"]
-  },
-  {
-    id: 2,
-    name: "Liver Tablets",
-    category: "Wellness",
-    price: "750",
-    description: "Herbal Liver Tablets for detox & support with Milk Thistle and Kalmegh.",
-    image: "/images/products/liver -front.png",
-    benefits: ["Detoxification", "Improved Digestion", "Liver Support"]
-  },
-  {
-    id: 3,
-    name: "JOINT Pro",
-    category: "Pain Relief",
-    price: "1,450",
-    description: "Advanced Ayurvedic support for JOINT Pro Relief & Mobility. Contains 90 premium golden tablets.",
-    image: "/images/products/joint-pro-front.png",
-    benefits: ["Pain Relief", "Bone Strength", "Reduces Inflammation"]
-  },
-  {
-    id: 4,
-    name: "ORTHO",
-    category: "Pain Relief",
-    price: "950",
-    description: "ORTHO Joint Pain Relief & Bone Support with Swarnamakshik Bhasma and Shallaki.",
-    image: "/images/products/ortho-front.png",
-    benefits: ["Reduces Pain", "Eases Stiffness", "Tissue Nourishment"]
-  },
-  {
-    id: 5,
-    name: "OM COUGH HAR",
-    category: "Respiratory Care",
-    price: "150",
-    description: "OM COUGH HAR Ayurvedic syrup with natural herbs for relief from cough & cold.",
-    image: "/images/products/cough-har-box.png",
-    benefits: ["Relieves Cough", "Supports Respiratory Health", "Soothes Throat"]
-  },
-  {
-    id: 6,
-    name: "OM HAIR OIL",
-    category: "Wellness",
-    price: "450",
-    description: "OM HAIR OIL anti-hair fall and growth oil with Bhringraj, Amla, and easy comb applicator.",
-    image: "/images/products/hair-oil-front.png",
-    benefits: ["Reduces Hair Fall", "Promotes Growth", "Prevents Dandruff"]
-  },
-  {
-    id: 7,
-    name: "OM POWER OIL",
-    category: "Performance",
-    price: "1,200",
-    description: "OM POWER OIL Ayurvedic massage oil for strength and vitality with Ashwagandha and Bala.",
-    image: "/images/products/om power oil  -front.png",
-    benefits: ["Enhanced Vitality", "Improved Circulation", "Stress Relief"]
-  },
-  {
-    id: 8,
-    name: "OM INJURY OIL",
-    category: "Pain Relief",
-    price: "550",
-    description: "OM INJURY OIL fast-absorbing oil for joint and muscle pain relief from injuries.",
-    image: "/images/products/om injury-front.png",
-    benefits: ["Heals Sprains", "Relieves Pain", "Reduces Bruising"]
-  },
-  {
-    id: 9,
-    name: "OM DETOX ( CHURNA )",
-    category: "Digestive / Detox",
-    price: "350",
-    description: "OM DETOX ( CHURNA ) Ayurvedic digestive powder for gut cleanse and bowel support.",
-    image: "/images/products/detox-churna-front.png",
-    benefits: ["Supports Detox", "Improves Digestion", "Relieves Acidity"]
-  },
-  {
-    id: 10,
-    name: "GOKSHURA",
-    category: "Wellness",
-    price: "650",
-    description: "GOKSHURA extract for urinary health and natural vitality support.",
-    image: "/images/products/gokshura-front.png",
-    benefits: ["Urinary Health", "Natural Strength", "Kidney Support"]
-  },
-  {
-    id: 11,
-    name: "SWARN SHAKTIRRASH",
-    category: "Immunity Booster",
-    price: "2,500",
-    description: "SWARN SHAKTIRRASH enriched Ayurvedic immunity booster with Swarn (Gold) and 40+ herbs.",
-    image: "/images/products/swranprash front.png",
-    benefits: ["Boosts Immunity", "Improves Stamina", "Brain Support"]
-  }
-];
-
 const Products = () => {
   const { products: wcProducts, loading } = useWCProducts();
   const { addToCart } = useCart();
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
 
-  // Use WooCommerce products if available, otherwise use static placeholders
-  const currentProducts: any[] = (!loading && wcProducts.length > 0) 
-    ? wcProducts.map(p => ({
-        id: p.id,
-        name: p.name,
-        category: p.categories?.[0]?.name || "Wellness",
-        price: p.price || "999",
-        description: p.short_description || p.description || "Authentic Ayurvedic formulation.",
-        image: p.images?.[0]?.src || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=400",
-        benefits: ["Natural Ingredients", "Traditional Method", "Quality Assured", "Scientifically Tested"]
-      }))
-    : staticProducts;
+  const currentProducts: any[] = wcProducts.map(p => ({
+    id: p.id,
+    name: p.name,
+    category: p.categories?.[0]?.name || "Wellness",
+    price: p.price || "999",
+    description: p.short_description || p.description || "Authentic Ayurvedic formulation.",
+    image: p.images?.[0]?.src || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=400",
+    benefits: ["Natural Ingredients", "Traditional Method", "Quality Assured", "Scientifically Tested"]
+  }));
 
   const filteredProducts = activeCategory === "All" 
     ? currentProducts 
