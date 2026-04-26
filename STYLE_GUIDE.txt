@@ -1,0 +1,40 @@
+AYURVEDA VEDA - STYLE & COLOR GUIDE
+========================================
+All website colors are managed via CSS Variables in 'src/globals.css'.
+
+TO CHANGE THE VIBE:
+1. Open 'src/globals.css'
+2. Find the ':root' section (Lines 6-52).
+3. Replace the values for the variables below.
+
+----------------------------------------
+CURRENT THEME: VEDIC FOREST (Green & Gold)
+--primary: 160 65% 26%;    /* Forest Green */
+--secondary: 43 74% 44%;  /* Gold */
+--background: 0 0% 100%;  /* White */
+----------------------------------------
+
+NEW VARIANT IDEAS (Copy & Paste these values):
+
+VARIANT A: "ROYAL SAFFRON" (Ancient Heritage)
+--primary: 30 90% 55%;    /* Vibrant Saffron */
+--secondary: 215 25% 27%; /* Deep Charcoal */
+--background: 35 30% 97%; /* Warm Parchment */
+
+VARIANT B: "MINT SCIENCE" (Clean & Professional)
+--primary: 175 70% 25%;   /* Clinical Teal */
+--secondary: 190 15% 45%; /* Soft Slate */
+--background: 0 0% 100%;  /* Pure White */
+
+VARIANT C: "DEEP NEEM" (Organic & Grounded)
+--primary: 145 45% 18%;   /* Dark Neem Green */
+--secondary: 28 65% 45%;  /* Earthy Copper */
+--background: 45 35% 95%; /* Creamy Ivory */
+
+----------------------------------------
+PRO TIP: 
+The numbers are HSL (Hue, Saturation, Lightness).
+- First number: The color (0-360)
+- Second number: How intense the color is (%)
+- Third number: How bright the color is (%)
+----------------------------------------

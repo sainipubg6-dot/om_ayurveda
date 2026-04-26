@@ -30,19 +30,19 @@ const ExcellenceAndProcess = () => {
       <div className="container px-4 md:px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-6 md:mb-12">
           <h2 className="text-brand-gold font-serif text-[10px] md:text-sm uppercase tracking-[0.4em] mb-1 font-bold">Our Excellence & Journey</h2>
-          <h3 className="text-brand-cream font-serif text-2xl md:text-4xl leading-tight">Tradition. Science. Results.</h3>
+          <h3 className="text-white font-serif text-2xl md:text-4xl leading-tight">Tradition. Science. Results.</h3>
           <div className="w-12 md:w-20 h-1 bg-brand-gold mx-auto rounded-full mt-2" />
         </div>
 
         {/* 1. WHY CHOOSE US - COMPACT 3x2 GRID ON MOBILE, 6 COL ON DESKTOP */}
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 md:gap-4 mb-8 md:mb-16">
           {features.map((item, i) => (
-            <div key={i} className="bg-white/5 border border-brand-gold/10 p-3 md:p-5 rounded-2xl md:rounded-[1.5rem] hover:border-brand-gold/30 transition-all group flex flex-col items-center text-center">
-              <div className="w-9 h-9 md:w-12 md:h-12 bg-brand-gold/10 rounded-lg flex items-center justify-center mb-2 md:mb-3 group-hover:scale-110 transition-transform">
-                <item.icon className="text-brand-gold w-4 h-4 md:w-6 md:h-6" />
+            <div key={i} className="bg-white/5 border border-white/10 p-3 md:p-5 rounded-2xl md:rounded-[1.5rem] hover:border-white/30 transition-all group flex flex-col items-center text-center">
+              <div className="w-9 h-9 md:w-12 md:h-12 bg-white/10 rounded-lg flex items-center justify-center mb-2 md:mb-3 group-hover:scale-110 transition-transform">
+                <item.icon className="text-white w-4 h-4 md:w-6 md:h-6" />
               </div>
-              <h4 className="text-brand-cream font-serif text-[11px] md:text-sm font-bold leading-tight">{item.title}</h4>
-              <p className="text-brand-gold/40 text-[8px] md:text-[9px] uppercase tracking-widest mt-1 font-bold">{item.subtitle}</p>
+              <h4 className="text-white font-serif text-[11px] md:text-sm font-bold leading-tight">{item.title}</h4>
+              <p className="text-white/60 text-[8px] md:text-[9px] uppercase tracking-widest mt-1 font-bold">{item.subtitle}</p>
             </div>
           ))}
         </div>
