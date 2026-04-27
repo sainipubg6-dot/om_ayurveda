@@ -29,46 +29,49 @@ type Service = {
   };
 };
 
+// CACHE BUSTER TO FORCE RELOAD
+const v = "?v=" + Date.now();
+
 const physioServices: Service[] = [
   {
     name: "One Part Physiotherapy", hindi: "एक भाग फिजियोथेरेपी", price: "₹200", duration: "30–45 min",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/One Part Physiotherapy.png" + v,
     description: "Targeted physiotherapy for a single body part — shoulder, knee, back, elbow, wrist, or hip. Ideal for acute injuries, chronic pain, or post-injury rehabilitation.",
     benefits: ["Reduces localised pain & inflammation", "Restores range of motion", "Strengthens surrounding muscles", "Non-invasive & drug-free"],
   },
   {
     name: "Taping", hindi: "टेपिंग", price: "₹500", duration: "20–30 min",
-    image: "https://images.unsplash.com/photo-1574680077505-ef74a5fe9235?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/Taping.png" + v,
     description: "Kinesiology or sports taping applied to injured or strained muscles/joints. Supports soft tissue, reduces swelling, and allows pain-free movement without restricting circulation.",
     benefits: ["Immediate pain relief", "Supports injured joints & muscles", "Reduces swelling & bruising", "Full movement during recovery"],
   },
   {
     name: "Cupping Therapy", hindi: "कपिंग थेरेपी", price: "₹500", duration: "30–40 min",
-    image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/Cupping Therapy.png" + v,
     description: "Ancient suction-cup technique to boost blood flow, relieve muscle tension, and promote deep-tissue healing. Effective for back pain, neck pain, and sports recovery.",
     benefits: ["Improves blood circulation", "Relieves deep muscle tension", "Reduces chronic pain", "Detoxifies soft tissue"],
   },
   {
     name: "Post-Surgery Rehab", hindi: "सर्जरी के बाद देखभाल", price: "₹500", duration: "45–60 min",
-    image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/Post-Surgery Rehab.png" + v,
     description: "Specialised protocols for patients recovering from orthopaedic or neurological surgery. Carefully graded exercises restore full function safely.",
     benefits: ["Accelerates post-op healing", "Prevents scar tissue build-up", "Restores strength & balance", "Reduces medication dependency"],
   },
   {
     name: "Foot & Calf Massage", hindi: "पैर और पिंडली मालिश", price: "₹400", duration: "30 min",
-    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/Foot & Calf Massage.png" + v,
     description: "Therapeutic massage targeting feet, ankles, and calves. Relieves plantar fasciitis, heel pain, and fatigue from prolonged standing or sports.",
     benefits: ["Relieves foot & heel pain", "Reduces calf tightness", "Improves lower-limb circulation", "Ideal for diabetic foot care"],
   },
   {
     name: "Posture Correction", hindi: "मुद्रा सुधार", price: "₹700", duration: "60 min",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/Posture Correction.png" + v,
     description: "Comprehensive assessment and correction of postural deviations — forward head, kyphosis, lordosis — using targeted exercises and manual correction.",
     benefits: ["Corrects rounded shoulders", "Reduces back & neck pain", "Improves body alignment", "Self-correction techniques taught"],
   },
   {
     name: "Manual Therapy", hindi: "मैनुअल थेरेपी सत्र", price: "₹700", duration: "45–60 min",
-    image: "https://images.unsplash.com/photo-1519824145371-296894a0daa9?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/Manual therapy.png" + v,
     description: "Hands-on mobilisation and manipulation of joints and soft tissue. Effective for frozen shoulder, back stiffness, and joint restrictions.",
     benefits: ["Restores joint mobility", "Reduces spasm & stiffness", "Improves nerve function", "Long-lasting pain relief"],
   },
@@ -77,75 +80,75 @@ const physioServices: Service[] = [
 const panchkarmaServices: Service[] = [
   {
     name: "Shirodhara", hindi: "शिरोधारा", price: "₹1,800", duration: "45–60 min",
-    image: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/Shirodhara.png" + v,
     description: "Warm medicated oil poured continuously over the forehead in a rhythmic stream. Ayurveda's most powerful treatment for calming the nervous system and promoting deep sleep.",
     benefits: ["Relieves anxiety & depression", "Improves sleep quality", "Reduces migraines", "Balances Vata & Pitta doshas"],
   },
   {
     name: "Steam Bath", hindi: "स्टीम बाथ", price: "₹700", duration: "20–30 min",
-    image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/steam bath.png" + v,
     description: "Medicated herbal steam therapy that opens pores, liquefies toxins, and expels them through sweat. A cornerstone of Panchkarma preparatory treatment.",
     benefits: ["Deep detoxification", "Relieves joint stiffness", "Improves circulation", "Nourishes the skin"],
   },
   {
     name: "Steam + Shirodhara Combo", hindi: "स्टीम + शिरोधारा", price: "₹2,300", duration: "75–90 min",
-    image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/steam and shirodha therapy.png" + v,
     description: "The ultimate stress-relief package. Steam opens the body first, then Shirodhara calms the mind. Perfect for burnout, anxiety, and sleep disorders.",
     benefits: ["Complete mind-body relaxation", "Enhanced detox + deep calm", "Better value than separate sessions", "Ideal for chronic stress"],
     isCombo: true, originalPrice: "₹2,500",
   },
   {
     name: "Pottli Sweda", hindi: "पोटली स्वेदा", price: "₹1,500", duration: "45–60 min",
-    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/pottli and patra combo.png" + v,
     description: "Heated boluses of medicated herbs massaged rhythmically over the body. Deeply effective for musculoskeletal disorders, arthritis, and sports injuries.",
     benefits: ["Reduces inflammation & swelling", "Relieves arthritis pain", "Strengthens muscles", "Improves flexibility"],
   },
   {
     name: "Patra Sweda", hindi: "पात्र स्वेदा", price: "₹500", duration: "30–45 min",
-    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/patra sweda.png" + v,
     description: "Ayurvedic fomentation using heated medicated leaves stir-fried with oils. Ideal for pain, cold conditions, and neurological disorders.",
     benefits: ["Relieves body aches", "Stimulates nerves & muscles", "Reduces Vata disorders", "Improves skin texture"],
   },
   {
     name: "Pottli + Patra Combo", hindi: "पोटली + पात्र स्वेदा", price: "₹1,500", duration: "75–90 min",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/pottli and patra combo.png" + v,
     description: "Dual herbal fomentation combo. Heat and herbs work synergistically to dissolve muscular pain, joint stiffness, and deep-seated tension.",
     benefits: ["Synergistic pain relief", "Deep tissue penetration", "Better value than separate", "Full-body recovery"],
     isCombo: true, originalPrice: "₹2,000",
   },
   {
     name: "Janu Vasti", hindi: "जानू वस्ती", price: "₹1,200", duration: "45 min",
-    image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/janu vasti.png" + v,
     description: "Warm medicated oil retained over the knee joint using dough rings. Powerful for knee osteoarthritis, ligament injuries, and chronic knee pain.",
     benefits: ["Lubricates knee cartilage", "Reduces osteoarthritis pain", "Strengthens ligaments", "Prevents degeneration"],
   },
   {
     name: "Kati Vasti", hindi: "कटी वस्ती", price: "₹1,200", duration: "45 min",
-    image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/kati vasti.png" + v,
     description: "Warm medicated oil pooled over the lower back. Deeply nourishes lumbar vertebrae, discs, and surrounding muscles.",
     benefits: ["Relieves lower back & sciatica", "Treats disc herniation", "Strengthens lumbar spine", "Reduces muscle spasms"],
   },
   {
     name: "Griva Vasti", hindi: "ग्रीवा वस्ती", price: "₹1,200", duration: "45 min",
-    image: "https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/graiva vasti.png" + v,
     description: "Medicated oil retained over the cervical spine. Targets cervical spondylosis, neck stiffness, and radiating arm pain.",
     benefits: ["Relieves cervical pain", "Reduces neck stiffness", "Treats radiating arm pain", "Improves disc health"],
   },
   {
     name: "Hridya Vasti", hindi: "हृदय वस्ती", price: "₹1,200", duration: "45 min",
-    image: "https://images.unsplash.com/photo-1508847154043-be5407fcaa5a?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/hridya vasti.png" + v,
     description: "Warm medicated oil held over the heart region. Strengthens heart muscle, calms palpitations, and treats anxiety disorders.",
     benefits: ["Strengthens heart muscle", "Reduces palpitations", "Calms emotional stress", "Balances Prana Vata"],
   },
   {
     name: "Netra Vasti", hindi: "नेत्र वस्ती", price: "₹1,200", duration: "30–40 min",
-    image: "https://images.unsplash.com/photo-1509909756405-be0199881695?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/netra vasti .png" + v,
     description: "Medicated ghee retained over the eyes. Revitalises tired eyes, treats dry eye syndrome, and screen-related eye strain.",
     benefits: ["Relieves eye strain", "Improves vision clarity", "Treats digital eye fatigue", "Nourishes optic nerves"],
   },
   {
     name: "Full Body Treatment", hindi: "पूर्ण शरीर उपचार", price: "₹4,900", duration: "3–4 hrs",
-    image: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=800",
+    image: "/images/services/full body  treatmen .png" + v,
     description: "The complete Panchkarma experience — full-body Abhyanga (oil massage), Svedana (steam), and targeted Vasti therapy. Our most comprehensive wellness package.",
     benefits: ["Complete body detox", "Deep stress relief", "Boosts immunity & vitality", "Anti-aging & skin nourishment"],
   },
