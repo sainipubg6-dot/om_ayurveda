@@ -11,6 +11,7 @@ import FeaturedProducts from '@/components/FeaturedProducts';
 import Team from '@/components/Team';
 import LittleStory from '@/components/LittleStory';
 import TrustAndResults from '@/components/TrustAndResults';
+import SliderHero from '@/components/SliderHero';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { FadedContent } from '@/components/react-bits/FadedContent';
@@ -125,6 +126,9 @@ const Index = () => {
       <Navbar />
 
       <main className="flex-1">
+        {/* New Slider Hero */}
+        <SliderHero />
+
         {/* 1. Hero Banner */}
         <Hero />
         <Marquee />
