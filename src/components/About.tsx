@@ -20,7 +20,7 @@ const About = () => {
             <div className="absolute -bottom-10 -right-10 w-60 h-60 bg-brand-leaf/10 rounded-full blur-3xl opacity-50 md:opacity-100" />
             <div className="absolute top-1/2 -right-4 sm:-right-8 transform -translate-y-1/2 bg-brand-forest p-4 sm:p-8 rounded-xl sm:rounded-2xl shadow-xl hidden sm:block border border-brand-gold/20">
               <p className="text-brand-gold font-serif text-3xl sm:text-4xl font-bold mb-1">1958</p>
-              <p className="text-brand-cream text-[8px] sm:text-[10px] uppercase tracking-widest leading-none">Est. Since</p>
+              <p className="text-brand-cream text-[8px] sm:text-[10px] uppercase tracking-widest leading-none">Healing Since</p>
             </div>
           </div>
 
@@ -30,10 +30,10 @@ const About = () => {
             <h3 className="text-brand-forest font-serif text-3xl md:text-5xl mb-6 md:mb-8 leading-tight">Om Ayurveda: Tradition Meets Science</h3>
             
             <p className="text-brand-black/70 text-base md:text-lg mb-4 md:mb-6 leading-relaxed">
-              Om Ayurvedam was established in 1958, and today it has successfully treated millions of people from the root. People from across the country and abroad come here for treatment and leave satisfied. 
+              Healing and treating since 1958, Om Ayurveda has successfully treated millions of people from the root. People from across the country and abroad come here for treatment and leave satisfied. 
             </p>
             <p className="text-brand-black/90 text-base md:text-lg mb-6 md:mb-8 leading-relaxed font-hindi">
-              ओम आयुर्वेदम की शुरुआत सन 1958 में हुई थी, और आज यह लाखों लोगों का जड़ से सफल उपचार कर चुका है। यहाँ देश-विदेश से लोग अपना इलाज करवाने आते हैं और संतुष्ट होकर जाते हैं।
+              1958 से निरंतर सेवा और उपचार प्रदान करते हुए, ओम आयुर्वेदम आज लाखों लोगों का जड़ से सफल उपचार कर चुका है। यहाँ देश-विदेश से लोग अपना इलाज करवाने आते हैं और संतुष्ट होकर जाते हैं।
             </p>
 
             <div className="space-y-3 sm:space-y-4 mb-10">

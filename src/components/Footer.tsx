@@ -52,12 +52,17 @@ const Footer = () => {
           </div>
 
           <div className="col-span-1">
-            <h4 className="text-brand-cream font-serif text-[11px] md:text-sm font-bold mb-1.5 border-b border-brand-gold/10 pb-0.5 inline-block">Focus</h4>
+            <h4 className="text-brand-cream font-serif text-[11px] md:text-sm font-bold mb-1.5 border-b border-brand-gold/10 pb-0.5 inline-block">Policies</h4>
             <ul className="space-y-1">
-              {['Joint Pain', 'Sexual Wellness', 'Athletes', 'Detox'].map(item => (
-                <li key={item}>
-                  <Link to="/services" className="text-brand-cream/50 hover:text-brand-gold transition-colors text-[10px] md:text-xs">
-                    {item}
+              {[
+                { name: 'Terms & Conditions', path: '/terms' },
+                { name: 'Privacy Policy', path: '/privacy' },
+                { name: 'Shipping Policy', path: '/shipping' },
+                { name: 'Refund Policy', path: '/refunds' }
+              ].map(policy => (
+                <li key={policy.name}>
+                  <Link to={policy.path} className="text-brand-cream/50 hover:text-brand-gold transition-colors text-[10px] md:text-xs">
+                    {policy.name}
                   </Link>
                 </li>
               ))}
@@ -82,7 +87,7 @@ const Footer = () => {
 
         <div className="pt-3 border-t border-brand-cream/5 flex justify-between items-center text-[9px] md:text-xs text-brand-cream/20 font-medium">
           <p>© 2026 Om Ayurveda®</p>
-          <p className="italic">Vedic Healing • Modern Precision</p>
+          <p className="italic font-bold text-brand-gold/60">Made in india with love❤️</p>
         </div>
       </div>
     </footer>
