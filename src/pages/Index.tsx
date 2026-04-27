@@ -145,21 +145,21 @@ const Index = () => {
           <FeaturedServices />
         </FadedContent>
 
-        {/* 4. Meet Our Vaidyas */}
+        {/* 4. Little Story (NEW BRIDGE SECTION) */}
+        <FadedContent>
+          <LittleStory />
+        </FadedContent>
+
+        {/* 5. Meet Our Vaidyas */}
         <FadedContent>
           <div className="py-4 md:py-8 bg-white">
             <Team />
           </div>
         </FadedContent>
 
-        {/* 5. Excellence & Healing Journey */}
+        {/* 6. Excellence & Healing Journey */}
         <FadedContent>
           <ExcellenceAndProcess />
-        </FadedContent>
-
-        {/* 6. Little Story (NEW BRIDGE SECTION) */}
-        <FadedContent>
-          <LittleStory />
         </FadedContent>
 
         {/* 7. Trust & Results */}
