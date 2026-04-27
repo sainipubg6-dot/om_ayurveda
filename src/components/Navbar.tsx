@@ -28,19 +28,10 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group cursor-pointer">
-            <div className="relative">
-              <img 
-                src="/Logo.png" 
-                alt="Om Ayurveda Logo" 
-                className="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-serif font-bold text-lg md:text-xl tracking-tight leading-none text-white">
-                OM Ayurveda
-              </span>
-            </div>
+          <Link to="/" className="flex items-center group cursor-pointer">
+            <span className="font-serif font-bold text-lg md:text-xl tracking-tight leading-none text-white">
+              OM Ayurveda
+            </span>
           </Link>
 
           {/* Desktop Nav */}
