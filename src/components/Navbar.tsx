@@ -10,17 +10,8 @@ import { useCart } from '@/contexts/CartContext';
 const Navbar = () => {
   const { cartCount } = useCart();
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -30,17 +21,10 @@ const Navbar = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
-  const isHome = location.pathname === '/';
-
   return (
     <>
       <nav
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 md:px-6 py-4",
-          (scrolled || !isHome)
-            ? "bg-brand-forest/95 backdrop-blur-md border-b border-brand-gold/30 py-3 shadow-lg" 
-            : "bg-transparent"
-        )}
+        className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-3 bg-brand-forest border-b border-white/10 shadow-xl"
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
@@ -53,40 +37,42 @@ const Navbar = () => {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-serif font-bold text-lg md:text-xl tracking-tight leading-none text-brand-gold">
-                OM AYURVEDA
+              <span className="font-serif font-bold text-lg md:text-xl tracking-tight leading-none text-white">
+                OM Ayurveda
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                className={cn(
-                  "transition-colors font-medium text-sm uppercase tracking-wider",
-                  location.pathname === link.href ? "text-brand-gold" : "text-brand-cream hover:text-brand-gold"
-                )}
-              >
-                {link.name}
-              </Link>
-            ))}
+          <div className="hidden md:flex items-center gap-8">
+            <div className="flex items-center gap-6">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className={cn(
+                    "transition-all font-bold text-xs uppercase tracking-[0.2em]",
+                    location.pathname === link.href ? "text-white underline underline-offset-8 decoration-2" : "text-white/70 hover:text-white"
+                  )}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
             
-            <div className="flex items-center gap-3">
-              <Link to="/cart" className="relative p-2 text-brand-cream hover:text-brand-gold transition-colors">
+            <div className="flex items-center gap-4 border-l border-white/10 pl-6">
+              <Link to="/cart" className="relative p-2 text-white hover:text-brand-gold transition-colors">
                 <ShoppingCart className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 bg-brand-gold text-brand-black text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-brand-forest">
+                <span className="absolute -top-1 -right-1 bg-brand-gold text-brand-black text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-brand-forest">
                   {cartCount}
                 </span>
               </Link>
               <Button 
                 size="sm"
-                className="bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-black font-bold hover:opacity-90 transition-all shadow-lg border-none text-xs"
+                className="bg-white/10 hover:bg-white/20 text-white font-bold border border-white/20 rounded-lg px-6 flex items-center gap-2"
                 onClick={() => window.location.href = 'tel:7015001978'}
               >
-                <Phone className="w-3 h-3 mr-1.5" />
+                <Phone className="w-3.5 h-3.5" />
                 Consult
               </Button>
             </div>
@@ -94,14 +80,14 @@ const Navbar = () => {
 
           {/* Mobile Toggle & Cart */}
           <div className="flex items-center gap-2 md:hidden">
-            <Link to="/cart" className="relative p-2 text-brand-gold transition-colors mr-2">
+            <Link to="/cart" className="relative p-2 text-white transition-colors mr-2">
               <ShoppingCart className="w-6 h-6" />
-              <span className="absolute top-0 right-0 bg-brand-gold text-brand-black text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-brand-forest">
+              <span className="absolute top-0 right-0 bg-brand-gold text-brand-black text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-brand-forest">
                 {cartCount}
               </span>
             </Link>
             <button 
-              className="text-brand-gold p-1"
+              className="text-white p-1"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle Menu"
             >
@@ -111,17 +97,14 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay - SOLID BACKGROUND FOR PERFECT CONTRAST */}
+      {/* Mobile Menu Overlay */}
       <div className={cn(
         "fixed inset-0 bg-brand-forest z-[60] flex flex-col items-center justify-center gap-8 transition-all duration-500 md:hidden",
         isOpen ? "translate-y-0 opacity-100 pointer-events-auto" : "-translate-y-full opacity-0 pointer-events-none"
       )}>
-        {/* Decorative Background Element */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
-        
-        {/* Close Button Inside Overlay */}
+        {/* Close Button */}
         <button 
-          className="absolute top-6 right-6 text-brand-gold p-2 z-10"
+          className="absolute top-6 right-6 text-white p-2 z-10"
           onClick={() => setIsOpen(false)}
         >
           <X size={32} />
@@ -133,10 +116,9 @@ const Navbar = () => {
               key={link.name}
               to={link.href}
               onClick={() => setIsOpen(false)}
-              style={{ transitionDelay: `${i * 50}ms` }}
               className={cn(
-                "text-3xl font-serif tracking-[0.3em] uppercase transition-all duration-300 drop-shadow-md",
-                location.pathname === link.href ? "text-brand-gold scale-110" : "text-brand-cream hover:text-brand-gold"
+                "text-2xl font-serif tracking-[0.3em] uppercase transition-all duration-300",
+                location.pathname === link.href ? "text-brand-gold scale-110" : "text-white hover:text-brand-gold"
               )}
             >
               {link.name}
@@ -146,7 +128,7 @@ const Navbar = () => {
 
         <div className="mt-12 flex flex-col gap-4 w-full px-12 max-w-sm relative z-10">
           <Button 
-            className="w-full bg-brand-gold text-brand-black font-bold py-8 text-xl rounded-2xl shadow-2xl active:scale-95 transition-transform"
+            className="w-full bg-brand-gold text-brand-black font-bold py-8 text-xl rounded-2xl shadow-2xl transition-transform active:scale-95"
             onClick={() => {
               setIsOpen(false);
               window.location.href = 'tel:7015001978';
@@ -156,7 +138,7 @@ const Navbar = () => {
             Call for Advice
           </Button>
           <Link to="/cart" className="w-full" onClick={() => setIsOpen(false)}>
-            <Button variant="outline" className="w-full border-brand-gold/30 text-brand-gold py-8 text-xl rounded-2xl bg-white/5">
+            <Button variant="outline" className="w-full border-white/20 text-white py-8 text-xl rounded-2xl bg-white/5">
               <ShoppingCart className="w-5 h-5 mr-3" />
               Cart ({cartCount})
             </Button>

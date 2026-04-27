@@ -38,7 +38,7 @@ const physioServices: Service[] = [
   },
   {
     name: "Taping", hindi: "टेपिंग", price: "₹500", duration: "20–30 min",
-    image: "https://images.unsplash.com/photo-1620735692151-26a7e0748429?auto=format&fit=crop&q=80&w=800",
+    image: "https://images.unsplash.com/photo-1574680077505-ef74a5fe9235?auto=format&fit=crop&q=80&w=800",
     description: "Kinesiology or sports taping applied to injured or strained muscles/joints. Supports soft tissue, reduces swelling, and allows pain-free movement without restricting circulation.",
     benefits: ["Immediate pain relief", "Supports injured joints & muscles", "Reduces swelling & bruising", "Full movement during recovery"],
   },

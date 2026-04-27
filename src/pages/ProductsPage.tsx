@@ -115,7 +115,7 @@ const ProductsPage = () => {
           <div className="relative mb-12 max-w-xl">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-gold w-5 h-5" />
             <Input 
-              placeholder="Search formulations (e.g. Swranprash, Omega 3)..."
+              placeholder="Search formulations (e.g. Swarnaprash, Omega 3)..."
               className="pl-12 bg-white border-brand-gold/10 h-14 rounded-2xl shadow-lg focus:ring-brand-gold/20 transition-all text-brand-forest font-medium"
               value={searchQuery}
               onChange={(e) => {
@@ -147,7 +147,7 @@ const ProductsPage = () => {
                         </div>
                         
                         <div className="flex-1 px-1">
-                          <h3 className="text-brand-forest font-serif text-sm md:text-2xl font-bold mb-1 md:mb-2 group-hover:text-brand-gold transition-colors line-clamp-1">{product.name}</h3>
+                          <h3 className="text-brand-forest font-serif text-sm md:text-2xl font-bold mb-1 md:mb-2 group-hover:text-brand-gold transition-colors line-clamp-2 min-h-[2.5rem] md:min-h-[4rem]">{product.name}</h3>
                           <p className="text-brand-black/40 text-[10px] md:text-sm line-clamp-2 leading-tight md:leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: product.short_description }} />
                         </div>
 
