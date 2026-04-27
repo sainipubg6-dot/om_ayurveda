@@ -5,11 +5,9 @@ import Seo from '@/components/Seo';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Marquee from '@/components/Marquee';
-import ExcellenceAndProcess from '@/components/ExcellenceAndProcess';
 import FeaturedServices from '@/components/FeaturedServices';
 import FeaturedProducts from '@/components/FeaturedProducts';
-import Team from '@/components/Team';
-import LittleStory from '@/components/LittleStory';
+import AboutLegacy from '@/components/AboutLegacy';
 import TrustAndResults from '@/components/TrustAndResults';
 import SliderHero from '@/components/SliderHero';
 import Newsletter from '@/components/Newsletter';
@@ -145,21 +143,9 @@ const Index = () => {
           <FeaturedServices />
         </FadedContent>
 
-        {/* 4. Little Story (NEW BRIDGE SECTION) */}
+        {/* 4. Heritage, Experts & Excellence (MERGED SECTION) */}
         <FadedContent>
-          <LittleStory />
-        </FadedContent>
-
-        {/* 5. Meet Our Vaidyas */}
-        <FadedContent>
-          <div className="py-4 md:py-8 bg-white">
-            <Team />
-          </div>
-        </FadedContent>
-
-        {/* 6. Excellence & Healing Journey */}
-        <FadedContent>
-          <ExcellenceAndProcess />
+          <AboutLegacy />
         </FadedContent>
 
         {/* 7. Trust & Results */}
