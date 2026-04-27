@@ -88,23 +88,6 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          <div className="col-span-2 lg:col-span-1">
-            <h4 className="text-white font-serif text-[10px] md:text-xs font-bold mb-1 border-b border-white/10 pb-0.5 inline-block">Reach Us</h4>
-            <div className="space-y-1.5 mt-0.5">
-              <div className="flex items-start gap-2 text-white/60 text-[9px] md:text-[11px]">
-                <MapPin className="w-2.5 h-2.5 text-brand-gold flex-shrink-0 mt-0.5" />
-                <span>Rampura Road, Safidon (HR)</span>
-              </div>
-              <div className="flex items-center gap-2 text-white/60 text-[9px] md:text-[11px]">
-                <Phone className="w-2.5 h-2.5 text-brand-gold flex-shrink-0" />
-                <span>+91 70150-01978</span>
-              </div>
-              <div className="flex items-center gap-2 text-white/60 text-[9px] md:text-[11px]">
-                <Mail className="w-2.5 h-2.5 text-brand-gold flex-shrink-0" />
-                <span>info@omayurveda.co.in</span>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div className="pt-2 border-t border-white/5 flex justify-between items-center text-[8px] md:text-[10px] text-white/30 font-medium">
