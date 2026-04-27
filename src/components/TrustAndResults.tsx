@@ -33,14 +33,6 @@ const TrustAndResults = () => {
             })}
           </div>
         </div>
-
-        {/* Divider Line */}
-        <div className="w-24 h-px bg-brand-gold/20 mx-auto mb-8 md:mb-12" />
-
-        {/* Bottom Part: Testimonials (Inside same section) */}
-        <div className="relative">
-          <Testimonials isInsideSection={true} />
-        </div>
       </div>
     </section>
   );

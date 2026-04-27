@@ -12,6 +12,8 @@ import Team from '@/components/Team';
 import LittleStory from '@/components/LittleStory';
 import TrustAndResults from '@/components/TrustAndResults';
 import SliderHero from '@/components/SliderHero';
+import Newsletter from '@/components/Newsletter';
+import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { FadedContent } from '@/components/react-bits/FadedContent';
@@ -163,6 +165,16 @@ const Index = () => {
         {/* 7. Trust & Results */}
         <FadedContent>
           <TrustAndResults />
+        </FadedContent>
+
+        {/* 8. Newsletter Section */}
+        <FadedContent>
+          <Newsletter />
+        </FadedContent>
+
+        {/* 9. Reviews Section */}
+        <FadedContent>
+          <Testimonials isInsideSection={false} />
         </FadedContent>
       </main>
 

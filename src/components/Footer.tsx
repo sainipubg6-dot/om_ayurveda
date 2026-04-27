@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Youtube, Loader2 } from 'lucide-react';
+import { Facebook, Instagram, Youtube, Loader2, MapPin, Phone, Mail } from 'lucide-react';
 import { showSuccess, showError } from '@/utils/toast';
 
 const Footer = () => {
@@ -34,15 +34,15 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-brand-black py-4 md:py-8 border-t border-brand-gold/10">
+    <footer className="bg-brand-black py-3 md:py-5 border-t border-brand-gold/10">
       <div className="container px-4 md:px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-4 md:mb-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-3 md:mb-4">
           {/* Brand - Tight on Mobile */}
           <div className="col-span-2 lg:col-span-1">
-            <Link to="/" className="flex flex-col mb-4 group inline-flex">
-              <span className="font-serif font-bold text-2xl md:text-3xl text-brand-gold tracking-tight leading-none">OM AYURVEDA</span>
-              <div className="h-0.5 md:h-1 w-full bg-brand-gold mt-1 mb-2" />
-              <span className="font-hindi text-brand-gold font-medium text-sm md:text-base text-center">पहला सुख निरोगी काया</span>
+            <Link to="/" className="flex flex-col mb-3 group inline-flex">
+              <span className="font-serif font-bold text-xl md:text-2xl text-white tracking-tight leading-none">OM AYURVEDA</span>
+              <div className="h-0.5 w-full bg-brand-gold mt-1 mb-1.5" />
+              <span className="font-hindi text-white font-medium text-xs md:text-sm text-center">पहला सुख निरोगी काया</span>
             </Link>
             <div className="flex gap-2">
               {[
@@ -50,8 +50,8 @@ const Footer = () => {
                 { icon: Instagram, href: "https://www.instagram.com/om_ayurveda_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
                 { icon: Youtube, href: "https://youtube.com/@omayurveda786?si=gat_k6lBuZht7mqe" }
               ].map((social, i) => (
-                <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="w-6 h-6 rounded bg-white/5 border border-brand-gold/5 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all">
-                  <social.icon size={10} />
+                <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="w-5 h-5 rounded bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-gold hover:text-brand-black transition-all">
+                  <social.icon size={9} />
                 </a>
               ))}
             </div>
@@ -59,11 +59,11 @@ const Footer = () => {
 
           {/* Menu & Focus - Side by Side on Mobile */}
           <div className="col-span-1">
-            <h4 className="text-brand-cream font-serif text-[11px] md:text-sm font-bold mb-1.5 border-b border-brand-gold/10 pb-0.5 inline-block">Menu</h4>
-            <ul className="space-y-1">
+            <h4 className="text-white font-serif text-[10px] md:text-xs font-bold mb-1 border-b border-white/10 pb-0.5 inline-block">Menu</h4>
+            <ul className="space-y-0.5">
               {['Home', 'About', 'Services', 'Products', 'Contact'].map(name => (
                 <li key={name}>
-                  <Link to={name === 'Home' ? '/' : `/${name.toLowerCase()}`} className="text-brand-cream/40 hover:text-brand-gold transition-colors text-[10px] md:text-xs">
+                  <Link to={name === 'Home' ? '/' : `/${name.toLowerCase()}`} className="text-white/60 hover:text-brand-gold transition-colors text-[9px] md:text-[11px]">
                     {name}
                   </Link>
                 </li>
@@ -72,16 +72,16 @@ const Footer = () => {
           </div>
 
           <div className="col-span-1">
-            <h4 className="text-brand-cream font-serif text-[11px] md:text-sm font-bold mb-1.5 border-b border-brand-gold/10 pb-0.5 inline-block">Policies</h4>
-            <ul className="space-y-1">
+            <h4 className="text-white font-serif text-[10px] md:text-xs font-bold mb-1 border-b border-white/10 pb-0.5 inline-block">Policies</h4>
+            <ul className="space-y-0.5">
               {[
-                { name: 'Terms & Conditions', path: '/terms' },
-                { name: 'Privacy Policy', path: '/privacy' },
-                { name: 'Shipping Policy', path: '/shipping' },
-                { name: 'Refund Policy', path: '/refunds' }
+                { name: 'Terms', path: '/terms' },
+                { name: 'Privacy', path: '/privacy' },
+                { name: 'Shipping', path: '/shipping' },
+                { name: 'Refunds', path: '/refunds' }
               ].map(policy => (
                 <li key={policy.name}>
-                  <Link to={policy.path} className="text-brand-cream/50 hover:text-brand-gold transition-colors text-[10px] md:text-xs">
+                  <Link to={policy.path} className="text-white/60 hover:text-brand-gold transition-colors text-[9px] md:text-[11px]">
                     {policy.name}
                   </Link>
                 </li>
@@ -89,36 +89,27 @@ const Footer = () => {
             </ul>
           </div>
           <div className="col-span-2 lg:col-span-1">
-            <h4 className="text-brand-cream font-serif text-[11px] md:text-sm font-bold mb-1.5 border-b border-brand-gold/10 pb-0.5 inline-block">Newsletter</h4>
-            <p className="text-brand-cream/30 text-[9px] md:text-[10px] mb-2 leading-tight">Join for health tips & exclusive offers.</p>
-            <form 
-              className="flex gap-1" 
-              onSubmit={handleSubmit}
-            >
-              <input 
-                type="email" 
-                name="email"
-                placeholder="Email Address" 
-                disabled={isSubmitting}
-                className="bg-white/5 border border-brand-gold/20 rounded px-2 py-1 text-[10px] md:text-xs text-brand-cream w-full focus:outline-none focus:border-brand-gold disabled:opacity-50"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <button 
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-brand-gold text-brand-black px-3 py-1 rounded text-[10px] font-bold hover:bg-brand-goldDark transition-colors min-w-[50px] flex items-center justify-center"
-              >
-                {isSubmitting ? <Loader2 className="w-3 h-3 animate-spin" /> : "Join"}
-              </button>
-            </form>
+            <h4 className="text-white font-serif text-[10px] md:text-xs font-bold mb-1 border-b border-white/10 pb-0.5 inline-block">Reach Us</h4>
+            <div className="space-y-1.5 mt-0.5">
+              <div className="flex items-start gap-2 text-white/60 text-[9px] md:text-[11px]">
+                <MapPin className="w-2.5 h-2.5 text-brand-gold flex-shrink-0 mt-0.5" />
+                <span>Rampura Road, Safidon (HR)</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/60 text-[9px] md:text-[11px]">
+                <Phone className="w-2.5 h-2.5 text-brand-gold flex-shrink-0" />
+                <span>+91 70150-01978</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/60 text-[9px] md:text-[11px]">
+                <Mail className="w-2.5 h-2.5 text-brand-gold flex-shrink-0" />
+                <span>info@omayurveda.co.in</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="pt-3 border-t border-brand-cream/5 flex justify-between items-center text-[9px] md:text-xs text-brand-cream/20 font-medium">
+        <div className="pt-2 border-t border-white/5 flex justify-between items-center text-[8px] md:text-[10px] text-white/30 font-medium">
           <p>© 2026 Om Ayurveda®</p>
-          <p className="italic font-bold text-brand-gold/60">Made with ❤️ in India</p>
+          <p className="italic font-bold text-white/50">Made with ❤️ in India</p>
         </div>
       </div>
     </footer>
