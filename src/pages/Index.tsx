@@ -6,14 +6,14 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Marquee from '@/components/Marquee';
 import ExcellenceAndProcess from '@/components/ExcellenceAndProcess';
+import FeaturedServices from '@/components/FeaturedServices';
+import FeaturedProducts from '@/components/FeaturedProducts';
 import Team from '@/components/Team';
+import LittleStory from '@/components/LittleStory';
 import TrustAndResults from '@/components/TrustAndResults';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { Button } from '@/components/ui/button';
 import { FadedContent } from '@/components/react-bits/FadedContent';
-import { Trophy, ShieldPlus, CheckCircle2, ShieldCheck, Award, BadgeCheck } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const Index = () => {
   useEffect(() => {
@@ -129,20 +129,34 @@ const Index = () => {
         <Hero />
         <Marquee />
 
-        {/* 2. Excellence & Healing Journey */}
+        {/* 2. Top Selling Products */}
         <FadedContent>
-          <ExcellenceAndProcess />
+          <FeaturedProducts />
         </FadedContent>
-        
+
+        {/* 3. Featured Services */}
+        <FadedContent>
+          <FeaturedServices />
+        </FadedContent>
 
         {/* 4. Meet Our Vaidyas */}
         <FadedContent>
-          <div className="py-4 md:py-8">
+          <div className="py-4 md:py-8 bg-white">
             <Team />
           </div>
         </FadedContent>
 
-        {/* 5. Trust & Results */}
+        {/* 5. Excellence & Healing Journey */}
+        <FadedContent>
+          <ExcellenceAndProcess />
+        </FadedContent>
+
+        {/* 6. Little Story (NEW BRIDGE SECTION) */}
+        <FadedContent>
+          <LittleStory />
+        </FadedContent>
+
+        {/* 7. Trust & Results */}
         <FadedContent>
           <TrustAndResults />
         </FadedContent>
