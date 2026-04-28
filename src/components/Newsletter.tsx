@@ -14,12 +14,12 @@ const Newsletter = () => {
 
       <div className="container px-4 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto bg-white/5 backdrop-blur-md border border-brand-gold/20 rounded-3xl md:rounded-[3rem] p-6 md:p-16 text-center">
-          <div className="w-10 h-10 md:w-16 md:h-16 bg-brand-gold rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-8 shadow-lg">
-            <Mail className="text-brand-forest w-5 h-5 md:w-8 md:h-8" />
+          <div className="w-12 h-12 md:w-16 md:h-16 bg-[#BF953F]/20 border border-[#BF953F]/40 rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-8 shadow-lg">
+            <Mail className="text-[#BF953F] w-6 h-6 md:w-8 md:h-8" />
           </div>
           
-          <h2 className="text-brand-gold font-serif text-xl md:text-4xl mb-2 md:mb-4 leading-tight">Join Our Wellness Community</h2>
-          <p className="text-brand-cream/70 text-sm md:text-lg mb-6 md:mb-10 max-w-2xl mx-auto">
+          <h2 className="text-white font-serif text-2xl md:text-4xl mb-3 md:mb-4 leading-tight font-bold tracking-wide">Join Our Wellness Community</h2>
+          <p className="text-white/80 text-sm md:text-lg mb-6 md:mb-10 max-w-2xl mx-auto font-medium">
             Subscribe for weekly Ayurvedic tips, seasonal wellness guides, and exclusive offers.
           </p>
 
@@ -27,14 +27,14 @@ const Newsletter = () => {
             <Input 
               type="email" 
               placeholder="Enter your email address" 
-              className="bg-white/10 border-brand-cream/20 text-brand-cream placeholder:text-brand-cream/30 h-11 md:h-14 rounded-full px-5 md:px-8 focus:border-brand-gold"
+              className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-12 md:h-14 rounded-full px-5 md:px-8 focus:border-white/40 focus:ring-1 focus:ring-white/40"
             />
-            <Button className="bg-brand-gold hover:bg-brand-goldDark text-brand-black font-bold h-11 md:h-14 px-6 md:px-10 rounded-full shadow-xl text-sm md:text-base whitespace-nowrap">
+            <Button className="bg-[#BF953F] hover:bg-[#A68032] text-white font-bold h-12 md:h-14 px-6 md:px-10 rounded-full shadow-xl text-sm md:text-base whitespace-nowrap border-none">
               Subscribe Now
             </Button>
           </form>
           
-          <p className="text-brand-cream/30 text-xs mt-4 md:mt-6">
+          <p className="text-white/40 text-[10px] md:text-xs mt-4 md:mt-6">
             We respect your privacy. Unsubscribe at any time.
           </p>
         </div>

@@ -7,12 +7,12 @@ import {
 } from 'lucide-react';
 
 const features = [
+  { icon: Leaf, title: "100% Natural", subtitle: "Pure Herbal Blends" },
+  { icon: HeartPulse, title: "Personalized Care", subtitle: "Custom Treatment" },
+  { icon: Sparkles, title: "Swarna Bhasma", subtitle: "Expert Specialists" },
   { icon: Award, title: "68+ Years Legacy", subtitle: "Est. 1958" },
   { icon: Users, title: "1M+ Patients", subtitle: "Globally Trusted" },
   { icon: ShieldCheck, title: "Registered Brand", subtitle: "Govt. Verified" },
-  { icon: Sparkles, title: "Swarna Bhasma", subtitle: "Expert Specialists" },
-  { icon: Leaf, title: "100% Natural", subtitle: "Pure Herbal Blends" },
-  { icon: HeartPulse, title: "Personalized Care", subtitle: "Custom Treatment" },
 ];
 
 const doctors = [
@@ -43,24 +43,24 @@ const AboutLegacy = () => {
       <div className="container px-4 md:px-6 relative z-10">
         {/* PART 1: OUR LITTLE STORY */}
         <div className="max-w-4xl mx-auto text-center mb-20 md:mb-32">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full bg-brand-forest/5 border border-brand-forest/10 text-brand-forest">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-brand-forest text-brand-forest bg-transparent">
             <Sparkles className="w-4 h-4" />
             <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest">Our Heritage</span>
           </div>
 
-          <h2 className="text-brand-forest font-serif text-3xl md:text-7xl mb-8 leading-tight font-bold">
-            Healing Hearts Since <span className="text-brand-goldDark font-bold">1958</span>
+          <h2 className="text-brand-forest font-serif text-[28px] xs:text-3xl sm:text-4xl md:text-7xl mb-8 leading-tight font-bold whitespace-nowrap sm:whitespace-normal">
+            Healing Hearts Since <span className="text-brand-forest/60 font-medium">1958</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8 md:gap-16 text-left items-center mb-16">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-16 text-left items-center mb-10 md:mb-16">
             <div className="space-y-6">
-              <p className="text-brand-forest/80 text-lg md:text-2xl leading-relaxed italic border-l-4 border-brand-gold pl-6">
+              <p className="text-brand-forest/80 text-lg md:text-2xl leading-relaxed italic border-l-[6px] border-brand-forest pl-4 md:pl-6">
                 "What started as a small humble clinic in 1958 has grown into a legacy of trust that spans generations and continents."
               </p>
             </div>
 
-            <div className="bg-white p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] border border-brand-gold/20 relative shadow-xl">
-              <Heart className="absolute -top-4 -right-4 w-12 h-12 text-brand-gold fill-brand-gold opacity-10" />
+            <div className="bg-white p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] border border-white relative shadow-lg">
+              <Heart className="absolute -top-6 -right-4 w-16 h-16 text-brand-forest/10 fill-brand-forest/10" />
               <p className="text-brand-forest/70 text-sm md:text-lg leading-relaxed">
                 Om Ayurveda has successfully treated millions from the root. People from across the country and abroad come here for treatment and leave satisfied.
               </p>
@@ -68,14 +68,14 @@ const AboutLegacy = () => {
           </div>
 
           {/* Excellence Features Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 md:gap-4">
+          <div className="grid grid-cols-3 xl:grid-cols-6 gap-2 md:gap-4">
             {features.map((item, i) => (
-              <div key={i} className="bg-white border border-brand-forest/5 p-4 md:p-6 rounded-2xl hover:border-brand-gold transition-all group text-center shadow-lg">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-forest/5 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-brand-gold/20 transition-colors">
-                  <item.icon className="text-brand-forest w-5 h-5 md:w-6 md:h-6 group-hover:text-brand-goldDark transition-colors" />
+              <div key={i} className="bg-white p-2 xs:p-3 md:p-6 rounded-xl md:rounded-2xl transition-all group text-center shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-brand-forest/5 flex flex-col justify-center">
+                <div className="flex items-center justify-center mx-auto mb-2 md:mb-3 text-brand-forest/80">
+                  <item.icon className="w-4 h-4 xs:w-5 xs:h-5 md:w-6 md:h-6" strokeWidth={1.5} />
                 </div>
-                <h4 className="text-brand-forest font-serif text-xs md:text-sm font-bold leading-tight">{item.title}</h4>
-                <p className="text-brand-goldDark/60 text-[8px] md:text-[9px] uppercase tracking-widest mt-1 font-bold">{item.subtitle}</p>
+                <h4 className="text-brand-forest font-serif text-[9px] xs:text-[10px] md:text-sm font-bold leading-tight">{item.title}</h4>
+                <p className="text-brand-forest/40 text-[6px] xs:text-[7px] md:text-[9px] uppercase tracking-widest mt-1 font-bold">{item.subtitle}</p>
               </div>
             ))}
           </div>
@@ -109,31 +109,31 @@ const AboutLegacy = () => {
         </div>
 
         {/* PART 3: OUR JOURNEY (PROCESS) */}
-        <div className="bg-brand-forest rounded-[2.5rem] md:rounded-[5rem] p-8 md:p-20 relative overflow-hidden shadow-2xl">
+        <div className="bg-brand-forest rounded-[2rem] md:rounded-[5rem] p-6 md:p-20 relative overflow-hidden shadow-2xl">
           {/* Subtle pattern for the dark block */}
           <div className="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#BF953F_1px,transparent_1px)] [background-size:20px_20px]" />
           
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-20 relative z-10">
-            <div className="lg:max-w-[300px] w-full text-center lg:text-left border-b lg:border-b-0 lg:border-r border-brand-gold/20 pb-10 lg:pb-0 lg:pr-16">
-              <h4 className="text-brand-gold font-serif text-3xl md:text-5xl font-bold mb-4">Our Journey</h4>
-              <p className="text-brand-cream/50 text-[10px] md:text-xs leading-relaxed uppercase tracking-[0.3em] font-medium">The Personalized Vedic protocol.</p>
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-20 relative z-10">
+            <div className="lg:max-w-[300px] w-full text-center lg:text-left border-b border-white/10 lg:border-b-0 lg:border-r lg:border-brand-gold/20 pb-6 lg:pb-0 lg:pr-16">
+              <h4 className="text-brand-cream/80 font-serif text-[22px] xs:text-2xl md:text-5xl font-bold mb-2 md:mb-4">Our Journey</h4>
+              <p className="text-brand-cream/60 text-[8px] xs:text-[9px] md:text-xs leading-relaxed uppercase tracking-[0.2em] md:tracking-[0.3em] font-bold">The Personalized Vedic protocol.</p>
             </div>
 
-            <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 w-full">
+            <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-4 md:gap-10 w-full pt-2 lg:pt-0">
               {steps.map((step, idx) => (
                 <div key={idx} className="relative flex flex-col items-center text-center group">
-                  <div className="w-14 h-14 md:w-24 md:h-24 rounded-full bg-brand-gold flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-all duration-500 border-4 border-brand-forest">
-                    <step.icon className="text-brand-forest w-7 h-7 md:w-12 md:h-12" />
+                  <div className="w-10 h-10 md:w-20 md:h-20 rounded-full bg-brand-cream/10 flex items-center justify-center mb-3 md:mb-6 shadow-lg group-hover:bg-brand-cream/20 transition-colors duration-300">
+                    <step.icon className="text-brand-cream/70 w-4 h-4 md:w-8 md:h-8" />
                   </div>
                   <div>
-                    <div className="flex items-center justify-center gap-2 mb-2">
-                      <span className="text-brand-gold text-[10px] md:text-xs font-bold">0{idx + 1}</span>
-                      <h5 className="text-brand-cream font-serif text-sm md:text-2xl font-bold">{step.title}</h5>
+                    <div className="flex items-center justify-center gap-1.5 md:gap-2 mb-1.5 md:mb-2">
+                      <span className="text-brand-cream/40 text-[9px] md:text-xs font-bold">0{idx + 1}</span>
+                      <h5 className="text-brand-cream/90 font-serif text-[11px] xs:text-[12px] md:text-2xl font-bold">{step.title}</h5>
                     </div>
-                    <p className="text-brand-cream/40 text-[9px] md:text-xs uppercase font-bold tracking-widest leading-tight">{step.desc}</p>
+                    <p className="text-brand-cream/40 text-[7px] xs:text-[8px] md:text-xs uppercase font-bold tracking-[0.15em] md:tracking-widest leading-tight">{step.desc}</p>
                   </div>
                   {idx < steps.length - 1 && (
-                    <ChevronRight className="hidden lg:block absolute top-12 -right-5 text-brand-gold/10" />
+                    <ChevronRight className="hidden lg:block absolute top-10 -right-5 text-brand-gold/10" />
                   )}
                 </div>
               ))}
