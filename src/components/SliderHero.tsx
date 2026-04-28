@@ -48,72 +48,91 @@ const slides = [
 
 const SliderHero = () => {
   const [api, setApi] = useState<CarouselApi>();
-
-  const onSelect = useCallback((api: CarouselApi) => {
-    // We could add logic here if needed
-  }, []);
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     if (!api) return;
 
-    api.on("select", () => onSelect(api));
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
 
     const intervalId = setInterval(() => {
       api.scrollNext();
     }, 5000);
 
     return () => clearInterval(intervalId);
-  }, [api, onSelect]);
+  }, [api]);
 
   return (
-    <section className="relative w-full overflow-hidden bg-brand-cream border-b border-brand-gold/20">
-      <Carousel setApi={setApi} className="w-full" opts={{ loop: true }}>
-        <CarouselContent className="-ml-0">
-          {slides.map((slide) => (
-            <CarouselItem key={slide.id} className="pl-0 relative h-[400px] md:h-[550px] w-full">
-              <div className="absolute inset-0">
-                <img 
-                  src={slide.image} 
-                  alt={slide.title} 
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
-              </div>
-              
-              <div className="relative h-full container mx-auto px-6 flex flex-col justify-center items-start text-white">
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                  {slide.isSale && (
-                    <span className="inline-block px-4 py-1 mb-4 bg-brand-gold text-brand-black font-bold text-sm rounded-full uppercase tracking-wider animate-pulse">
-                      Special Offer
-                    </span>
-                  )}
-                  <h2 className="text-4xl md:text-6xl font-serif mb-4 leading-tight">
-                    {slide.title}
-                  </h2>
-                  <p className="text-lg md:text-xl mb-8 max-w-xl text-white/90">
-                    {slide.subtitle}
-                  </p>
-                  <Button 
-                    size="lg" 
-                    className="bg-brand-gold hover:bg-brand-gold/90 text-brand-black border-none rounded-none px-8 font-semibold transition-all hover:scale-105"
-                    onClick={() => window.location.href = slide.link}
+    <section className="relative w-full bg-brand-cream pb-0">
+      <div className="w-full max-w-[1400px] mx-auto px-1 xs:px-2 md:px-6 lg:px-8">
+        <Carousel setApi={setApi} className="w-full rounded-xl md:rounded-[2rem] overflow-hidden shadow-2xl" opts={{ loop: true }}>
+          <CarouselContent className="-ml-0">
+            {slides.map((slide) => (
+              <CarouselItem key={slide.id} className="pl-0 relative h-[200px] xs:h-[230px] md:h-[400px] w-full">
+                <div className="absolute inset-0">
+                  <img 
+                    src={slide.image} 
+                    alt={slide.title} 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+                </div>
+                
+                <div className="relative h-full px-4 xs:px-6 md:px-16 flex flex-col justify-center items-start text-white">
+                  <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
                   >
-                    {slide.buttonText}
-                  </Button>
-                </motion.div>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <div className="hidden md:block">
-          <CarouselPrevious className="left-8 bg-white/20 border-white/40 text-white hover:bg-brand-gold hover:text-brand-black" />
-          <CarouselNext className="right-8 bg-white/20 border-white/40 text-white hover:bg-brand-gold hover:text-brand-black" />
-        </div>
-      </Carousel>
+                    {slide.isSale && (
+                      <span className="inline-block px-2 py-0.5 mb-1 xs:mb-3 bg-brand-gold text-brand-black font-bold text-[10px] xs:text-xs rounded-full uppercase tracking-wider animate-pulse">
+                        Special Offer
+                      </span>
+                    )}
+                    <h2 className="text-2xl xs:text-3xl md:text-5xl font-serif mb-1 xs:mb-3 leading-tight">
+                      {slide.title}
+                    </h2>
+                    <p className="text-xs xs:text-sm md:text-lg mb-3 xs:mb-6 max-w-[200px] xs:max-w-xs md:max-w-lg text-white/90 leading-tight">
+                      {slide.subtitle}
+                    </p>
+                    <Button 
+                      size="sm" 
+                      className="bg-brand-forest/90 md:bg-brand-gold hover:bg-brand-forest md:hover:bg-brand-gold/90 text-white md:text-brand-black border-none rounded-full px-4 xs:px-6 md:px-8 text-xs md:text-base font-semibold transition-all hover:scale-105"
+                      onClick={() => window.location.href = slide.link}
+                    >
+                      {slide.buttonText}
+                    </Button>
+                  </motion.div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div className="hidden md:block">
+            <CarouselPrevious className="left-6 bg-white/20 border-white/40 text-white hover:bg-brand-gold hover:text-brand-black" />
+            <CarouselNext className="right-6 bg-white/20 border-white/40 text-white hover:bg-brand-gold hover:text-brand-black" />
+          </div>
+        </Carousel>
+      </div>
+      
+      {/* Pagination Dots */}
+      <div className="flex justify-center items-center space-x-2 py-2 bg-brand-cream">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => api?.scrollTo(index)}
+            className={`h-2 xs:h-2.5 rounded-full transition-all duration-300 ${
+              current === index 
+                ? "bg-brand-forest w-6 xs:w-8" 
+                : "bg-brand-forest/20 hover:bg-brand-forest/40 w-2 xs:w-2.5"
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
     </section>
   );
 };

@@ -72,38 +72,43 @@ const FeaturedServices = () => {
   return (
     <section className="py-16 md:py-24 bg-white relative overflow-hidden">
       <div className="container px-4 md:px-6 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
-          <div className="max-w-2xl">
-            <h2 className="text-brand-gold font-serif text-[10px] md:text-xs uppercase tracking-[0.3em] mb-3 font-bold">Elite Treatments</h2>
-            <h3 className="text-brand-forest font-serif text-3xl md:text-5xl font-bold leading-tight">Healing Services</h3>
-            <p className="text-brand-black/60 text-sm md:text-lg mt-4 max-w-xl">
-              Swipe to explore our most sought-after Ayurvedic therapies for deep rejuvenation.
-            </p>
+        <div className="mb-8 md:mb-16">
+          <div className="flex flex-row justify-between items-start gap-2 mb-4 md:mb-0">
+            <div className="max-w-2xl">
+              <h2 className="text-brand-forest/70 font-serif text-[10px] md:text-xs uppercase tracking-[0.3em] mb-1 md:mb-3 font-bold">Elite Treatments</h2>
+              <h3 className="text-brand-forest font-serif text-[28px] xs:text-3xl md:text-5xl font-bold leading-tight">Healing Services</h3>
+              <p className="text-brand-black/60 text-sm md:text-lg mt-2 md:mt-4 max-w-xl hidden md:block">
+                Swipe to explore our most sought-after Ayurvedic therapies for deep rejuvenation.
+              </p>
+            </div>
+            <div className="flex items-center gap-4 pt-1 md:pt-4">
+               <div className="hidden md:flex gap-2 mr-2">
+                  <Button 
+                    onClick={() => scroll('left')}
+                    variant="outline" 
+                    className="w-12 h-12 rounded-full border-brand-forest text-brand-forest hover:bg-brand-forest hover:text-brand-gold"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </Button>
+                  <Button 
+                    onClick={() => scroll('right')}
+                    variant="outline" 
+                    className="w-12 h-12 rounded-full border-brand-forest text-brand-forest hover:bg-brand-forest hover:text-brand-gold"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </Button>
+               </div>
+               <Link to="/services">
+                  <Button variant="outline" className="border border-brand-forest text-brand-forest bg-transparent hover:bg-brand-forest hover:text-brand-cream font-bold px-3 py-1 xs:px-4 xs:py-2 md:px-8 md:py-6 h-8 xs:h-10 md:h-14 rounded-full flex items-center group text-[10px] xs:text-xs md:text-base">
+                    All Services
+                    <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+               </Link>
+            </div>
           </div>
-          <div className="flex items-center gap-4">
-             <div className="hidden md:flex gap-2 mr-4">
-                <Button 
-                  onClick={() => scroll('left')}
-                  variant="outline" 
-                  className="w-12 h-12 rounded-full border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-black"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </Button>
-                <Button 
-                  onClick={() => scroll('right')}
-                  variant="outline" 
-                  className="w-12 h-12 rounded-full border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-black"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </Button>
-             </div>
-             <Link to="/services">
-                <Button variant="outline" className="border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-black font-bold px-8 py-6 rounded-full group">
-                  All Services
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-             </Link>
-          </div>
+          <p className="text-brand-black/60 text-[13px] sm:text-sm mt-2 max-w-xl md:hidden leading-relaxed">
+            Swipe to explore our most sought-after Ayurvedic therapies for deep rejuvenation.
+          </p>
         </div>
 
         {/* Scrollable Container */}

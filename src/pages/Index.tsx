@@ -15,6 +15,7 @@ import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { FadedContent } from '@/components/react-bits/FadedContent';
+import CategoryScroll from '@/components/CategoryScroll';
 
 const Index = () => {
   useEffect(() => {
@@ -126,6 +127,11 @@ const Index = () => {
       <Navbar />
 
       <main className="flex-1">
+        {/* Category Scroll */}
+        <FadedContent>
+          <CategoryScroll />
+        </FadedContent>
+
         {/* New Slider Hero */}
         <SliderHero />
 

@@ -8,7 +8,7 @@ import BlurText from './react-bits/BlurText';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-cream pt-24 md:pt-32">
+    <section id="home" className="relative pt-2 pb-8 md:pt-6 md:pb-20 flex items-center justify-center overflow-hidden bg-brand-cream">
       {/* Subtle Background Pattern */}
       <DotPattern
         className="fill-brand-forest/5 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]"
@@ -25,12 +25,12 @@ const Hero = () => {
 
       <div className="container relative z-10 px-4 md:px-6 text-center">
         {/* Top Badge */}
-        <div className="inline-block px-4 py-1.5 mb-6 md:mb-10 bg-brand-forest rounded-lg shadow-lg">
+        <div className="inline-block px-4 py-1.5 mb-3 md:mb-8 bg-brand-forest rounded-lg shadow-lg">
           <span className="text-brand-cream text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase">Ancient Wisdom • Modern Healing</span>
         </div>
         
         {/* Main Headline (Hindi) - ANIMATED */}
-        <div className="mb-6 md:mb-10 flex flex-col items-center">
+        <div className="mb-4 md:mb-10 flex flex-col items-center">
           <BlurText
             text="पहला सुख"
             className="font-hindi text-brand-forest text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold leading-[1.1] tracking-tight"
@@ -48,21 +48,20 @@ const Hero = () => {
         </div>
         
         {/* Subtitle */}
-        <p className="text-brand-forest/70 text-sm md:text-lg lg:text-xl max-w-2xl mx-auto mb-10 md:mb-14 font-medium leading-relaxed px-4">
+        <p className="text-brand-forest/70 text-sm md:text-lg lg:text-xl max-w-2xl mx-auto mb-4 md:mb-10 font-medium leading-relaxed px-4">
           Experience Ayurvedic excellence with traditional <span className="text-brand-forest font-bold">Swarna Bhasma</span> treatments and clinical precision since 1958.
         </p>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 md:mb-24">
+        <div className="flex flex-row items-center justify-center gap-2 xs:gap-4 mb-12 md:mb-24 px-4 max-w-xl mx-auto">
           <Button 
-            className="w-full sm:w-auto bg-brand-forest hover:bg-brand-forest/90 text-brand-cream font-bold text-sm md:text-lg h-14 md:h-20 px-10 md:px-14 rounded-full shadow-2xl transition-all active:scale-95"
+            className="flex-1 bg-brand-forest hover:bg-brand-forest/90 text-brand-cream font-bold text-[10px] xs:text-xs sm:text-sm md:text-lg h-12 md:h-16 px-1 xs:px-4 rounded-full shadow-lg transition-all active:scale-95 whitespace-normal sm:whitespace-nowrap leading-tight"
             onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
           >
             EXPLORE TREATMENTS
           </Button>
           <Button 
-            variant="outline" 
-            className="w-full sm:w-auto border-2 border-brand-forest text-brand-forest hover:bg-brand-forest hover:text-brand-cream font-bold text-sm md:text-lg h-14 md:h-20 px-10 md:px-14 rounded-full transition-all active:scale-95"
+            className="flex-1 bg-brand-forest hover:bg-brand-forest/90 text-brand-cream font-bold text-[10px] xs:text-xs sm:text-sm md:text-lg h-12 md:h-16 px-1 xs:px-4 rounded-full shadow-lg transition-all active:scale-95 whitespace-normal sm:whitespace-nowrap leading-tight"
             onClick={() => window.location.href = 'tel:7015001978'}
           >
             CALL NOW
