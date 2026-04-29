@@ -18,7 +18,7 @@ const CategoryScroll = () => {
   return (
     <section className="w-full pt-20 md:pt-28 pb-0 bg-transparent">
       <div className="w-full">
-        <div className="flex overflow-x-auto scrollbar-hide snap-x snap-mandatory gap-2 sm:gap-6 md:gap-10 pb-2 pt-2 px-3 md:px-8">
+        <div className="flex overflow-x-auto md:justify-center scrollbar-hide snap-x snap-mandatory gap-2 sm:gap-6 md:gap-10 pb-2 pt-2 px-3 md:px-8">
           {categories.map((cat, idx) => (
             <Link 
               to={cat.link}

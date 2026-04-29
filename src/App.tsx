@@ -13,6 +13,7 @@ import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import ContactPage from "./pages/ContactPage";
 import LegalPage from "./pages/LegalPage";
+import SocialPage from "./pages/SocialPage";
 import NotFound from "./pages/NotFound";
 import NewsletterPopup from "./components/NewsletterPopup";
 
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/social" element={<SocialPage />} />
             
             {/* Legal Routes */}
             <Route path="/terms" element={<LegalPage />} />
