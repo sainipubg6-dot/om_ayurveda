@@ -1,21 +1,28 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import Seo from '@/components/Seo';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Marquee from '@/components/Marquee';
-import FeaturedServices from '@/components/FeaturedServices';
-import FeaturedProducts from '@/components/FeaturedProducts';
-import AboutLegacy from '@/components/AboutLegacy';
-import TrustAndResults from '@/components/TrustAndResults';
 import SliderHero from '@/components/SliderHero';
-import Newsletter from '@/components/Newsletter';
-import Testimonials from '@/components/Testimonials';
-import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { FadedContent } from '@/components/react-bits/FadedContent';
 import CategoryScroll from '@/components/CategoryScroll';
+
+// Lazy load below-the-fold components
+const FeaturedServices = lazy(() => import('@/components/FeaturedServices'));
+const FeaturedProducts = lazy(() => import('@/components/FeaturedProducts'));
+const AboutLegacy = lazy(() => import('@/components/AboutLegacy'));
+const TrustAndResults = lazy(() => import('@/components/TrustAndResults'));
+const Newsletter = lazy(() => import('@/components/Newsletter'));
+const Testimonials = lazy(() => import('@/components/Testimonials'));
+const Footer = lazy(() => import('@/components/Footer'));
+
+// Simple skeleton for lazy sections
+const SectionSkeleton = () => (
+  <div className="w-full h-64 bg-brand-forest/5 animate-pulse rounded-3xl my-8" />
+);
 
 const Index = () => {
   useEffect(() => {
@@ -139,38 +146,41 @@ const Index = () => {
         <Hero />
         <Marquee />
 
-        {/* 2. Top Selling Products */}
-        <FadedContent>
-          <FeaturedProducts />
-        </FadedContent>
+        <Suspense fallback={<SectionSkeleton />}>
+          {/* 2. Top Selling Products */}
+          <FadedContent>
+            <FeaturedProducts />
+          </FadedContent>
 
-        {/* 3. Featured Services */}
-        <FadedContent>
-          <FeaturedServices />
-        </FadedContent>
+          {/* 3. Featured Services */}
+          <FadedContent>
+            <FeaturedServices />
+          </FadedContent>
 
-        {/* 4. Heritage, Experts & Excellence (MERGED SECTION) */}
-        <FadedContent>
-          <AboutLegacy />
-        </FadedContent>
+          {/* 4. Heritage, Experts & Excellence */}
+          <FadedContent>
+            <AboutLegacy />
+          </FadedContent>
 
-        {/* 7. Trust & Results */}
-        <FadedContent>
-          <TrustAndResults />
-        </FadedContent>
+          {/* 7. Trust & Results */}
+          <FadedContent>
+            <TrustAndResults />
+          </FadedContent>
 
-        {/* 8. Newsletter Section */}
-        <FadedContent>
-          <Newsletter />
-        </FadedContent>
+          {/* 8. Newsletter Section */}
+          <FadedContent>
+            <Newsletter />
+          </FadedContent>
 
-        {/* 9. Reviews Section */}
-        <FadedContent>
-          <Testimonials isInsideSection={false} />
-        </FadedContent>
+          {/* 9. Reviews Section */}
+          <FadedContent>
+            <Testimonials isInsideSection={false} />
+          </FadedContent>
+          
+          <Footer />
+        </Suspense>
       </main>
 
-      <Footer />
       <WhatsAppButton />
     </div>
   );
