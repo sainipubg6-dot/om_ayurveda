@@ -21,7 +21,7 @@ This is not a "WordPress site" in the traditional sense. It is a **Custom React 
 *   **No Generic Themes:** Zero use of pre-built WordPress themes (like Astra/Elementor). Every UI component is a custom-coded React `.tsx` module.
 *   **Modular Component Architecture:** 2,162 unique modules managed via TypeScript, ensuring long-term maintainability and 0% technical debt from bloated plugins.
 *   **Tailored Design System:** Implementation of custom **HSL Brand Tokens** and a **Framer Motion UX Engine** specifically designed for the Om Ayurveda heritage aesthetic.
-
+  
 ---
 
 ## 3. Performance & Optimization Metrics
