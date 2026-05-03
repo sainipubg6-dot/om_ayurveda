@@ -19,22 +19,23 @@ const Newsletter = () => {
           </div>
           
           <h2 className="text-white font-serif text-2xl md:text-4xl mb-3 md:mb-4 leading-tight font-bold tracking-wide">Join Our Wellness Community</h2>
-          <p className="text-white/80 text-sm md:text-lg mb-6 md:mb-10 max-w-2xl mx-auto font-medium">
+          <p className="text-white text-sm md:text-lg mb-6 md:mb-10 max-w-2xl mx-auto font-medium">
             Subscribe for weekly Ayurvedic tips, seasonal wellness guides, and exclusive offers.
           </p>
 
-          <form className="flex flex-col sm:flex-row gap-3 md:gap-4 max-w-lg mx-auto">
+          <form className="flex flex-col sm:flex-row gap-3 md:gap-4 max-w-lg mx-auto" aria-label="Newsletter subscription">
             <Input 
               type="email" 
               placeholder="Enter your email address" 
-              className="bg-white/10 border-white/20 text-white placeholder:text-white/50 h-12 md:h-14 rounded-full px-5 md:px-8 focus:border-white/40 focus:ring-1 focus:ring-white/40"
+              className="bg-white/10 border-white/20 text-white placeholder:text-white h-12 md:h-14 rounded-full px-5 md:px-8 focus:border-white/40 focus:ring-1 focus:ring-white/40"
+              aria-label="Email address"
             />
-            <Button className="bg-[#BF953F] hover:bg-[#A68032] text-white font-bold h-12 md:h-14 px-6 md:px-10 rounded-full shadow-xl text-sm md:text-base whitespace-nowrap border-none">
+            <Button className="bg-[#BF953F] hover:bg-[#A68032] text-white font-bold h-12 md:h-14 px-6 md:px-10 rounded-full shadow-xl text-sm md:text-base whitespace-nowrap border-none" aria-label="Subscribe to newsletter">
               Subscribe Now
             </Button>
           </form>
           
-          <p className="text-white/40 text-[10px] md:text-xs mt-4 md:mt-6">
+          <p className="text-white/60 text-[10px] md:text-xs mt-4 md:mt-6">
             We respect your privacy. Unsubscribe at any time.
           </p>
         </div>

@@ -39,18 +39,18 @@ const Footer = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-3 md:mb-4">
           {/* Brand - Tight on Mobile */}
           <div className="col-span-2 lg:col-span-1">
-            <Link to="/" className="flex flex-col mb-3 group inline-flex">
+            <Link to="/" className="flex flex-col mb-3 group inline-flex" aria-label="Om Ayurveda Home">
               <span className="font-serif font-bold text-xl md:text-2xl text-white tracking-tight leading-none">OM AYURVEDA</span>
               <div className="h-0.5 w-full bg-brand-gold mt-1 mb-1.5" />
               <span className="font-hindi text-white font-medium text-xs md:text-sm text-center">पहला सुख निरोगी काया</span>
             </Link>
             <div className="flex gap-2">
               {[
-                { icon: Facebook, href: "https://www.facebook.com/share/18GU2kfgpM/?mibextid=wwXIfr" },
-                { icon: Instagram, href: "https://www.instagram.com/om_ayurveda_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
-                { icon: Youtube, href: "https://youtube.com/@omayurveda786?si=gat_k6lBuZht7mqe" }
+                { name: 'Facebook', icon: Facebook, href: "https://www.facebook.com/share/18GU2kfgpM/?mibextid=wwXIfr" },
+                { name: 'Instagram', icon: Instagram, href: "https://www.instagram.com/om_ayurveda_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
+                { name: 'Youtube', icon: Youtube, href: "https://youtube.com/@omayurveda786?si=gat_k6lBuZht7mqe" }
               ].map((social, i) => (
-                <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="w-5 h-5 rounded bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-gold hover:text-brand-black transition-all">
+                <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="w-5 h-5 rounded bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-gold hover:text-brand-black transition-all" aria-label={`Follow us on ${social.name}`}>
                   <social.icon size={9} />
                 </a>
               ))}

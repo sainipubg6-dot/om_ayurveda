@@ -71,11 +71,11 @@ const AboutLegacy = () => {
           <div className="grid grid-cols-3 xl:grid-cols-6 gap-2 md:gap-4">
             {features.map((item, i) => (
               <div key={i} className="bg-white p-2 xs:p-3 md:p-6 rounded-xl md:rounded-2xl transition-all group text-center shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-brand-forest/5 flex flex-col justify-center">
-                <div className="flex items-center justify-center mx-auto mb-2 md:mb-3 text-brand-forest/80">
+                <div className="flex items-center justify-center mx-auto mb-2 md:mb-3 text-brand-forest/90">
                   <item.icon className="w-4 h-4 xs:w-5 xs:h-5 md:w-6 md:h-6" strokeWidth={1.5} />
                 </div>
-                <h4 className="text-brand-forest font-serif text-[9px] xs:text-[10px] md:text-sm font-bold leading-tight">{item.title}</h4>
-                <p className="text-brand-forest/40 text-[6px] xs:text-[7px] md:text-[9px] uppercase tracking-widest mt-1 font-bold">{item.subtitle}</p>
+                <h3 className="text-brand-forest font-serif text-[9px] xs:text-[10px] md:text-sm font-bold leading-tight">{item.title}</h3>
+                <p className="text-brand-forest/60 text-[6px] xs:text-[7px] md:text-[9px] uppercase tracking-widest mt-1 font-bold">{item.subtitle}</p>
               </div>
             ))}
           </div>
@@ -85,7 +85,7 @@ const AboutLegacy = () => {
         <div className="mb-20 md:mb-32">
           <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20">
             <h3 className="text-brand-goldDark font-serif text-[10px] md:text-sm uppercase tracking-[0.4em] mb-2 font-bold">Our Experts</h3>
-            <h4 className="text-brand-forest font-serif text-2xl md:text-6xl mb-4 font-bold">Meet Our Vaidyas</h4>
+            <p className="text-brand-forest font-serif text-2xl md:text-6xl mb-4 font-bold">Meet Our Vaidyas</p>
             <div className="w-20 h-1 bg-brand-gold mx-auto rounded-full" />
           </div>
 
@@ -100,9 +100,9 @@ const AboutLegacy = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 </div>
-                <h5 className="text-brand-forest font-serif text-base md:text-3xl font-bold text-center uppercase tracking-tight group-hover:text-brand-goldDark transition-colors">
+                <h4 className="text-brand-forest font-serif text-base md:text-3xl font-bold text-center uppercase tracking-tight group-hover:text-brand-goldDark transition-colors">
                   {doc.name}
-                </h5>
+                </h4>
               </div>
             ))}
           </div>
@@ -115,8 +115,8 @@ const AboutLegacy = () => {
           
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-20 relative z-10">
             <div className="lg:max-w-[300px] w-full text-center lg:text-left border-b border-white/10 lg:border-b-0 lg:border-r lg:border-brand-gold/20 pb-6 lg:pb-0 lg:pr-16">
-              <h4 className="text-brand-cream/80 font-serif text-[22px] xs:text-2xl md:text-5xl font-bold mb-2 md:mb-4">Our Journey</h4>
-              <p className="text-brand-cream/60 text-[8px] xs:text-[9px] md:text-xs leading-relaxed uppercase tracking-[0.2em] md:tracking-[0.3em] font-bold">The Personalized Vedic protocol.</p>
+              <h3 className="text-brand-cream font-serif text-[22px] xs:text-2xl md:text-5xl font-bold mb-2 md:mb-4">Our Journey</h3>
+              <p className="text-brand-cream/80 text-[8px] xs:text-[9px] md:text-xs leading-relaxed uppercase tracking-[0.2em] md:tracking-[0.3em] font-bold">The Personalized Vedic protocol.</p>
             </div>
 
             <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-4 md:gap-10 w-full pt-2 lg:pt-0">
@@ -127,10 +127,10 @@ const AboutLegacy = () => {
                   </div>
                   <div>
                     <div className="flex items-center justify-center gap-1.5 md:gap-2 mb-1.5 md:mb-2">
-                      <span className="text-brand-cream/40 text-[9px] md:text-xs font-bold">0{idx + 1}</span>
-                      <h5 className="text-brand-cream/90 font-serif text-[11px] xs:text-[12px] md:text-2xl font-bold">{step.title}</h5>
+                      <span className="text-brand-cream/60 text-[9px] md:text-xs font-bold">0{idx + 1}</span>
+                      <h4 className="text-brand-cream/90 font-serif text-[11px] xs:text-[12px] md:text-2xl font-bold">{step.title}</h4>
                     </div>
-                    <p className="text-brand-cream/40 text-[7px] xs:text-[8px] md:text-xs uppercase font-bold tracking-[0.15em] md:tracking-widest leading-tight">{step.desc}</p>
+                    <p className="text-brand-cream/60 text-[7px] xs:text-[8px] md:text-xs uppercase font-bold tracking-[0.15em] md:tracking-widest leading-tight">{step.desc}</p>
                   </div>
                   {idx < steps.length - 1 && (
                     <ChevronRight className="hidden lg:block absolute top-10 -right-5 text-brand-gold/10" />

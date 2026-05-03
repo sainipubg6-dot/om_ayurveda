@@ -36,9 +36,9 @@ const FeaturedProducts = () => {
         <div className="mb-8 md:mb-16">
           <div className="flex flex-row justify-between items-start gap-2 mb-4 md:mb-0">
             <div className="max-w-2xl">
-              <h2 className="text-brand-forest/70 font-serif text-[10px] md:text-xs uppercase tracking-[0.3em] mb-1 md:mb-3 font-bold">Apothecary</h2>
+              <h2 className="text-brand-forest/90 font-serif text-[10px] md:text-xs uppercase tracking-[0.3em] mb-1 md:mb-3 font-bold">Apothecary</h2>
               <h3 className="text-brand-forest font-serif text-[28px] xs:text-3xl md:text-5xl font-bold leading-tight">Top Sellers</h3>
-              <p className="text-brand-black/60 text-sm md:text-lg mt-2 md:mt-4 max-w-xl hidden md:block">
+              <p className="text-brand-black/80 text-sm md:text-lg mt-2 md:mt-4 max-w-xl hidden md:block">
                 Swipe to explore our premium clinical formulations and precious Bhasmas.
               </p>
             </div>
@@ -48,6 +48,7 @@ const FeaturedProducts = () => {
                     onClick={() => scroll('left')}
                     variant="outline" 
                     className="w-12 h-12 rounded-full border-brand-forest text-brand-forest hover:bg-brand-forest hover:text-brand-gold"
+                    aria-label="Scroll products left"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </Button>
@@ -55,6 +56,7 @@ const FeaturedProducts = () => {
                     onClick={() => scroll('right')}
                     variant="outline" 
                     className="w-12 h-12 rounded-full border-brand-forest text-brand-forest hover:bg-brand-forest hover:text-brand-gold"
+                    aria-label="Scroll products right"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </Button>
@@ -116,6 +118,7 @@ const FeaturedProducts = () => {
                         toast.success(`${product.name} added to cart`);
                       }}
                       className="w-8 h-8 md:w-12 md:h-12 bg-brand-forest text-brand-gold rounded-lg md:rounded-xl flex items-center justify-center hover:bg-brand-gold hover:text-brand-black transition-all duration-500 shadow-lg active:scale-90"
+                      aria-label={`Add ${product.name} to cart`}
                     >
                       <ShoppingCart className="w-4 h-4 md:w-5 md:h-5" />
                     </button>

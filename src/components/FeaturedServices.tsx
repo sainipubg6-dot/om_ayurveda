@@ -75,9 +75,9 @@ const FeaturedServices = () => {
         <div className="mb-8 md:mb-16">
           <div className="flex flex-row justify-between items-start gap-2 mb-4 md:mb-0">
             <div className="max-w-2xl">
-              <h2 className="text-brand-forest/70 font-serif text-[10px] md:text-xs uppercase tracking-[0.3em] mb-1 md:mb-3 font-bold">Elite Treatments</h2>
+              <h2 className="text-brand-forest/90 font-serif text-[10px] md:text-xs uppercase tracking-[0.3em] mb-1 md:mb-3 font-bold">Elite Treatments</h2>
               <h3 className="text-brand-forest font-serif text-[28px] xs:text-3xl md:text-5xl font-bold leading-tight">Healing Services</h3>
-              <p className="text-brand-black/60 text-sm md:text-lg mt-2 md:mt-4 max-w-xl hidden md:block">
+              <p className="text-brand-black/80 text-sm md:text-lg mt-2 md:mt-4 max-w-xl hidden md:block">
                 Swipe to explore our most sought-after Ayurvedic therapies for deep rejuvenation.
               </p>
             </div>
@@ -87,6 +87,7 @@ const FeaturedServices = () => {
                     onClick={() => scroll('left')}
                     variant="outline" 
                     className="w-12 h-12 rounded-full border-brand-forest text-brand-forest hover:bg-brand-forest hover:text-brand-gold"
+                    aria-label="Scroll services left"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </Button>
@@ -94,6 +95,7 @@ const FeaturedServices = () => {
                     onClick={() => scroll('right')}
                     variant="outline" 
                     className="w-12 h-12 rounded-full border-brand-forest text-brand-forest hover:bg-brand-forest hover:text-brand-gold"
+                    aria-label="Scroll services right"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </Button>

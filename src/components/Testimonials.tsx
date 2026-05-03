@@ -68,7 +68,7 @@ const Testimonials = ({ isInsideSection = false }: { isInsideSection?: boolean }
               <p className="text-brand-forest font-hindi text-base md:text-2xl mb-1 md:mb-3 italic leading-tight">
                 "{t.hindi}"
               </p>
-              <p className="text-brand-black/70 text-[10px] md:text-base mb-2 md:mb-4 max-w-2xl leading-relaxed">
+              <p className="text-brand-black/90 text-[10px] md:text-base mb-2 md:mb-4 max-w-2xl leading-relaxed">
                 {t.text}
               </p>
               
@@ -89,6 +89,7 @@ const Testimonials = ({ isInsideSection = false }: { isInsideSection?: boolean }
                 "h-1.5 md:h-2 rounded-full transition-all",
                 i === activeIndex ? "bg-brand-gold w-6 md:w-8" : "bg-brand-gold/30 w-1.5 md:w-2"
               )}
+              aria-label={`Go to testimonial ${i + 1}`}
             />
           ))}
         </div>

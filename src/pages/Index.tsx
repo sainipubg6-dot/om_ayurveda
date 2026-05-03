@@ -119,9 +119,18 @@ const Index = () => {
     script.innerHTML = JSON.stringify(schema);
     document.head.appendChild(script);
 
+    // PRELOAD LCP IMAGE
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = '/images/services/Manual therapy.png';
+    link.fetchPriority = 'high';
+    document.head.appendChild(link);
+
     return () => {
       const existingScript = document.querySelector('script[type="application/ld+json"]');
       if (existingScript) document.head.removeChild(existingScript);
+      document.head.removeChild(link);
     };
   }, []);
 

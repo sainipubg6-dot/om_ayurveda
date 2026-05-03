@@ -28,7 +28,7 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center group cursor-pointer">
+          <Link to="/" className="flex items-center group cursor-pointer" aria-label="Om Ayurveda Home">
             <span className="font-serif font-bold text-lg md:text-xl tracking-tight leading-none text-white">
               OM Ayurveda
             </span>
@@ -52,7 +52,7 @@ const Navbar = () => {
             </div>
             
             <div className="flex items-center gap-4 border-l border-white/10 pl-6">
-              <Link to="/cart" className="relative p-2 text-white hover:text-brand-gold transition-colors">
+              <Link to="/cart" className="relative p-2 text-white hover:text-brand-gold transition-colors" aria-label={`View Cart with ${cartCount} items`}>
                 <ShoppingCart className="w-5 h-5" />
                 <span className="absolute -top-1 -right-1 bg-brand-gold text-brand-black text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-brand-forest">
                   {cartCount}
@@ -71,7 +71,7 @@ const Navbar = () => {
 
           {/* Mobile Toggle & Cart */}
           <div className="flex items-center gap-2 md:hidden">
-            <Link to="/cart" className="relative p-2 text-white transition-colors mr-2">
+            <Link to="/cart" className="relative p-2 text-white transition-colors mr-2" aria-label={`View Cart with ${cartCount} items`}>
               <ShoppingCart className="w-6 h-6" />
               <span className="absolute top-0 right-0 bg-brand-gold text-brand-black text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-brand-forest">
                 {cartCount}
@@ -97,6 +97,7 @@ const Navbar = () => {
         <button 
           className="absolute top-6 right-6 text-white p-2 z-10"
           onClick={() => setIsOpen(false)}
+          aria-label="Close mobile menu"
         >
           <X size={32} />
         </button>

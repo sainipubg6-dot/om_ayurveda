@@ -78,6 +78,8 @@ const SliderHero = () => {
                     src={slide.image} 
                     alt={slide.title} 
                     className="w-full h-full object-cover"
+                    loading={slide.id === 1 ? "eager" : "lazy"}
+                    {...(slide.id === 1 ? { fetchpriority: "high" } : {})}
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
                 </div>
@@ -103,6 +105,7 @@ const SliderHero = () => {
                       size="sm" 
                       className="bg-brand-forest/90 md:bg-brand-gold hover:bg-brand-forest md:hover:bg-brand-gold/90 text-white md:text-brand-black border-none rounded-full px-4 xs:px-6 md:px-8 text-xs md:text-base font-semibold transition-all hover:scale-105"
                       onClick={() => window.location.href = slide.link}
+                      aria-label={`${slide.buttonText} for ${slide.title}`}
                     >
                       {slide.buttonText}
                     </Button>
@@ -112,8 +115,14 @@ const SliderHero = () => {
             ))}
           </CarouselContent>
           <div className="hidden md:block">
-            <CarouselPrevious className="left-6 bg-white/20 border-white/40 text-white hover:bg-brand-gold hover:text-brand-black" />
-            <CarouselNext className="right-6 bg-white/20 border-white/40 text-white hover:bg-brand-gold hover:text-brand-black" />
+            <CarouselPrevious 
+              className="left-6 bg-white/20 border-white/40 text-white hover:bg-brand-gold hover:text-brand-black" 
+              aria-label="Previous slide"
+            />
+            <CarouselNext 
+              className="right-6 bg-white/20 border-white/40 text-white hover:bg-brand-gold hover:text-brand-black" 
+              aria-label="Next slide"
+            />
           </div>
         </Carousel>
       </div>
