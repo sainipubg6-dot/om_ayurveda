@@ -144,9 +144,7 @@ const Index = () => {
 
       <main className="flex-1">
         {/* Category Scroll */}
-        <FadedContent>
-          <CategoryScroll />
-        </FadedContent>
+        <CategoryScroll />
 
         {/* New Slider Hero */}
         <SliderHero />

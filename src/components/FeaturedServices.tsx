@@ -13,7 +13,7 @@ const allFeaturedServices = [
     hindi: "शिरोधारा",
     price: "₹1,800",
     duration: "45–60 min",
-    image: "/images/services/Shirodhara.png" + v,
+    image: "/images/services/Shirodhara.png",
     tag: "Best Seller"
   },
   {
@@ -21,7 +21,7 @@ const allFeaturedServices = [
     hindi: "कपिंग थेरेपी",
     price: "₹500",
     duration: "30–40 min",
-    image: "/images/services/Cupping Therapy.png" + v,
+    image: "/images/services/Cupping Therapy.png",
     tag: "Instant Relief"
   },
   {
@@ -29,7 +29,7 @@ const allFeaturedServices = [
     hindi: "पोटली स्वेदा",
     price: "₹1,500",
     duration: "45–60 min",
-    image: "/images/services/pottli and patra combo.png" + v,
+    image: "/images/services/pottli and patra combo.png",
     tag: "Joint Care"
   },
   {
@@ -37,7 +37,7 @@ const allFeaturedServices = [
     hindi: "नेत्र वस्ती",
     price: "₹1,200",
     duration: "30–40 min",
-    image: "/images/services/netra vasti .png" + v,
+    image: "/images/services/netra vasti .png",
     tag: "Eye Care"
   },
   {
@@ -45,7 +45,7 @@ const allFeaturedServices = [
     hindi: "कटी वस्ती",
     price: "₹1,200",
     duration: "45 min",
-    image: "/images/services/kati vasti.png" + v,
+    image: "/images/services/kati vasti.png",
     tag: "Back Pain"
   },
   {
@@ -53,7 +53,7 @@ const allFeaturedServices = [
     hindi: "पूर्ण शरीर उपचार",
     price: "₹4,900",
     duration: "3–4 hrs",
-    image: "/images/services/full body  treatmen .png" + v,
+    image: "/images/services/full body  treatmen .png",
     tag: "Ultimate Detox"
   }
 ];
