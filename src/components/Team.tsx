@@ -5,11 +5,11 @@ import React from 'react';
 const doctors = [
   {
     name: "ACHARYA Vikas JI",
-    image: "/images/ACHARYA Vikas JI.png",
+    image: "/images/ACHARYA Vikas JI.webp",
   },
   {
     name: "ACHARYA YOGESH JI",
-    image: "/images/ACHARYA YOGESH JI.png",
+    image: "/images/ACHARYA YOGESH JI.webp",
   }
 ];
 
@@ -30,7 +30,7 @@ const Team = () => {
               {/* Reduced aspect ratio and scale for a more compact look */}
               <div className="relative w-full aspect-[4/5] md:aspect-[3/4] rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-xl border-2 md:border-4 border-brand-gold/10 group-hover:border-brand-gold transition-all duration-700 mb-4 md:mb-8">
                 <img 
-                  src={doc.name === "ACHARYA Vikas JI" ? "/images/ACHARYA Vikas JI.png" : "/images/ACHARYA YOGESH JI.png"} 
+                  src={doc.name === "ACHARYA Vikas JI" ? "/images/ACHARYA Vikas JI.webp" : "/images/ACHARYA YOGESH JI.webp"} 
                   alt={doc.name}
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                   onError={(e) => {

@@ -18,11 +18,11 @@ const features = [
 const doctors = [
   {
     name: "ACHARYA Vikas JI",
-    image: "/images/ACHARYA Vikas JI.png",
+    image: "/images/ACHARYA Vikas JI.webp",
   },
   {
     name: "ACHARYA YOGESH JI",
-    image: "/images/ACHARYA YOGESH JI.png",
+    image: "/images/ACHARYA YOGESH JI.webp",
   }
 ];
 
