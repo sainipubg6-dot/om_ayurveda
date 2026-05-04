@@ -7,6 +7,7 @@ const WC_CONSUMER_SECRET = import.meta.env.VITE_WC_CONSUMER_SECRET || '';
 export interface WCProduct {
   id: number;
   name: string;
+  slug: string;
   price: string;
   description: string;
   short_description: string;
@@ -25,10 +26,17 @@ export const fetchWCProducts = async (): Promise<WCProduct[]> => {
       }
     });
     
-    if (!response.ok) throw new Error('Failed to fetch products');
+    if (!response.ok) {
+      console.error(`WooCommerce API Error: ${response.status} ${response.statusText}`);
+      throw new Error(`Failed to fetch products: ${response.status}`);
+    }
     return await response.json();
   } catch (error) {
-    console.error('Error fetching from WooCommerce:', error);
+    if (error instanceof TypeError && error.message === 'Failed to fetch') {
+      console.error('WooCommerce: Network Error (Possible CORS issue or invalid URL)');
+    } else {
+      console.error('Error fetching from WooCommerce:', error);
+    }
     return [];
   }
 };
@@ -63,10 +71,17 @@ export const createWCOrder = async (orderData: any) => {
       body: JSON.stringify(orderData)
     });
     
-    if (!response.ok) throw new Error('Failed to create order');
+    if (!response.ok) {
+      console.error(`WooCommerce Order API Error: ${response.status} ${response.statusText}`);
+      throw new Error(`Failed to create order: ${response.status}`);
+    }
     return await response.json();
   } catch (error) {
-    console.error('Error creating order in WooCommerce:', error);
+    if (error instanceof TypeError && error.message === 'Failed to fetch') {
+      console.error('WooCommerce Order: Network Error (Possible CORS issue or invalid URL)');
+    } else {
+      console.error('Error creating order in WooCommerce:', error);
+    }
     return null;
   }
 };
