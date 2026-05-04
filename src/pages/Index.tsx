@@ -123,7 +123,7 @@ const Index = () => {
     const link = document.createElement('link');
     link.rel = 'preload';
     link.as = 'image';
-    link.href = '/images/services/Manual therapy.png';
+    link.href = '/images/services/Manual therapy.webp';
     link.fetchPriority = 'high';
     document.head.appendChild(link);
 
