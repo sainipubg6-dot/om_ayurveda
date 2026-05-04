@@ -15,7 +15,7 @@ const slides = [
     id: 1,
     title: "Expert Manual Therapy",
     subtitle: "Professional physiotherapy and posture correction for lasting relief.",
-    image: "/images/services/Manual therapy.png",
+    image: "/images/services/Manual therapy.webp",
     buttonText: "Book Appointment",
     link: "/services"
   },
@@ -23,7 +23,7 @@ const slides = [
     id: 2,
     title: "Authentic Shirodhara",
     subtitle: "Experience deep relaxation with our traditional Panchakarma treatments.",
-    image: "/images/services/Shirodhara.png",
+    image: "/images/services/Shirodhara.webp",
     buttonText: "Explore Therapies",
     link: "/services"
   },
@@ -31,7 +31,7 @@ const slides = [
     id: 3,
     title: "Premium Swarnaprash",
     subtitle: "Ancient Ayurvedic formula for immunity and cognitive growth in children.",
-    image: "/images/products/swranprash front.png",
+    image: "/images/products/swranprash front.webp",
     buttonText: "Shop Now",
     link: "/products"
   },
@@ -39,7 +39,7 @@ const slides = [
     id: 4,
     title: "Website Launch Sale!",
     subtitle: "Enjoy a flat 10% OFF on all premium churna and supplements.",
-    image: "/images/products/detox-churna-front.png",
+    image: "/images/products/detox-churna-front.webp",
     buttonText: "Claim Offer",
     link: "/products",
     isSale: true

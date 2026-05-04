@@ -29,9 +29,11 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center group cursor-pointer" aria-label="Om Ayurveda Home">
-            <span className="font-serif font-bold text-lg md:text-xl tracking-tight leading-none text-white">
-              OM Ayurveda
-            </span>
+            <img 
+              src="/Logo.png" 
+              alt="Om Ayurveda Logo" 
+              className="h-8 md:h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
+            />
           </Link>
 
           {/* Desktop Nav */}
