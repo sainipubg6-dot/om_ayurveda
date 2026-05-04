@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 
-// FORCED PROXY FOR TESTING
-const WC_ROOT_URL = ''; 
+// Use relative path for local development proxy, otherwise use the env variable
+const WC_ROOT_URL = (import.meta.env.DEV) 
+  ? '' 
+  : (import.meta.env.VITE_WC_ROOT_URL || '');
 const WC_CONSUMER_KEY = import.meta.env.VITE_WC_CONSUMER_KEY || '';
 const WC_CONSUMER_SECRET = import.meta.env.VITE_WC_CONSUMER_SECRET || '';
 
@@ -20,10 +22,13 @@ export const fetchWCProducts = async (): Promise<WCProduct[]> => {
   if (!WC_ROOT_URL || !WC_CONSUMER_KEY || !WC_CONSUMER_SECRET) return [];
 
   try {
-    const auth = btoa(`${WC_CONSUMER_KEY}:${WC_CONSUMER_SECRET}`);
-    const response = await fetch(`${WC_ROOT_URL}/wp-json/wc/v3/products?per_page=100`, {
+    const authParams = `consumer_key=${WC_CONSUMER_KEY}&consumer_secret=${WC_CONSUMER_SECRET}`;
+    const separator = `${WC_ROOT_URL}/wp-json/wc/v3/products`.includes('?') ? '&' : '?';
+    const url = `${WC_ROOT_URL}/wp-json/wc/v3/products${separator}${authParams}&per_page=100`;
+
+    const response = await fetch(url, {
       headers: {
-        'Authorization': `Basic ${auth}`
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
       }
     });
     
@@ -62,12 +67,14 @@ export const createWCOrder = async (orderData: any) => {
   if (!WC_ROOT_URL || !WC_CONSUMER_KEY || !WC_CONSUMER_SECRET) return null;
 
   try {
-    const auth = btoa(`${WC_CONSUMER_KEY}:${WC_CONSUMER_SECRET}`);
-    const response = await fetch(`${WC_ROOT_URL}/wp-json/wc/v3/orders`, {
+    const authParams = `consumer_key=${WC_CONSUMER_KEY}&consumer_secret=${WC_CONSUMER_SECRET}`;
+    const url = `${WC_ROOT_URL}/wp-json/wc/v3/orders?${authParams}`;
+
+    const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Authorization': `Basic ${auth}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
       },
       body: JSON.stringify(orderData)
     });
