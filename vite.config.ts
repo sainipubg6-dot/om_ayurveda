@@ -6,6 +6,13 @@ export default defineConfig(() => ({
   server: {
     host: "::",
     port: 8080,
+    proxy: {
+      '/wp-json': {
+        target: 'https://green-donkey-647181.hostingersite.com',
+        changeOrigin: true,
+        rewrite: (path) => path,
+      }
+    }
   },
   plugins: [react()],
   resolve: {

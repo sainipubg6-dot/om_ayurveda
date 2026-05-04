@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
-const WC_ROOT_URL = import.meta.env.VITE_WC_ROOT_URL || '';
+// FORCED PROXY FOR TESTING
+const WC_ROOT_URL = ''; 
 const WC_CONSUMER_KEY = import.meta.env.VITE_WC_CONSUMER_KEY || '';
 const WC_CONSUMER_SECRET = import.meta.env.VITE_WC_CONSUMER_SECRET || '';
 
