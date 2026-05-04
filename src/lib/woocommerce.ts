@@ -53,9 +53,35 @@ export const useWCProducts = () => {
 
   useEffect(() => {
     const load = async () => {
-      const data = await fetchWCProducts();
-      setProducts(data);
-      setLoading(false);
+      try {
+        // 1. Check Cache first
+        const cachedData = localStorage.getItem('wc_products_cache');
+        const cachedTime = localStorage.getItem('wc_products_cache_time');
+        const now = Date.now();
+        
+        // Cache for 10 minutes (600,000 ms)
+        if (cachedData && cachedTime && (now - parseInt(cachedTime) < 600000)) {
+          setProducts(JSON.parse(cachedData));
+          setLoading(false);
+          return;
+        }
+
+        // 2. If no cache or expired, fetch from API
+        const data = await fetchWCProducts();
+        
+        if (data && data.length > 0) {
+          setProducts(data);
+          localStorage.setItem('wc_products_cache', JSON.stringify(data));
+          localStorage.setItem('wc_products_cache_time', now.toString());
+        } else if (cachedData) {
+          // Fallback to old cache if fetch fails (e.g. temporary block)
+          setProducts(JSON.parse(cachedData));
+        }
+      } catch (error) {
+        console.error('Cache/Load Error:', error);
+      } finally {
+        setLoading(false);
+      }
     };
     load();
   }, []);
