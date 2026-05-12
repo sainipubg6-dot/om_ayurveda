@@ -19,7 +19,10 @@ export interface WCProduct {
 }
 
 export const fetchWCProducts = async (): Promise<WCProduct[]> => {
-  if (!WC_ROOT_URL || !WC_CONSUMER_KEY || !WC_CONSUMER_SECRET) return [];
+  // In development, WC_ROOT_URL is empty to use the Vite proxy. 
+  // We only return early if keys are missing, or if it's production and the URL is missing.
+  if (!WC_CONSUMER_KEY || !WC_CONSUMER_SECRET) return [];
+  if (!import.meta.env.DEV && !WC_ROOT_URL) return [];
 
   try {
     const authParams = `consumer_key=${WC_CONSUMER_KEY}&consumer_secret=${WC_CONSUMER_SECRET}`;
@@ -90,7 +93,8 @@ export const useWCProducts = () => {
 };
 
 export const createWCOrder = async (orderData: any) => {
-  if (!WC_ROOT_URL || !WC_CONSUMER_KEY || !WC_CONSUMER_SECRET) return null;
+  if (!WC_CONSUMER_KEY || !WC_CONSUMER_SECRET) return null;
+  if (!import.meta.env.DEV && !WC_ROOT_URL) return null;
 
   try {
     const authParams = `consumer_key=${WC_CONSUMER_KEY}&consumer_secret=${WC_CONSUMER_SECRET}`;
