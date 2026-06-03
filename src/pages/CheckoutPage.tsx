@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ShieldCheck, Truck, CreditCard, ChevronRight, ArrowLeft, CheckCircle2, MessageCircle } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'sonner';
-import { createWCOrder } from '@/lib/woocommerce';
+
 
 const CheckoutPage = () => {
   const { cart, cartTotal, clearCart } = useCart();
@@ -65,13 +65,24 @@ const CheckoutPage = () => {
     try {
       await loadRazorpay();
       
+      // 1. Create Order on Backend
+      const orderRes = await fetch('/api/create-razorpay-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: cartTotal * 100 })
+      });
+      
+      if (!orderRes.ok) throw new Error('Failed to create Razorpay order');
+      const orderData = await orderRes.json();
+      
       // RAZORPAY CONFIGURATION
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_placeholder', 
-        amount: cartTotal * 100,
-        currency: 'INR',
+        amount: orderData.amount,
+        currency: orderData.currency,
         name: 'Om Ayurveda',
         description: `Order for ${cart.length} items`,
+        order_id: orderData.id, // Securely generated on backend
         prefill: {
           name: formData.name,
           email: formData.email,
@@ -79,27 +90,39 @@ const CheckoutPage = () => {
         },
         handler: async function (response: any) {
           try {
-            // Create Order in WooCommerce
-            const wcOrder = await createWCOrder({
-              payment_method: 'razorpay',
-              payment_method_title: 'Razorpay Online',
-              set_paid: true,
-              billing: {
-                first_name: formData.name,
-                email: formData.email,
-                phone: formData.phone,
-                address_1: formData.address,
-                city: formData.city,
-                postcode: formData.pincode,
-                country: 'IN'
-              },
-              line_items: cart.map(item => ({
-                product_id: item.id,
-                quantity: item.quantity
-              }))
+            // 3. Verify Payment & Create WC Order securely on backend
+            const verifyRes = await fetch('/api/verify-payment', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                wcOrderData: {
+                  payment_method: 'razorpay',
+                  payment_method_title: 'Razorpay Online',
+                  set_paid: true,
+                  billing: {
+                    first_name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    address_1: formData.address,
+                    city: formData.city,
+                    postcode: formData.pincode,
+                    country: 'IN'
+                  },
+                  line_items: cart.map(item => ({
+                    product_id: item.id,
+                    quantity: item.quantity
+                  }))
+                }
+              })
             });
 
-            setLastOrderDetails(wcOrder);
+            if (!verifyRes.ok) throw new Error('Payment verification failed');
+            const result = await verifyRes.json();
+
+            setLastOrderDetails(result.order);
             setOrderSuccess(true);
             toast.success('Payment Successful!');
             clearCart();
@@ -115,6 +138,9 @@ const CheckoutPage = () => {
 
       // @ts-ignore
       const rzp = new window.Razorpay(options);
+      rzp.on('payment.failed', function (response: any) {
+        toast.error(`Payment failed: ${response.error.description}`);
+      });
       rzp.open();
     } catch (err) {
       toast.error('Could not initialize payment. Please check connection.');

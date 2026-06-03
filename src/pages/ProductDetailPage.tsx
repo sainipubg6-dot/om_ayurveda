@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Seo from '@/components/Seo';
@@ -17,6 +17,7 @@ const ProductDetailPage = () => {
   const { slug } = useParams();
   const { products: wcProducts, loading } = useWCProducts();
   const { addToCart } = useCart();
+  const navigate = useNavigate();
   
   const [product, setProduct] = useState<any>(null);
   const [activeImage, setActiveImage] = useState(0);
@@ -192,9 +193,9 @@ const ProductDetailPage = () => {
                   {product?.shortDescription}
                 </p>
 
-                <div className="mb-10 md:mb-16">
+                <div className="mb-10 md:mb-16 grid grid-cols-1 md:grid-cols-2 gap-4">
                   <button 
-                    className="w-full bg-brand-forest hover:bg-brand-forest/95 text-brand-gold font-bold py-5 md:py-8 text-lg md:text-xl rounded-xl md:rounded-[1.5rem] shadow-xl transition-all active:scale-95 flex items-center justify-center gap-3"
+                    className="w-full border-2 border-brand-forest text-brand-forest hover:bg-brand-forest/5 font-bold py-4 md:py-6 text-lg md:text-xl rounded-xl md:rounded-[1.5rem] transition-all active:scale-95 flex items-center justify-center gap-3"
                     onClick={() => {
                       addToCart(product);
                       toast.success(`${product?.name} added to cart`);
@@ -202,6 +203,15 @@ const ProductDetailPage = () => {
                   >
                     <ShoppingCart className="w-5 h-5 md:w-6 md:h-6" />
                     Add to Cart
+                  </button>
+                  <button 
+                    className="w-full bg-brand-forest hover:bg-brand-forest/95 text-brand-gold font-bold py-4 md:py-6 text-lg md:text-xl rounded-xl md:rounded-[1.5rem] shadow-xl transition-all active:scale-95 flex items-center justify-center gap-3"
+                    onClick={() => {
+                      addToCart(product);
+                      navigate('/checkout');
+                    }}
+                  >
+                    Buy Now
                   </button>
                 </div>
 
