@@ -174,9 +174,9 @@ const ProductDetailPage = () => {
                     <span className="text-brand-black/30 text-[8px] md:text-[10px] uppercase font-bold tracking-[0.1em] md:tracking-[0.2em] mb-1">Clinic Price</span>
                     <div className="flex items-baseline gap-3">
                       {product.onSale && (
-                        <span className="text-brand-black/20 line-through text-xl md:text-2xl font-medium">{product.regularPrice}₹</span>
+                        <span className="text-brand-black/20 line-through text-xl md:text-2xl font-medium">₹{product.regularPrice}</span>
                       )}
-                      <span className="text-brand-forest text-3xl md:text-5xl font-bold font-serif whitespace-nowrap">{product.price}₹</span>
+                      <span className="text-brand-forest text-3xl md:text-5xl font-bold font-serif whitespace-nowrap">₹{product.price}</span>
                     </div>
                   </div>
                   <div className="h-12 md:h-16 w-px bg-brand-gold/20" />

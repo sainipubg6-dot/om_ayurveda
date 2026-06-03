@@ -109,7 +109,16 @@ const FeaturedProducts = () => {
                   </div>
 
                   <div className="flex items-center justify-between mt-auto px-1">
-                    <span className="text-brand-goldDark font-bold text-base md:text-xl">₹{product.price}</span>
+                    <div className="flex flex-col">
+                      {product.on_sale && product.regular_price ? (
+                        <>
+                          <span className="text-brand-black/30 text-[10px] md:text-xs line-through">₹{product.regular_price}</span>
+                          <span className="text-brand-goldDark font-bold text-base md:text-xl">₹{product.price}</span>
+                        </>
+                      ) : (
+                        <span className="text-brand-goldDark font-bold text-base md:text-xl">₹{product.price}</span>
+                      )}
+                    </div>
                     <button 
                       onClick={(e) => {
                         e.preventDefault();

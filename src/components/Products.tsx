@@ -34,6 +34,8 @@ const Products = () => {
       name: p.name,
       category: p.categories?.[0]?.name || "Wellness",
       price: p.price || "999",
+      regular_price: p.regular_price,
+      on_sale: p.on_sale,
       description: p.short_description || p.description || "Authentic Ayurvedic formulation.",
       image: p.images?.[0]?.src || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=400",
       benefits: ["Natural Ingredients", "Traditional Method", "Quality Assured", "Scientifically Tested"]
@@ -127,9 +129,16 @@ const Products = () => {
                   <div className="mt-auto flex items-center justify-between gap-4 md:gap-6">
                     <div className="flex flex-col">
                       <span className="text-brand-cream/30 text-[9px] md:text-[10px] uppercase font-bold tracking-widest leading-none mb-1">M.R.P</span>
-                      <span className="text-brand-gold font-serif text-2xl md:text-3xl font-bold">
-                        {product.price.startsWith('From') ? product.price : `₹${product.price}`}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        {product.on_sale && product.regular_price && (
+                          <span className="text-brand-cream/40 line-through text-sm md:text-base font-bold">
+                            ₹{product.regular_price}
+                          </span>
+                        )}
+                        <span className="text-brand-gold font-serif text-2xl md:text-3xl font-bold">
+                          {product.price.startsWith('From') ? product.price : `₹${product.price}`}
+                        </span>
+                      </div>
                     </div>
                     
                     <div className="flex-1 max-w-[140px] md:max-w-none">

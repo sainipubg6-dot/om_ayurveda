@@ -153,7 +153,14 @@ const ProductsPage = () => {
 
                         <div className="flex items-center justify-between mt-auto px-1">
                           <div className="flex flex-col">
-                            <span className="text-brand-gold font-bold text-base md:text-2xl">₹{product.price}</span>
+                            {product.on_sale && product.regular_price ? (
+                              <div className="flex flex-col">
+                                <span className="text-brand-black/30 text-xs md:text-sm line-through">₹{product.regular_price}</span>
+                                <span className="text-brand-gold font-bold text-base md:text-2xl">₹{product.price}</span>
+                              </div>
+                            ) : (
+                              <span className="text-brand-gold font-bold text-base md:text-2xl">₹{product.price}</span>
+                            )}
                           </div>
                           <button 
                             onClick={(e) => {
