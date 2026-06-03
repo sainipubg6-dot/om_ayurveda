@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Phone, Clock, MapPin, Send, MessageCircle, Globe, ExternalLink, Activity } from 'lucide-react';
+import { Phone, Clock, MapPin, Send, MessageCircle, Globe, ExternalLink, Activity, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -138,7 +138,17 @@ const Contact = () => {
               ))}
             </div>
 
-            <div className="mt-6 pt-4 border-t border-brand-gold/10 flex items-center justify-between">
+            <div className="mt-6 pt-4 border-t border-brand-gold/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="flex flex-col space-y-2">
+                <div className="flex items-center gap-2">
+                  <Mail className="text-brand-gold w-3 h-3 md:w-4 md:h-4" />
+                  <a href="mailto:omayurveda786@gmail.com" className="text-brand-forest font-bold text-[10px] md:text-xs hover:text-brand-gold transition-colors">omayurveda786@gmail.com</a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MessageCircle className="text-brand-gold w-3 h-3 md:w-4 md:h-4" />
+                  <a href="https://wa.me/917015001978" className="text-brand-forest font-bold text-[10px] md:text-xs hover:text-brand-gold transition-colors">Support: +91 70150 01978</a>
+                </div>
+              </div>
               <div className="flex items-center gap-2">
                 <Clock className="text-brand-gold w-3 h-3 md:w-4 md:h-4" />
                 <p className="text-brand-forest font-bold text-[10px] md:text-xs">9 AM – 5 PM <span className="text-[9px] text-brand-black/40 font-normal">IST</span></p>
