@@ -11,6 +11,10 @@ export default defineConfig(() => ({
         target: 'https://green-donkey-647181.hostingersite.com',
         changeOrigin: true,
         rewrite: (path) => path,
+      },
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
       }
     }
   },

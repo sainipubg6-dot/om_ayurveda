@@ -30,13 +30,14 @@ const CheckoutPage = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const loadRazorpay = () => {
+  const loadPaytm = () => {
     return new Promise((resolve) => {
-      const existing = document.getElementById('razorpay-script');
+      const existing = document.getElementById('paytm-script');
       if (!existing) {
         const script = document.createElement('script');
-        script.id = 'razorpay-script';
-        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.id = 'paytm-script';
+        const mid = import.meta.env.VITE_PAYTM_MID || 'rWeHvl80141494691809';
+        script.src = `https://securegw-stage.paytm.in/merchantpgpui/checkoutjs/merchants/${mid}.js`;
         script.onload = () => resolve(true);
         document.body.appendChild(script);
       } else {
@@ -48,7 +49,7 @@ const CheckoutPage = () => {
   const handleWhatsAppSync = () => {
     if (!lastOrderDetails) return;
     
-    const storePhone = "917015001978"; // Replace with your actual WhatsApp number
+    const storePhone = "917015001978"; 
     const message = `*NEW ORDER CONFIRMATION* %0A%0A` +
       `*Name:* ${formData.name}%0A` +
       `*Total:* ₹${cartTotal}%0A` +
@@ -63,86 +64,100 @@ const CheckoutPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await loadRazorpay();
+      await loadPaytm();
       
-      // 1. Create Order on Backend
-      const orderRes = await fetch('/api/create-razorpay-order', {
+      // 1. Create Order on Backend (Paytm)
+      const orderRes = await fetch('/api/create-paytm-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: cartTotal * 100 })
+        body: JSON.stringify({ 
+          amount: cartTotal,
+          custId: `CUST_${Date.now()}`
+        })
       });
       
-      if (!orderRes.ok) throw new Error('Failed to create Razorpay order');
+      if (!orderRes.ok) throw new Error('Failed to create Paytm order');
       const orderData = await orderRes.json();
       
-      // RAZORPAY CONFIGURATION
-      const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_placeholder', 
-        amount: orderData.amount,
-        currency: orderData.currency,
-        name: 'Om Ayurveda',
-        description: `Order for ${cart.length} items`,
-        order_id: orderData.id, // Securely generated on backend
-        prefill: {
-          name: formData.name,
-          email: formData.email,
-          contact: formData.phone.replace(/[^0-9]/g, '')
+      // PAYTM CONFIGURATION
+      const config = {
+        "root": "",
+        "flow": "DEFAULT",
+        "data": {
+            "orderId": orderData.orderId, 
+            "token": orderData.txnToken, 
+            "tokenType": "TXN_TOKEN",
+            "amount": orderData.amount 
         },
-        handler: async function (response: any) {
-          try {
-            // 3. Verify Payment & Create WC Order securely on backend
-            const verifyRes = await fetch('/api/verify-payment', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature,
-                wcOrderData: {
-                  payment_method: 'razorpay',
-                  payment_method_title: 'Razorpay Online',
-                  set_paid: true,
-                  billing: {
-                    first_name: formData.name,
-                    email: formData.email,
-                    phone: formData.phone,
-                    address_1: formData.address,
-                    city: formData.city,
-                    postcode: formData.pincode,
-                    country: 'IN'
-                  },
-                  line_items: cart.map(item => ({
-                    product_id: item.id,
-                    quantity: item.quantity
-                  }))
+        "handler": {
+            "notifyMerchant": function(eventName: any, data: any){
+                console.log("notifyMerchant handler function called");
+                console.log("eventName => ",eventName);
+                console.log("data => ",data);
+            },
+            "transactionStatus": async function(data: any){
+                console.log("payment status ", data);
+                // @ts-ignore
+                if(window.Paytm && window.Paytm.CheckoutJS) window.Paytm.CheckoutJS.close();
+                
+                try {
+                  // Verify Payment & Create WC Order securely on backend
+                  const verifyRes = await fetch('/api/verify-paytm-payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      paytmResponse: data,
+                      wcOrderData: {
+                        payment_method: 'paytm',
+                        payment_method_title: 'Paytm Wallet/UPI/Cards',
+                        set_paid: true,
+                        billing: {
+                          first_name: formData.name,
+                          email: formData.email,
+                          phone: formData.phone,
+                          address_1: formData.address,
+                          city: formData.city,
+                          postcode: formData.pincode,
+                          country: 'IN'
+                        },
+                        line_items: cart.map(item => ({
+                          product_id: item.id,
+                          quantity: item.quantity
+                        }))
+                      }
+                    })
+                  });
+
+                  if (!verifyRes.ok) throw new Error('Payment verification failed');
+                  const result = await verifyRes.json();
+
+                  setLastOrderDetails(result.order);
+                  setOrderSuccess(true);
+                  toast.success('Payment Successful!');
+                  clearCart();
+                } catch (wcErr) {
+                  console.error("Order creation failed", wcErr);
+                  toast.error("Payment received but order sync failed. Contact support.");
                 }
-              })
-            });
-
-            if (!verifyRes.ok) throw new Error('Payment verification failed');
-            const result = await verifyRes.json();
-
-            setLastOrderDetails(result.order);
-            setOrderSuccess(true);
-            toast.success('Payment Successful!');
-            clearCart();
-          } catch (wcErr) {
-            console.error("Order creation failed", wcErr);
-            toast.error("Payment received but order sync failed. Contact support.");
-          }
-        },
-        theme: {
-          color: '#2D6A4F'
+            }
         }
-      } as any;
+      };
 
       // @ts-ignore
-      const rzp = new window.Razorpay(options);
-      rzp.on('payment.failed', function (response: any) {
-        toast.error(`Payment failed: ${response.error.description}`);
-      });
-      rzp.open();
+      if(window.Paytm && window.Paytm.CheckoutJS){
+          // @ts-ignore
+          window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
+              // @ts-ignore
+              window.Paytm.CheckoutJS.invoke();
+          }).catch(function onError(error: any){
+              console.log("error => ",error);
+              toast.error('Could not initialize Paytm payment.');
+          });
+      } else {
+         toast.error('Could not initialize payment. Please check connection.');
+      }
     } catch (err) {
+      console.error(err);
       toast.error('Could not initialize payment. Please check connection.');
     } finally {
       setIsSubmitting(false);
