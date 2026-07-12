@@ -38,6 +38,3 @@ The numbers are HSL (Hue, Saturation, Lightness).
 - Second number: How intense the color is (%)
 - Third number: How bright the color is (%)
 ----------------------------------------
-
-
- 
