@@ -12,6 +12,12 @@ import { useCart } from '@/contexts/CartContext';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const ProductDetailPage = () => {
   const { slug } = useParams();
@@ -23,6 +29,7 @@ const ProductDetailPage = () => {
   const [activeImage, setActiveImage] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -136,13 +143,14 @@ const ProductDetailPage = () => {
                   )}
                 </div>
 
-                <div className="grid grid-cols-4 gap-2 md:gap-4">
+                <div className="flex overflow-x-auto gap-2 md:gap-3 pb-2 snap-x snap-mandatory scrollbar-none">
                   {(product?.images || []).map((img: string, i: number) => (
                     <button
                       key={i}
                       onClick={() => setActiveImage(i)}
                       className={cn(
-                        "relative aspect-square rounded-xl md:rounded-2xl overflow-hidden border-2 md:border-4 transition-all duration-300",
+                        "relative flex-shrink-0 snap-start rounded-xl overflow-hidden border-2 transition-all duration-300 aspect-square",
+                        "w-[calc(25%-0.375rem)] md:w-[calc(25%-0.5625rem)]",
                         activeImage === i ? "border-brand-gold shadow-lg scale-95" : "border-white hover:border-brand-gold/30"
                       )}
                     >
@@ -155,7 +163,7 @@ const ProductDetailPage = () => {
               {/* Product Info */}
               <div className="flex flex-col">
                 <div className="mb-2 md:mb-4 flex items-center gap-2">
-                  <span className="bg-brand-gold/10 text-brand-gold font-bold text-[9px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em] px-3 md:px-4 py-1 md:py-1.5 rounded-full border border-brand-gold/20">
+                  <span className="bg-brand-gold/10 text-brand-gold font-bold text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.3em] px-2.5 md:px-4 py-0.5 md:py-1.5 rounded-full border border-brand-gold/20">
                     {product?.category}
                   </span>
                   <div className="flex gap-1 ml-4">
@@ -165,21 +173,21 @@ const ProductDetailPage = () => {
                   </div>
                 </div>
 
-                <h1 className="text-brand-forest font-serif text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-8 leading-[1.1]">
+                <h1 className="text-brand-forest font-serif text-2xl md:text-5xl lg:text-7xl font-bold mb-3 md:mb-8 leading-[1.2] md:leading-[1.1]">
                   {product?.name}
                 </h1>
                 
-                <div className="flex items-center gap-6 md:gap-8 mb-8 md:mb-12">
+                <div className="flex items-center gap-4 md:gap-8 mb-6 md:mb-12">
                   <div className="flex flex-col">
                     <span className="text-brand-black/30 text-[8px] md:text-[10px] uppercase font-bold tracking-[0.1em] md:tracking-[0.2em] mb-1">Clinic Price</span>
-                    <div className="flex items-baseline gap-3">
+                    <div className="flex items-baseline gap-2 md:gap-3">
                       {product.onSale && (
-                        <span className="text-brand-black/20 line-through text-xl md:text-2xl font-medium">₹{product.regularPrice}</span>
+                        <span className="text-brand-black/20 line-through text-lg md:text-2xl font-medium">₹{product.regularPrice}</span>
                       )}
-                      <span className="text-brand-forest text-3xl md:text-5xl font-bold font-serif whitespace-nowrap">₹{product.price}</span>
+                      <span className="text-brand-forest text-2xl md:text-5xl font-bold font-serif whitespace-nowrap">₹{product.price}</span>
                     </div>
                   </div>
-                  <div className="h-12 md:h-16 w-px bg-brand-gold/20" />
+                  <div className="h-8 md:h-16 w-px bg-brand-gold/20" />
                   <div className="flex flex-col">
                     <span className="text-brand-black/30 text-[8px] md:text-[10px] uppercase font-bold tracking-[0.1em] md:tracking-[0.2em] mb-1">Availability</span>
                     <span className="text-brand-leaf font-bold text-base md:text-lg flex items-center gap-2">
@@ -189,23 +197,21 @@ const ProductDetailPage = () => {
                   </div>
                 </div>
 
-                <p className="text-brand-black/70 text-base md:text-xl mb-8 md:mb-12 leading-relaxed font-light border-l-4 border-brand-gold/30 pl-4 md:pl-8 italic">
-                  {product?.shortDescription}
-                </p>
 
-                <div className="mb-10 md:mb-16 grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <div className="mb-8 md:mb-16 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                   <button 
-                    className="w-full border-2 border-brand-forest text-brand-forest hover:bg-brand-forest/5 font-bold py-4 md:py-6 text-lg md:text-xl rounded-xl md:rounded-[1.5rem] transition-all active:scale-95 flex items-center justify-center gap-3"
+                    className="w-full border-2 border-brand-forest text-brand-forest hover:bg-brand-forest/5 font-bold py-3 md:py-6 text-base md:text-xl rounded-xl md:rounded-[1.5rem] transition-all active:scale-95 flex items-center justify-center gap-2 md:gap-3"
                     onClick={() => {
                       addToCart(product);
                       toast.success(`${product?.name} added to cart`);
                     }}
                   >
-                    <ShoppingCart className="w-5 h-5 md:w-6 md:h-6" />
+                    <ShoppingCart className="w-4 h-4 md:w-6 md:h-6" />
                     Add to Cart
                   </button>
                   <button 
-                    className="w-full bg-brand-forest hover:bg-brand-forest/95 text-brand-gold font-bold py-4 md:py-6 text-lg md:text-xl rounded-xl md:rounded-[1.5rem] shadow-xl transition-all active:scale-95 flex items-center justify-center gap-3"
+                    className="w-full bg-brand-forest hover:bg-brand-forest/95 text-brand-gold font-bold py-3 md:py-6 text-base md:text-xl rounded-xl md:rounded-[1.5rem] shadow-xl transition-all active:scale-95 flex items-center justify-center gap-2 md:gap-3"
                     onClick={() => {
                       addToCart(product);
                       navigate('/checkout');
@@ -216,43 +222,133 @@ const ProductDetailPage = () => {
                 </div>
 
                 {/* Trust Badges */}
-                <div className="grid grid-cols-2 gap-4 md:gap-6 bg-white/40 backdrop-blur-xl p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border border-brand-gold/5 shadow-xl">
+                <div className="grid grid-cols-2 gap-3 md:gap-6 bg-white/40 backdrop-blur-xl p-4 md:p-8 rounded-[1.25rem] md:rounded-[2rem] border border-brand-gold/5 shadow-xl">
                   {[
                     { icon: ShieldCheck, label: "GMP Certified" },
                     { icon: Truck, label: "Fast Shipping" },
                     { icon: RefreshCw, label: "Quality Lab Tested" },
                     { icon: CheckCircle2, label: "100% Ayurvedic" }
                   ].map((badge, i) => (
-                    <div key={i} className="flex items-center gap-3 md:gap-4 group">
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-brand-forest/5 flex items-center justify-center group-hover:bg-brand-gold/10 transition-colors">
-                        <badge.icon className="text-brand-gold w-4 h-4 md:w-5 md:h-5" />
+                    <div key={i} className="flex items-center gap-2 md:gap-4 group">
+                      <div className="w-6 h-6 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-brand-forest/5 flex items-center justify-center group-hover:bg-brand-gold/10 transition-colors">
+                        <badge.icon className="text-brand-gold w-3 h-3 md:w-5 md:h-5" />
                       </div>
-                      <span className="text-brand-forest font-bold text-[10px] md:text-xs uppercase tracking-widest leading-none">{badge.label}</span>
+                      <span className="text-brand-forest font-bold text-[8px] md:text-xs uppercase tracking-widest leading-none">{badge.label}</span>
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Product Details Section */}
+            {/* Amazon-style Accordion Section */}
             <div className="bg-white rounded-[2rem] md:rounded-[4rem] shadow-xl p-6 md:p-10 md:p-20 mb-16 md:mb-32 border border-brand-gold/5 relative overflow-hidden">
-              <div className="flex items-center gap-4 mb-8 md:mb-12 border-b border-brand-gold/10 pb-6 md:pb-10">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-brand-forest rounded-xl flex items-center justify-center">
-                  <Info className="text-brand-gold w-5 h-5 md:w-6 md:h-6" />
-                </div>
-                <h2 className="text-brand-forest font-serif text-2xl md:text-4xl font-bold">Product Details</h2>
-              </div>
+              <Accordion type="single" collapsible defaultValue="details" className="w-full">
+                <AccordionItem value="highlights" className="border-b border-brand-gold/10 py-2">
+                  <AccordionTrigger className="text-brand-forest hover:text-brand-gold font-serif text-xl md:text-3xl font-bold">
+                    Top highlights
+                  </AccordionTrigger>
+                  <AccordionContent className="text-brand-black text-base md:text-xl leading-relaxed pt-4 pb-6 italic">
+                    {product?.shortDescription}
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="details" className="border-b border-brand-gold/10 py-2">
+                  <AccordionTrigger className="text-brand-forest hover:text-brand-gold font-serif text-xl md:text-3xl font-bold">
+                    Product details
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-4 pb-6">
+                    <div className="relative z-10">
+                      <div className={cn(
+                        "text-black text-base md:text-xl leading-relaxed font-medium transition-all duration-500 overflow-hidden relative",
+                        isDescriptionExpanded ? "max-h-none" : "max-h-[300px] md:max-h-[400px]"
+                      )}>
+                        <div 
+                          className="description-content [&_*]:text-black [&_h1]:text-black [&_h2]:text-black [&_h3]:text-black [&_p]:text-black [&_ul]:text-black [&_ol]:text-black [&_span]:text-black"
+                          style={{ color: 'black' }}
+                          dangerouslySetInnerHTML={{ __html: product?.description || "" }} 
+                        />
+                        
+                        {!isDescriptionExpanded && (
+                          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+                        )}
+                      </div>
+                      
+                      <div className="mt-8 flex justify-center">
+                        <button 
+                          onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                          className="bg-brand-forest text-brand-gold font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all active:scale-95 flex items-center justify-center text-sm md:text-base border border-brand-gold/20"
+                        >
+                          {isDescriptionExpanded ? "Read Less" : "Read More"}
+                        </button>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
 
-              <div className="relative z-10">
-                <div className="text-black text-lg md:text-xl leading-relaxed font-medium">
-                  <div 
-                    className="description-content [&_*]:text-black [&_h1]:text-black [&_h2]:text-black [&_h3]:text-black [&_p]:text-black [&_ul]:text-black [&_ol]:text-black [&_span]:text-black"
-                    style={{ color: 'black' }}
-                    dangerouslySetInnerHTML={{ __html: product?.description || "" }} 
-                  />
+                <AccordionItem value="specifications" className="border-b-0 py-2">
+                  <AccordionTrigger className="text-brand-forest hover:text-brand-gold font-serif text-xl md:text-3xl font-bold">
+                    Product specifications
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-4 pb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-base md:text-lg">
+                      <div className="flex border-b border-brand-black/5 pb-2">
+                        <span className="text-brand-black/50 font-bold w-1/3">Category</span>
+                        <span className="text-brand-black font-medium">{product?.category}</span>
+                      </div>
+                      <div className="flex border-b border-brand-black/5 pb-2">
+                        <span className="text-brand-black/50 font-bold w-1/3">Availability</span>
+                        <span className="text-brand-leaf font-medium">Fresh Stock</span>
+                      </div>
+                      <div className="flex border-b border-brand-black/5 pb-2">
+                        <span className="text-brand-black/50 font-bold w-1/3">Quality</span>
+                        <span className="text-brand-black font-medium">100% Ayurvedic</span>
+                      </div>
+                      <div className="flex border-b border-brand-black/5 pb-2">
+                        <span className="text-brand-black/50 font-bold w-1/3">Shipping</span>
+                        <span className="text-brand-black font-medium">Fast Shipping Available</span>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+
+            {/* Recommended Products Section */}
+            {wcProducts && wcProducts.length > 1 && (
+              <div className="mb-16 md:mb-32">
+                <h2 className="text-brand-forest font-serif text-3xl md:text-5xl font-bold mb-8 md:mb-12">Recommended Products</h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                  {(
+                    wcProducts.filter((p: any) => p.id !== product.id && p.categories?.[0]?.name === product.category).length > 0
+                      ? wcProducts.filter((p: any) => p.id !== product.id && p.categories?.[0]?.name === product.category)
+                      : wcProducts.filter((p: any) => p.id !== product.id)
+                  )
+                    .slice(0, 4)
+                    .map((relatedProduct: any) => (
+                      <Link 
+                        key={relatedProduct.id}
+                        to={`/product/${relatedProduct.slug}`} 
+                        className="group bg-white rounded-2xl md:rounded-[2rem] p-4 md:p-6 shadow-xl hover:shadow-2xl transition-all border border-brand-gold/5 flex flex-col"
+                      >
+                        <div className="aspect-square bg-brand-cream/50 rounded-xl md:rounded-2xl mb-4 overflow-hidden">
+                          <img 
+                            src={relatedProduct.images?.[0]?.src || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"} 
+                            alt={relatedProduct.name}
+                            className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"
+                          />
+                        </div>
+                        <h3 className="font-serif font-bold text-brand-forest text-base md:text-xl mb-2 line-clamp-2 flex-grow">{relatedProduct.name}</h3>
+                        <div className="flex items-center gap-2 mt-auto">
+                          <span className="text-brand-forest font-bold text-lg md:text-2xl">₹{relatedProduct.price}</span>
+                          {relatedProduct.regular_price && relatedProduct.regular_price !== relatedProduct.price && (
+                            <span className="text-brand-black/30 line-through text-sm">₹{relatedProduct.regular_price}</span>
+                          )}
+                        </div>
+                      </Link>
+                    ))}
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </main>
