@@ -8,7 +8,7 @@ import { useWCProducts } from '@/lib/woocommerce';
 import { useCart } from '@/contexts/CartContext';
 import { toast } from 'sonner';
 
-const FeaturedProducts = () => {
+const ComboProducts = () => {
   const { products, loading } = useWCProducts();
   const { addToCart } = useCart();
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -21,10 +21,12 @@ const FeaturedProducts = () => {
     }
   };
 
-  // Pick top 8 products for homepage slider
-  const featured = products?.slice(0, 8) || [];
+  // Filter combo products
+  const combos = products?.filter(p => 
+    p.categories?.some((c: any) => c.name.toLowerCase().includes('combo'))
+  ) || [];
 
-  if (loading && products.length === 0) return null;
+  if (loading || combos.length === 0) return null;
 
   return (
     <section className="py-16 md:py-24 bg-brand-cream relative overflow-hidden">
@@ -36,10 +38,10 @@ const FeaturedProducts = () => {
         <div className="mb-8 md:mb-16">
           <div className="flex flex-row justify-between items-start gap-2 mb-4 md:mb-0">
             <div className="max-w-2xl">
-              <h2 className="text-brand-forest/90 font-serif text-[10px] md:text-xs uppercase tracking-[0.3em] mb-1 md:mb-3 font-bold">Apothecary</h2>
-              <h3 className="text-brand-forest font-serif text-[28px] xs:text-3xl md:text-5xl font-bold leading-tight">Top Sellers</h3>
+              <h2 className="text-brand-forest/90 font-serif text-[10px] md:text-xs uppercase tracking-[0.3em] mb-1 md:mb-3 font-bold">Value For Money</h2>
+              <h3 className="text-brand-forest font-serif text-[28px] xs:text-3xl md:text-5xl font-bold leading-tight">Recommended Combos</h3>
               <p className="text-brand-black/80 text-sm md:text-lg mt-2 md:mt-4 max-w-xl hidden md:block">
-                Swipe to explore our premium clinical formulations and precious Bhasmas.
+                Explore our best value combo packs for comprehensive Ayurvedic wellness.
               </p>
             </div>
             <div className="flex items-center gap-4 pt-1 md:pt-4">
@@ -61,16 +63,16 @@ const FeaturedProducts = () => {
                     <ChevronRight className="w-5 h-5" />
                   </Button>
                </div>
-               <Link to="/products">
+               <Link to="/products?category=combo">
                   <Button variant="outline" className="border border-brand-forest text-brand-forest bg-transparent hover:bg-brand-forest hover:text-brand-cream font-bold px-3 py-1 xs:px-4 xs:py-2 md:px-8 md:py-6 h-8 xs:h-10 md:h-14 rounded-full flex items-center group text-[10px] xs:text-xs md:text-base">
-                    All Products
+                    All Combos
                     <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                </Link>
             </div>
           </div>
           <p className="text-brand-black/60 text-[13px] sm:text-sm mt-2 max-w-xl md:hidden leading-relaxed">
-            Swipe to explore our premium clinical formulations and precious Bhasmas.
+            Explore our best value combo packs for comprehensive Ayurvedic wellness.
           </p>
         </div>
 
@@ -80,7 +82,7 @@ const FeaturedProducts = () => {
           className="flex gap-4 md:gap-8 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide no-scrollbar"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {featured.map((product) => (
+          {combos.map((product) => (
             <div key={product.id} className="w-[180px] xs:w-[220px] sm:w-[260px] md:w-[320px] flex-shrink-0 snap-start group flex flex-col">
               <Link to={`/product/${product.slug || product.id}`} className="flex-1">
                 <div className="bg-white rounded-[1.5rem] md:rounded-[2.5rem] p-3 md:p-6 shadow-xl border border-brand-gold/5 hover:border-brand-gold/30 transition-all duration-700 hover:-translate-y-2 flex flex-col h-full overflow-hidden">
@@ -142,4 +144,4 @@ const FeaturedProducts = () => {
   );
 };
 
-export default FeaturedProducts;
+export default ComboProducts;

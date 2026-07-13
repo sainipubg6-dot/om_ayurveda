@@ -6,6 +6,8 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Marquee from '@/components/Marquee';
 import SliderHero from '@/components/SliderHero';
+import FeaturedProducts from '@/components/FeaturedProducts';
+import ComboProducts from '@/components/ComboProducts';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { FadedContent } from '@/components/react-bits/FadedContent';
 import CategoryScroll from '@/components/CategoryScroll';
@@ -13,6 +15,7 @@ import CategoryScroll from '@/components/CategoryScroll';
 // Lazy load below-the-fold components
 const FeaturedServices = lazy(() => import('@/components/FeaturedServices'));
 const FeaturedProducts = lazy(() => import('@/components/FeaturedProducts'));
+const ComboProducts = lazy(() => import('@/components/ComboProducts'));
 const AboutLegacy = lazy(() => import('@/components/AboutLegacy'));
 const TrustAndResults = lazy(() => import('@/components/TrustAndResults'));
 const Newsletter = lazy(() => import('@/components/Newsletter'));
@@ -157,6 +160,11 @@ const Index = () => {
           {/* 2. Top Selling Products */}
           <FadedContent>
             <FeaturedProducts />
+          </FadedContent>
+
+          {/* 2.5 Recommended Combos */}
+          <FadedContent>
+            <ComboProducts />
           </FadedContent>
 
           {/* 3. Featured Services */}
