@@ -277,41 +277,20 @@ const CheckoutPage = () => {
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between items-center">
                     <span className="text-brand-black/70">Order ID:</span>
-                    <span className="font-bold text-brand-forest text-lg">#{lastOrderDetails.id || lastOrderDetails.orderId || Math.floor(Math.random() * 10000)}</span>
+                    <span className="font-bold text-brand-forest text-lg">#{String(lastOrderDetails.id || lastOrderDetails.orderId || lastOrderDetails.ORDERID || Math.floor(Math.random() * 10000))}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-brand-black/70">Confirmation sent to:</span>
-                    <span className="font-medium text-brand-forest truncate max-w-[200px]">{lastOrderDetails.billing?.email || formData.email}</span>
+                    <span className="font-medium text-brand-forest truncate max-w-[200px]">{String((lastOrderDetails.billing && lastOrderDetails.billing.email) || formData.email || 'your email')}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-brand-black/70">Total Amount Paid:</span>
-                    <span className="font-bold text-green-600 text-lg">₹{lastOrderDetails.total || cartTotal}</span>
+                    <span className="font-bold text-green-600 text-lg">₹{String(lastOrderDetails.total || lastOrderDetails.TXNAMOUNT || cartTotal || '0')}</span>
                   </div>
                   <div className="flex justify-between items-center pt-2 mt-2 border-t border-brand-gold/10">
                     <span className="text-brand-black/70">Expected Delivery:</span>
                     <span className="font-bold text-brand-forest">5-7 working days</span>
                   </div>
-                </div>
-                
-                <div className="border-t border-brand-gold/10 pt-4">
-                  <p className="text-sm font-bold text-brand-forest uppercase tracking-wider mb-3">Items Ordered:</p>
-                  <ul className="space-y-2">
-                    {lastOrderDetails.line_items?.map((item: any, idx: number) => (
-                      <li key={idx} className="flex justify-between text-sm items-center">
-                        <span className="text-brand-black/80 font-medium">
-                          {item.name || 'Ayurvedic Formulation'} <span className="text-brand-black/50 ml-1">x{item.quantity}</span>
-                        </span>
-                        <span className="font-bold text-brand-forest">₹{item.total || item.price}</span>
-                      </li>
-                    )) || cart.map((item: any, idx: number) => (
-                      <li key={idx} className="flex justify-between text-sm items-center">
-                        <span className="text-brand-black/80 font-medium">
-                          {item.name} <span className="text-brand-black/50 ml-1">x{item.quantity}</span>
-                        </span>
-                        <span className="font-bold text-brand-forest">₹{item.price * item.quantity}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </div>
             )}
