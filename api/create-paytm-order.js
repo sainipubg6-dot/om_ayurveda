@@ -14,22 +14,26 @@ export default async function handler(req, res) {
   const merchantKey = process.env.PAYTM_MERCHANT_KEY;
   const website = process.env.PAYTM_WEBSITE || 'WEBSTAGING';
 
-  paytmParams.body = {
-    requestType: "Payment",
-    mid: mid,
-    websiteName: website,
-    orderId: orderId,
-    callbackUrl: "https://securegw-stage.paytm.in/theia/paytmCallback?ORDER_ID=" + orderId,
-    txnAmount: {
-      value: amount.toString(), // e.g. "1.00"
-      currency: currency,
-    },
-    userInfo: {
-      custId: custId,
-    },
-  };
+    try {
+      const isProduction = process.env.PAYTM_WEBSITE === 'DEFAULT';
+    const host = isProduction ? 'secure.paytmpayments.com' : 'securestage.paytmpayments.com';
 
-  try {
+    paytmParams.body = {
+      requestType: "Payment",
+      mid: mid,
+      websiteName: website,
+      orderId: orderId,
+      callbackUrl: `http://localhost:3001/api/paytm-callback`,
+      txnAmount: {
+        value: amount.toString(), // e.g. "1.00"
+        currency: currency,
+      },
+      userInfo: {
+        custId: custId,
+      },
+    };
+
+    console.log("PAYTM PARAMS BODY: ", paytmParams.body);
     const checksum = await PaytmChecksum.generateSignature(
       JSON.stringify(paytmParams.body),
       merchantKey
@@ -40,9 +44,6 @@ export default async function handler(req, res) {
     };
 
     const post_data = JSON.stringify(paytmParams);
-
-    const isProduction = process.env.PAYTM_WEBSITE === 'DEFAULT';
-    const host = isProduction ? 'securegw.paytm.in' : 'securegw-stage.paytm.in';
 
     const response = await fetch(`https://${host}/theia/api/v1/initiateTransaction?mid=${mid}&orderId=${orderId}`, {
       method: 'POST',

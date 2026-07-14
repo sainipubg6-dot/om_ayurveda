@@ -50,29 +50,35 @@ const CartPage = () => {
                 {cart.map((item) => (
                   <div key={item.id} className="bg-white p-4 md:p-6 rounded-[1.5rem] shadow-lg flex items-center gap-4 border border-brand-gold/5">
                     <img src={item.image} alt={item.name} className="w-20 h-20 md:w-24 md:h-24 object-cover rounded-xl" />
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-brand-forest font-serif font-bold text-sm md:text-lg truncate">{item.name}</h3>
-                      <p className="text-brand-gold font-bold text-xs md:text-sm mt-1">₹{item.price}</p>
-                      
-                      <div className="flex items-center gap-3 mt-3">
-                        <div className="flex items-center border border-brand-gold/20 rounded-lg overflow-hidden">
-                          <button 
-                            onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
-                            className="p-1 px-2 hover:bg-brand-cream text-brand-forest transition-colors"
-                          >
-                            <Minus className="w-3 h-3" />
-                          </button>
-                          <span className="px-3 text-xs font-bold text-brand-forest">{item.quantity}</span>
-                          <button 
-                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="p-1 px-2 hover:bg-brand-cream text-brand-forest transition-colors"
-                          >
-                            <Plus className="w-3 h-3" />
-                          </button>
+                    <div className="flex-1 min-w-0 flex justify-between items-stretch">
+                      <div>
+                        <h3 className="text-brand-forest font-serif font-bold text-sm md:text-lg truncate">{item.name}</h3>
+                        <p className="text-brand-gold font-bold text-xs md:text-sm mt-1">₹{item.price} each</p>
+                        
+                        <div className="flex items-center gap-3 mt-4">
+                          <div className="flex items-center border border-brand-gold/30 rounded-lg overflow-hidden bg-brand-cream/30">
+                            <button 
+                              onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                              className="p-2 px-3 hover:bg-brand-cream text-brand-forest transition-colors"
+                            >
+                              <Minus className="w-4 h-4" />
+                            </button>
+                            <span className="px-4 text-sm font-bold text-brand-forest">{item.quantity}</span>
+                            <button 
+                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                              className="p-2 px-3 hover:bg-brand-cream text-brand-forest transition-colors"
+                            >
+                              <Plus className="w-4 h-4" />
+                            </button>
+                          </div>
                         </div>
+                      </div>
+                      <div className="text-right flex flex-col justify-between items-end">
+                        <span className="font-bold text-brand-forest md:text-lg">₹{item.price * item.quantity}</span>
                         <button 
                           onClick={() => removeFromCart(item.id)}
-                          className="text-red-500 hover:text-red-600 transition-colors"
+                          className="text-red-400 hover:text-red-600 transition-colors bg-red-50 p-2 rounded-full"
+                          title="Remove item"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -95,18 +101,31 @@ const CartPage = () => {
               <div className="lg:col-span-1">
                 <div className="bg-brand-forest p-6 md:p-8 rounded-[2rem] shadow-xl text-brand-cream sticky top-24">
                   <h3 className="font-serif text-xl font-bold mb-6 border-b border-brand-gold/20 pb-4">Order Summary</h3>
-                  <div className="space-y-4 mb-8">
-                    <div className="flex justify-between items-center text-sm opacity-80">
+                  <div className="space-y-4 mb-6">
+                    <div className="flex justify-between items-center text-sm font-medium text-white">
                       <span>Subtotal</span>
-                      <span>₹{cartTotal}</span>
+                      <span className="text-white font-bold text-base">₹{cartTotal}</span>
                     </div>
-                    <div className="flex justify-between items-center text-sm opacity-80">
-                      <span>Shipping</span>
-                      <span className="text-brand-gold font-bold italic">FREE</span>
+                    <div className="flex flex-col text-sm font-medium text-white">
+                      <div className="flex justify-between items-center mb-1">
+                        <span>Shipping</span>
+                        <span className="text-white font-bold italic text-base">FREE</span>
+                      </div>
+                      <span className="text-[10px] text-white/80 italic text-right">Free shipping on all prepaid orders</span>
                     </div>
-                    <div className="pt-4 border-t border-brand-gold/20 flex justify-between items-center">
+                    <div className="pt-4 border-t border-brand-gold/20 flex justify-between items-center text-white">
                       <span className="font-bold text-lg">Total</span>
-                      <span className="font-serif text-2xl font-bold text-brand-gold">₹{cartTotal}</span>
+                      <span className="font-serif text-3xl font-bold">₹{cartTotal}</span>
+                    </div>
+                  </div>
+
+                  <div className="bg-white/5 border border-white/10 rounded-xl p-3 mb-6 flex gap-3 items-center">
+                    <div className="w-10 h-10 bg-brand-gold/20 rounded-full flex items-center justify-center shrink-0">
+                      <span className="text-brand-gold text-lg">🚚</span>
+                    </div>
+                    <div>
+                      <p className="text-xs text-white/60 font-bold uppercase tracking-wider mb-0.5">Estimated Delivery</p>
+                      <p className="text-sm font-bold text-white">5-7 working days</p>
                     </div>
                   </div>
                   <Button 

@@ -83,7 +83,7 @@ const ComboProducts = () => {
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {combos.map((product) => (
-            <div key={product.id} className="w-[180px] xs:w-[220px] sm:w-[260px] md:w-[320px] flex-shrink-0 snap-start group flex flex-col">
+            <div key={product.id} className="w-[150px] xs:w-[180px] sm:w-[220px] md:w-[320px] flex-shrink-0 snap-start group flex flex-col">
               <Link to={`/product/${product.slug || product.id}`} className="flex-1">
                 <div className="bg-white rounded-[1.5rem] md:rounded-[2.5rem] p-3 md:p-6 shadow-xl border border-brand-gold/5 hover:border-brand-gold/30 transition-all duration-700 hover:-translate-y-2 flex flex-col h-full overflow-hidden">
                   <div className="relative aspect-square rounded-xl md:rounded-[2rem] overflow-hidden mb-3 md:mb-6 bg-brand-cream/10">

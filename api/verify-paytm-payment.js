@@ -2,7 +2,7 @@ import PaytmChecksum from 'paytmchecksum';
 import WooCommerceRestApi from '@woocommerce/woocommerce-rest-api';
 
 const api = new WooCommerceRestApi.default({
-  url: process.env.VITE_WC_ROOT_URL,
+  url: process.env.VITE_WC_ROOT_URL || process.env.WC_ROOT_URL || 'https://green-donkey-647181.hostingersite.com',
   consumerKey: process.env.WC_CONSUMER_KEY,
   consumerSecret: process.env.WC_CONSUMER_SECRET,
   version: 'wc/v3'

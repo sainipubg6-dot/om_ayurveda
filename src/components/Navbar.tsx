@@ -21,10 +21,25 @@ const Navbar = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       <nav
-        className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-3 bg-brand-forest border-b border-white/10 shadow-xl"
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-3 border-b transition-all duration-300",
+          isScrolled 
+            ? "bg-brand-forest/80 backdrop-blur-md border-white/10 shadow-xl py-2" 
+            : "bg-brand-forest border-transparent py-4"
+        )}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}

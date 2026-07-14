@@ -143,14 +143,14 @@ const ProductDetailPage = () => {
                   )}
                 </div>
 
-                <div className="flex overflow-x-auto gap-2 md:gap-3 pb-2 snap-x snap-mandatory scrollbar-none">
+                <div className="flex overflow-x-auto gap-2 md:gap-3 pb-2 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-brand-gold/20">
                   {(product?.images || []).map((img: string, i: number) => (
                     <button
                       key={i}
                       onClick={() => setActiveImage(i)}
                       className={cn(
-                        "relative flex-shrink-0 snap-start rounded-xl overflow-hidden border-2 transition-all duration-300 aspect-square",
-                        "w-[calc(25%-0.375rem)] md:w-[calc(25%-0.5625rem)]",
+                        "relative flex-shrink-0 snap-start rounded-xl overflow-hidden border-2 transition-all duration-300",
+                        "w-16 h-16 md:w-24 md:h-24",
                         activeImage === i ? "border-brand-gold shadow-lg scale-95" : "border-white hover:border-brand-gold/30"
                       )}
                     >
