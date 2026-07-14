@@ -4,8 +4,9 @@ export default async function handler(req, res) {
   // URLSearchParams automatically encodes all the key-value pairs
   const qs = new URLSearchParams(data).toString();
   
-  // Usually this would be your production frontend URL
-  const frontendUrl = process.env.VITE_FRONTEND_URL || 'http://localhost:8080';
+  const reqProtocol = req.headers['x-forwarded-proto'] || 'https';
+  const reqHost = req.headers.host || 'localhost:8080';
+  const frontendUrl = process.env.VITE_FRONTEND_URL || `${reqProtocol}://${reqHost}`;
 
   res.setHeader('Content-Type', 'text/html');
   res.send(`
