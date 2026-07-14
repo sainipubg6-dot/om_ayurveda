@@ -343,13 +343,14 @@ const CheckoutPage = () => {
   }
 
   // CART EMPTY CHECK (Moved after success check)
+  const isPaymentCallback = new URLSearchParams(window.location.search).has('STATUS');
   React.useEffect(() => {
-    if (cart.length === 0 && !orderSuccess) {
+    if (cart.length === 0 && !orderSuccess && !isPaymentCallback) {
       navigate('/cart');
     }
-  }, [cart.length, orderSuccess, navigate]);
+  }, [cart.length, orderSuccess, navigate, isPaymentCallback]);
 
-  if (cart.length === 0 && !orderSuccess) {
+  if (cart.length === 0 && !orderSuccess && !isPaymentCallback) {
     return null;
   }
 
