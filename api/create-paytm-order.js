@@ -18,12 +18,16 @@ export default async function handler(req, res) {
       const isProduction = process.env.PAYTM_WEBSITE === 'DEFAULT';
     const host = isProduction ? 'secure.paytmpayments.com' : 'securestage.paytmpayments.com';
 
+    const reqProtocol = req.headers['x-forwarded-proto'] || 'https';
+    const reqHost = req.headers.host || 'localhost:3001';
+    const baseUrl = process.env.VITE_FRONTEND_URL || `${reqProtocol}://${reqHost}`;
+
     paytmParams.body = {
       requestType: "Payment",
       mid: mid,
       websiteName: website,
       orderId: orderId,
-      callbackUrl: `http://localhost:3001/api/paytm-callback`,
+      callbackUrl: `${baseUrl}/api/paytm-callback`,
       txnAmount: {
         value: amount.toString(), // e.g. "1.00"
         currency: currency,
