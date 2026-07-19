@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Invoice & Handover - Spiderbyte Lab</title>
+<style>
+  body { 
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+    line-height: 1.6; 
+    color: #333; 
+    max-width: 850px; 
+    margin: 0 auto; 
+    padding: 40px; 
+    background-color: #fff;
+  }
+  
+  /* Header & Branding */
+  .header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    border-bottom: 2px solid #2c3e50; 
+    padding-bottom: 20px; 
+    margin-bottom: 40px; 
+  }
+  .header-left h1 { margin: 0; font-size: 36px; color: #2c3e50; font-weight: 700; letter-spacing: -1px; }
+  .header-left p { margin: 5px 0 0 0; color: #7f8c8d; font-size: 15px; font-weight: 500; }
+  .logo { max-width: 140px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+  /* Invoice Details */
+  .invoice-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    font-size: 14px;
+  }
+  .meta-box {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    width: 45%;
+    border: 1px solid #e9ecef;
+  }
+  .meta-box h3 { margin-top: 0; color: #2c3e50; font-size: 16px; margin-bottom: 10px; border-bottom: 1px solid #ddd; padding-bottom: 5px;}
+  .meta-box p { margin: 4px 0; color: #555; }
+  
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 14px; }
+  th, td { border-bottom: 1px solid #e9ecef; padding: 15px 10px; text-align: left; }
+  th { background-color: #2c3e50; color: #fff; font-weight: 600; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; border: none;}
+  .text-right { text-align: right; }
+  .text-center { text-align: center; }
+  
+  .totals-container { width: 40%; float: right; }
+  .totals-table th, .totals-table td { border-bottom: none; padding: 8px 10px; }
+  .totals-table th { background: transparent; color: #333; text-align: right; font-weight: 600; font-size: 14px; }
+  .grand-total { font-size: 20px; font-weight: bold; color: #2c3e50; border-top: 2px solid #2c3e50 !important; }
+  
+  .clearfix::after { content: ""; clear: both; display: table; }
+
+  /* Headings for other sections */
+  .section-title { 
+    color: #2c3e50; 
+    font-size: 22px; 
+    border-bottom: 2px solid #2c3e50; 
+    padding-bottom: 8px; 
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .box {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #fafbfc;
+  }
+  
+  .box h4 { margin-top: 0; color: #2c3e50; font-size: 16px; }
+  ul { padding-left: 20px; color: #555; }
+  li { margin-bottom: 8px; }
+
+  /* Print optimizations */
+  @media print {
+    body { padding: 0; max-width: 100%; }
+    .page-break { page-break-before: always; }
+    .box { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- INVOICE SECTION -->
+<div class="header">
+  <div class="header-left">
+    <h1>INVOICE</h1>
+    <p>Spiderbyte Lab | Digital Agency</p>
+  </div>
+  <img src="spider bytelab .jpg" alt="Spiderbyte Lab Logo" class="logo">
+</div>
+
+<div class="invoice-meta">
+  <div class="meta-box">
+    <h3>Billed To:</h3>
+    <p><strong>Om Ayurveda</strong></p>
+    <p>India</p>
+  </div>
+  <div class="meta-box">
+    <h3>Invoice Details:</h3>
+    <p><strong>Invoice No:</strong> #SBL-2026-001</p>
+    <p><strong>Issue Date:</strong> 19 July 2026</p>
+    <p><strong>Status:</strong> <span style="color: #27ae60; font-weight: bold;">PAID</span></p>
+  </div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 50%;">Description</th>
+      <th class="text-center">Rate</th>
+      <th class="text-center">Qty</th>
+      <th class="text-right">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>Custom E-Commerce Website</strong><br>
+        <span style="color:#777; font-size:12px;">Premium Design, Admin Panel, Payment Gateway Setup (Paytm)</span>
+      </td>
+      <td class="text-center">₹20,000</td>
+      <td class="text-center">1</td>
+      <td class="text-right">₹20,000</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Branding & Graphic Design</strong><br>
+        <span style="color:#777; font-size:12px;">Logo Redesign & 50+ Product Graphics Editing</span>
+      </td>
+      <td class="text-center">₹10,000</td>
+      <td class="text-center">1</td>
+      <td class="text-right">₹10,000</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>E-Commerce Catalog Setup</strong><br>
+        <span style="color:#777; font-size:12px;">20 Product Listings with descriptions and images</span>
+      </td>
+      <td class="text-center">₹5,000</td>
+      <td class="text-center">1</td>
+      <td class="text-right">₹5,000</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>1st Year Web Hosting</strong><br>
+        <span style="color:#777; font-size:12px;">Complimentary High-Speed Hosting (Valid till May 2027)</span>
+      </td>
+      <td class="text-center">₹0</td>
+      <td class="text-center">1</td>
+      <td class="text-right">₹0</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="clearfix">
+  <div class="totals-container">
+    <table class="totals-table">
+      <tr>
+        <th>Subtotal:</th>
+        <td class="text-right">₹35,000</td>
+      </tr>
+      <tr>
+        <th>Tax (GST 0%):</th>
+        <td class="text-right">₹0</td>
+      </tr>
+      <tr>
+        <th class="grand-total">Total:</th>
+        <td class="text-right grand-total">₹35,000</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- HANDOVER & SERVICES SECTION -->
+<div class="header" style="margin-top: 30px;">
+  <div class="header-left">
+    <h1 style="font-size: 28px;">PROJECT HANDOVER</h1>
+    <p>Om Ayurveda Website</p>
+  </div>
+  <img src="spider bytelab .jpg" alt="Spiderbyte Lab Logo" class="logo" style="max-width: 100px;">
+</div>
+
+<h2 class="section-title">1. Website Credentials</h2>
+<p style="font-size: 14px; color: #555; margin-bottom: 20px;">For your security, please update these passwords once you log in for the first time.</p>
+
+<div class="box">
+  <h4>Website Admin Panel (Manage Orders & Products)</h4>
+  <ul>
+    <li><strong>Admin URL:</strong> [Add Admin Login URL Here]</li>
+    <li><strong>Username:</strong> [Add Username]</li>
+    <li><strong>Password:</strong> [Add Password]</li>
+  </ul>
+  <p style="font-size: 13px; color: #777; margin-top: 10px;">* Use this portal to check new orders, update product prices, and manage stock.</p>
+</div>
+
+<h2 class="section-title">2. Services & Billing Information</h2>
+<table style="margin-top: 10px;">
+  <thead>
+    <tr>
+      <th style="background:#2c3e50; color:#fff;">Service</th>
+      <th style="background:#2c3e50; color:#fff;">Status / Renewal Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Website Domain Name</strong><br><span style="color:#777; font-size:12px;">(www.omayurveda.in)</span></td>
+      <td>Managed directly by you. Please renew it from your domain provider account when due.</td>
+    </tr>
+    <tr>
+      <td><strong>Premium Web Hosting</strong><br><span style="color:#777; font-size:12px;">(Server storing your website & data)</span></td>
+      <td><strong>Valid till May 2027</strong> (1st Year included in package).<br>
+      <span style="color:#c0392b; font-weight:bold;">Renewal Cost: ₹6,000 / Year (Applicable from May 2027)</span></td>
+    </tr>
+    <tr>
+      <td><strong>Payment Gateway (Paytm)</strong><br><span style="color:#777; font-size:12px;">(For receiving customer payments)</span></td>
+      <td>Payments go directly to your linked bank account. Standard Paytm transaction charges apply automatically per sale.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="section-title">3. Annual Maintenance & Support</h2>
+<p style="font-size: 15px; color: #333;">Dear Team,</p>
+<p style="font-size: 14px; color: #555;">It was a pleasure launching your E-Commerce store. To ensure the website runs smoothly, stays secure against hackers, and remains up-to-date, we offer a dedicated <strong>Monthly Maintenance Package</strong>.</p>
+
+<div class="box">
+  <h4>What does Maintenance include?</h4>
+  <ul>
+    <li>24/7 Website Uptime Monitoring.</li>
+    <li>Monthly Security Scans and Core Updates.</li>
+    <li>Adding up to 5 new products per month.</li>
+    <li>Minor graphic edits and banner updates.</li>
+    <li>Priority WhatsApp Support for any technical glitches.</li>
+  </ul>
+  <p style="font-size: 16px; margin-top: 15px; font-weight: bold; color: #2c3e50;">
+    Maintenance Package: ₹X,XXX / month
+  </p>
+</div>
+
+<p style="font-size: 14px; color: #777; font-style: italic;">*Note: The first 30 days of support are entirely complimentary as part of the project handover.</p>
+
+<div style="margin-top: 50px; text-align: left;">
+  <p style="font-size: 14px; font-weight: bold; color: #2c3e50;">Warm Regards,</p>
+  <p style="font-size: 16px; font-weight: bold; margin: 5px 0;">Spiderbyte Lab</p>
+</div>
+
+</body>
+</html>

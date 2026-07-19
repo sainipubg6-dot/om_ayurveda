@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMC Proposal - Spiderbyte Lab</title>
+<style>
+  :root {
+    --text-main: #1a1a1a;
+    --text-muted: #555555;
+    --border: #e5e5e5;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+    color: var(--text-main); 
+    width: 210mm; 
+    margin: 0 auto; 
+    padding: 10mm 15mm; 
+    background-color: #ffffff;
+    line-height: 1.35;
+  }
+
+  /* Header */
+  .header { 
+    display: flex; justify-content: space-between; align-items: flex-start; 
+    margin-bottom: 15px; 
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+  .header-left h1 { margin: 0; font-size: 32px; font-weight: 600; color: var(--text-main); letter-spacing: 1px; text-transform: uppercase;}
+  .header-left p { margin: 5px 0 0 0; color: var(--text-muted); font-size: 14px; }
+  .logo { max-width: 120px; }
+
+  .content-body { font-size: 13px; color: var(--text-main); }
+  .content-body p { margin-bottom: 8px; }
+  
+  .pricing-wrapper { display: flex; gap: 10px; margin: 15px 0; }
+  .pricing-card { flex: 1; border: 1px solid var(--border); padding: 12px; text-align: left; }
+  .pricing-card.popular { border: 2px solid var(--text-main); position: relative; }
+  .popular-tag { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--text-main); color: #fff; font-size: 9px; padding: 2px 6px; text-transform: uppercase; font-weight: 600; }
+  .pricing-card h2 { margin: 0 0 5px 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;}
+  .pricing-card .desc { font-size: 10px; color: var(--text-muted); margin: 0 0 8px 0; min-height: 30px; }
+  .price { font-size: 18px; font-weight: 600; margin: 8px 0; display: block; border-bottom: 1px solid var(--border); padding-bottom: 8px;}
+  .price span { font-size: 10px; font-weight: 400; color: var(--text-muted); letter-spacing: 0;}
+  
+  .feature-list { list-style: none; padding: 0; margin: 0; }
+  .feature-list li { font-size: 10px; margin-bottom: 6px; padding-left: 12px; position: relative; line-height: 1.2;}
+  .feature-list li::before { content: '✓'; position: absolute; left: 0; top: 0; font-weight: bold; }
+
+  .signature { margin-top: 30px; font-size: 13px; }
+  .signature strong { display: block; font-size: 15px; margin-bottom: 4px; }
+  
+  .thank-you { margin-top: 25px; border-top: 1px dashed var(--text-main); padding-top: 15px; font-style: italic; font-size: 13px; color: var(--text-main); }
+
+  @media print {
+    @page { size: A4 portrait; margin: 0; }
+    body { width: 100%; margin: 0; padding: 10mm; zoom: 0.85; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>MAINTENANCE PROPOSAL</h1>
+    <p>Post-Launch Support & Upkeep</p>
+  </div>
+  <img src="spider bytelab .jpg" alt="Spiderbyte Lab Logo" class="logo">
+</div>
+
+<div class="content-body">
+  <p>Dear <strong>Om Ayurveda Team</strong>,</p>
+  <p>Congratulations on the successful launch of your new E-Commerce platform! It has been an absolute pleasure building this digital experience for you.</p>
+  <p>As your business grows and traffic increases, your website will require continuous technical support, security updates, and occasional design tweaks to maintain optimal performance. To ensure everything runs smoothly, we offer three dedicated <strong>Monthly Maintenance Packages</strong>.</p>
+  
+  <div class="pricing-wrapper">
+    <!-- Basic Plan -->
+    <div class="pricing-card">
+      <h2>Basic Care</h2>
+      <p class="desc">Perfect for small business websites.</p>
+      <span class="price">₹2,999 <span>/ month</span></span>
+      <ul class="feature-list">
+        <li>Security & Plugin Updates</li>
+        <li>Weekly Website Backups</li>
+        <li>24/7 Uptime Monitoring</li>
+        <li>Basic Bug Fixes</li>
+        <li>Malware & Security Check</li>
+        <li>Monthly Website Health Check</li>
+        <li>Email Support</li>
+      </ul>
+    </div>
+    
+    <!-- Business Plan -->
+    <div class="pricing-card popular">
+      <span class="popular-tag">Most Popular</span>
+      <h2>Business Care</h2>
+      <p class="desc">Everything in Basic, plus:</p>
+      <span class="price">₹4,999 <span>/ month</span></span>
+      <ul class="feature-list">
+        <li>Up to 5 Product Uploads / Month</li>
+        <li>Performance & Speed Optimization</li>
+        <li>Monthly Website Health Report</li>
+        <li>Priority WhatsApp Support</li>
+        <li>Minor Content Changes (Text/Images)</li>
+        <li>Broken Links Check</li>
+        <li>Contact Form & Checkout Testing</li>
+      </ul>
+    </div>
+    
+    <!-- Growth Pro Plan -->
+    <div class="pricing-card">
+      <h2>Growth Pro</h2>
+      <p class="desc">Everything in Business, plus:</p>
+      <span class="price">₹9,999 <span>/ month</span></span>
+      <ul class="feature-list">
+        <li>Unlimited Product Uploads (Fair Usage)</li>
+        <li>5–6 Premium Social Media Creatives</li>
+        <li>Landing Page Updates</li>
+        <li>Monthly SEO Maintenance</li>
+        <li>Google Analytics & Search Console Monitoring</li>
+        <li>Emergency Priority Support</li>
+      </ul>
+    </div>
+  </div>
+  
+  <p style="font-size: 13px; color: var(--text-muted);">* Please Note: You currently have 6 Months of the <strong>Basic Care Plan</strong> included for free. Upgrades to higher tiers, or continuation after 6 months, will be billed as per the above pricing.</p>
+  <p style="font-size: 13px; color: var(--text-muted); margin-top: 5px;">** <strong>Disclaimer:</strong> Major feature development, new pages, custom integrations, third-party software costs, and design revamps are not included in the maintenance plans and will be quoted separately.</p>
+  
+  <p style="margin-top: 20px;">Let me know if you would like to activate the maintenance package post your free support period so we can continue monitoring your store.</p>
+  
+  <div class="thank-you">
+    <strong>Thank you for trusting Spiderbyte Lab!</strong> It was a fantastic experience working with Om Ayurveda to bring your vision to life. We truly wish you immense growth and success with your new online store.
+  </div>
+
+  <div class="signature" style="text-align: center; margin-top: 30px; border-top: 1px solid var(--border); padding-top: 15px;">
+    <strong>Spiderbyte Lab</strong>
+    <div style="margin-top: 5px; font-size: 13px; color: var(--text-main);">
+      🌐 www.spiderbytelab.in | 📱 +91 9053584729
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

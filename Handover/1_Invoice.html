@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice - Spiderbyte Lab</title>
+<style>
+  :root {
+    --text-main: #1a1a1a;
+    --text-muted: #555555;
+    --border: #e5e5e5;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+    color: var(--text-main); 
+    width: 210mm; 
+    margin: 0 auto; 
+    padding: 10mm 15mm; 
+    background-color: #ffffff;
+    line-height: 1.4;
+  }
+
+  /* Header */
+  .header { 
+    display: flex; justify-content: space-between; align-items: flex-start; 
+    margin-bottom: 25px; 
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 15px;
+  }
+  .header-left h1 { margin: 0; font-size: 32px; font-weight: 600; color: var(--text-main); letter-spacing: 1px;}
+  .header-left p { margin: 5px 0 0 0; color: var(--text-muted); font-size: 14px; }
+  .logo { max-width: 120px; }
+
+  /* Info Section */
+  .invoice-info { 
+    display: flex; justify-content: space-between; margin-bottom: 25px; 
+  }
+  .info-box { 
+    width: 48%; 
+  }
+  .info-box h3 { margin: 0 0 10px 0; font-size: 12px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; font-weight: 600;}
+  .info-box p { margin: 4px 0; font-size: 14px; color: var(--text-main); }
+  
+  /* Table */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+  th { border-bottom: 2px solid var(--text-main); padding: 10px 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; text-align: left; color: var(--text-main);}
+  td { padding: 12px 8px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: top;}
+  
+  th:last-child, td:last-child { text-align: right; }
+  
+  .item-title { font-weight: 600; display: block; margin-bottom: 4px; }
+  .item-desc { color: var(--text-muted); font-size: 13px; }
+  .text-center { text-align: center !important; }
+  
+  /* Totals */
+  .totals-wrapper { display: flex; justify-content: flex-end; }
+  .totals-box { width: 300px; }
+  .totals-row { display: flex; justify-content: space-between; padding: 10px 10px; font-size: 14px; color: var(--text-main); border-bottom: 1px solid var(--border);}
+  .totals-row.grand-total { border-bottom: none; border-top: 2px solid var(--text-main); margin-top: 5px; font-size: 18px; font-weight: 600;}
+  
+  /* Footer */
+  .footer { margin-top: 35px; text-align: center; color: var(--text-muted); font-size: 12px; }
+
+  @media print {
+    @page { size: A4 portrait; margin: 0; }
+    body { width: 100%; margin: 0; padding: 15mm; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>INVOICE</h1>
+    <p>Spiderbyte Lab</p>
+  </div>
+  <img src="spider bytelab .jpg" alt="Spiderbyte Lab Logo" class="logo">
+</div>
+
+<div class="invoice-info">
+  <div class="info-box">
+    <h3>Billed To</h3>
+    <p><strong>Om Ayurveda</strong></p>
+    <p>India</p>
+  </div>
+  <div class="info-box" style="text-align: right;">
+    <h3>Invoice Details</h3>
+    <p><strong>Invoice No:</strong> SBL-2026-001</p>
+    <p><strong>Payment Method:</strong> UPI</p>
+    <p><strong>Paid On:</strong> 19 July 2026</p>
+    <p><strong>Status:</strong> PAID</p>
+  </div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 50%;">Description</th>
+      <th class="text-center">Rate</th>
+      <th class="text-center">Qty</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <span class="item-title">Custom E-Commerce Website</span>
+        <span class="item-desc">UI Design, Admin Panel, Payment Gateway Setup (Paytm)</span>
+      </td>
+      <td class="text-center">₹35,000</td>
+      <td class="text-center">1</td>
+      <td>₹35,000</td>
+    </tr>
+    <tr>
+      <td>
+        <span class="item-title">Branding & Graphic Design</span>
+        <span class="item-desc">Logo Redesign & 50+ Product Graphics Editing</span>
+      </td>
+      <td class="text-center">₹0</td>
+      <td class="text-center">1</td>
+      <td>₹0</td>
+    </tr>
+    <tr>
+      <td>
+        <span class="item-title">E-Commerce Catalog Setup</span>
+        <span class="item-desc">20 Product Listings with descriptions and images</span>
+      </td>
+      <td class="text-center">₹0</td>
+      <td class="text-center">1</td>
+      <td>₹0</td>
+    </tr>
+    <tr>
+      <td>
+        <span class="item-title">Web Hosting</span>
+        <span class="item-desc">Complimentary High-Speed Hosting (Valid till May 2027)</span>
+      </td>
+      <td class="text-center">₹0</td>
+      <td class="text-center">1</td>
+      <td>₹0</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="totals-wrapper">
+  <div class="totals-box">
+    <div class="totals-row">
+      <span>Subtotal</span>
+      <span>₹35,000</span>
+    </div>
+    <div class="totals-row">
+      <span>Tax (GST 0%)</span>
+      <span>₹0</span>
+    </div>
+    <div class="totals-row grand-total">
+      <span>Total</span>
+      <span>₹35,000</span>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p style="margin-bottom: 20px;">This invoice serves as proof of payment. Thank you for choosing Spiderbyte Lab.</p>
+  <strong>Spiderbyte Lab</strong><br>
+  🌐 www.spiderbytelab.in | 📱 +91 9053584729
+</div>
+
+</body>
+</html>

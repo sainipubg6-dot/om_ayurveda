@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Handover - Spiderbyte Lab</title>
+<style>
+  :root {
+    --text-main: #1a1a1a;
+    --text-muted: #555555;
+    --border: #e5e5e5;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+    color: var(--text-main); 
+    width: 210mm; 
+    margin: 0 auto; 
+    padding: 10mm 15mm; 
+    background-color: #ffffff;
+    line-height: 1.35;
+  }
+
+  /* Header */
+  .header { 
+    display: flex; justify-content: space-between; align-items: flex-start; 
+    margin-bottom: 15px; 
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+  .header-left h1 { margin: 0; font-size: 32px; font-weight: 600; color: var(--text-main); letter-spacing: 1px; text-transform: uppercase;}
+  .header-left p { margin: 5px 0 0 0; color: var(--text-muted); font-size: 14px; }
+  .logo { max-width: 120px; }
+
+  /* Info Section */
+  .project-info { display: flex; justify-content: space-between; margin-bottom: 20px; }
+  .info-col h3 { margin: 0 0 2px 0; font-size: 11px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; font-weight: 600;}
+  .info-col p { margin: 0; font-size: 13px; color: var(--text-main); }
+  
+  .alert { border: 1px solid var(--text-main); padding: 8px 12px; font-size: 12px; font-weight: 600; margin-bottom: 20px; }
+
+  h2 { font-size: 14px; text-transform: uppercase; border-bottom: 2px solid var(--text-main); padding-bottom: 4px; margin-top: 25px; margin-bottom: 10px; letter-spacing: 1px;}
+  
+  .cred-list { list-style: none; padding: 0; margin: 0; }
+  .cred-list li { margin-bottom: 4px; font-size: 13px; display: flex;}
+  .cred-list li strong { width: 100px; color: var(--text-main); }
+  
+  table { width: 100%; border-collapse: collapse; margin-top: 5px; }
+  th { border-bottom: 2px solid var(--text-main); padding: 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; text-align: left; color: var(--text-main);}
+  td { padding: 8px; border-bottom: 1px solid var(--border); font-size: 12px; vertical-align: top;}
+  
+  .service-name { font-weight: 600; display: block; margin-bottom: 4px; }
+  .service-desc { color: var(--text-muted); font-size: 13px; }
+
+  @media print {
+    @page { size: A4 portrait; margin: 0; }
+    body { width: 100%; margin: 0; padding: 10mm; zoom: 0.85; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>PROJECT HANDOVER</h1>
+    <p>Om Ayurveda E-Commerce Platform</p>
+  </div>
+  <img src="spider bytelab .jpg" alt="Spiderbyte Lab Logo" class="logo">
+</div>
+
+<div class="project-info">
+  <div class="info-col">
+    <h3>Client</h3>
+    <p><strong>Om Ayurveda</strong></p>
+  </div>
+  <div class="info-col">
+    <h3>Live URL</h3>
+    <p>www.omayurveda.in</p>
+  </div>
+  <div class="info-col">
+    <h3>Date Delivered</h3>
+    <p>19 July 2026</p>
+  </div>
+</div>
+
+<div class="alert">
+  SECURITY NOTICE: Please update the passwords below once you log in for the first time.
+</div>
+
+<h2>1. Website Credentials</h2>
+<div style="margin-bottom: 20px;">
+  <p style="font-size: 13px; font-weight: 600; margin-bottom: 8px;">Website Admin Panel (Manage Orders & Products)</p>
+  <ul class="cred-list">
+    <li><strong>Admin URL:</strong> <span style="word-break: break-all;">https://green-donkey-647181.hostingersite.com/wp-admin/admin.php?page=hostinger</span></li>
+    <li><strong>Email ID:</strong> Om Ayurveda's Gmail ID</li>
+    <li><strong>Password:</strong> [Add Password Here]</li>
+  </ul>
+</div>
+
+<h2>2. Services & Billing Information</h2>
+<table>
+  <thead>
+    <tr>
+      <th style="width: 45%;">Service Component</th>
+      <th>Status & Renewal Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <span class="service-name">Website Domain Name</span>
+        <span class="service-desc">(www.omayurveda.in)</span>
+      </td>
+      <td>Managed by the client. Renewal reminders are the client's responsibility.</td>
+    </tr>
+    <tr>
+      <td>
+        <span class="service-name">Premium Web Hosting</span>
+        <span class="service-desc">Server storing your website & data files.</span>
+      </td>
+      <td>
+        <strong>Valid till May 2027</strong> (1st Year included in development package).<br>
+        <span style="font-size: 13px; color: var(--text-muted); display: block; margin-top: 2px;">Weekly automated backups are active during the complimentary support period.</span>
+        <span style="font-weight: 600; display: inline-block; margin-top: 5px;">Renewal Cost: ₹6,000 / Year (Applicable from May 2027)</span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="service-name">Payment Gateway (Paytm)</span>
+        <span class="service-desc">For receiving online customer payments securely.</span>
+      </td>
+      <td>Payments settle directly to your linked bank account. Standard Paytm transaction charges apply automatically per sale.</td>
+    </tr>
+    <tr>
+      <td>
+        <span class="service-name">Tech Support</span>
+        <span class="service-desc">Ongoing technical assistance and bug fixes.</span>
+      </td>
+      <td>
+        <strong>6 Months Full Tech Support Included</strong><br>
+        <span style="font-size: 13px; color: var(--text-muted);">Spiderbyte Lab is always ready to fix any errors or problems you face.</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. Client Responsibilities</h2>
+<div style="margin-bottom: 15px;">
+  <p style="font-size: 13px; color: var(--text-main); margin-bottom: 8px;">To ensure uninterrupted operation of your website, please ensure the following:</p>
+  <ul style="font-size: 13px; color: var(--text-main); padding-left: 20px;">
+    <li style="margin-bottom: 4px;">Renew your domain before expiry.</li>
+    <li style="margin-bottom: 4px;">Renew hosting after complimentary period.</li>
+    <li style="margin-bottom: 4px;">Keep payment gateway KYC updated.</li>
+    <li style="margin-bottom: 4px;">Do not share admin credentials publicly.</li>
+  </ul>
+</div>
+
+<div style="margin-top: 25px; text-align: center; border-top: 1px solid var(--border); padding-top: 15px; color: var(--text-main); font-size: 13px;">
+  <strong>Spiderbyte Lab</strong><br>
+  🌐 www.spiderbytelab.in | 📱 +91 9053584729
+</div>
+
+</body>
+</html>

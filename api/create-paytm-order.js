@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 
     try {
       const isProduction = process.env.PAYTM_WEBSITE === 'DEFAULT';
-    const host = isProduction ? 'secure.paytmpayments.com' : 'securestage.paytmpayments.com';
+      const host = isProduction ? 'securegw.paytm.in' : 'securegw-stage.paytm.in';
 
     const reqProtocol = req.headers['x-forwarded-proto'] || 'https';
     const reqHost = req.headers.host || 'localhost:3001';
