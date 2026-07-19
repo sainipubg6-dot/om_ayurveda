@@ -16,7 +16,7 @@ async function testPaytm() {
       mid: mid,
       websiteName: "DEFAULT",
       orderId: orderId,
-      callbackUrl: `https://securegw.paytm.in/theia/paytmCallback?ORDER_ID=${orderId}`,
+      callbackUrl: `https://secure.paytmpayments.com/theia/paytmCallback?ORDER_ID=${orderId}`,
       industryType: "Retail",
       txnAmount: {
         value: "10.00",
@@ -42,7 +42,7 @@ async function testPaytm() {
 
   console.log("Sending payload:", post_data);
 
-  const response = await fetch(`https://securegw.paytm.in/theia/api/v1/initiateTransaction?mid=${mid}&orderId=${orderId}`, {
+  const response = await fetch(`https://secure.paytmpayments.com/theia/api/v1/initiateTransaction?mid=${mid}&orderId=${orderId}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -67,7 +67,7 @@ const CheckoutPage = () => {
         script.id = 'paytm-script';
         const mid = import.meta.env.VITE_PAYTM_MID || 'kQHYXq33356879397658';
         const isStaging = import.meta.env.VITE_PAYTM_ENVIRONMENT === 'staging';
-        const host = isStaging ? 'securegw-stage.paytm.in' : 'securegw.paytm.in';
+        const host = isStaging ? 'securestage.paytmpayments.com' : 'secure.paytmpayments.com';
         script.src = `https://${host}/merchantpgpui/checkoutjs/merchants/${mid}.js`;
         script.onload = () => resolve(true);
         document.body.appendChild(script);
