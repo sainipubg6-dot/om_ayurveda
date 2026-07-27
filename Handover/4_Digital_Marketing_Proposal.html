@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Growth & Management Proposal - Spiderbyte Lab</title>
+<style>
+  :root {
+    --text-main: #1a1a1a;
+    --text-muted: #555555;
+    --border: #e0e0e0;
+    --accent: #2563eb;
+    --bg-light: #f8fafc;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+    color: var(--text-main); 
+    width: 210mm; 
+    max-width: 100%;
+    margin: 0 auto; 
+    padding: 10mm 15mm; 
+    background-color: #ffffff;
+    line-height: 1.35;
+  }
+
+  /* Header */
+  .header { 
+    display: flex; justify-content: space-between; align-items: flex-start; 
+    margin-bottom: 20px; 
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 15px;
+  }
+  .header-left h1 { margin: 0; font-size: 24px; font-weight: 700; color: var(--text-main); letter-spacing: -0.5px; text-transform: uppercase;}
+  .header-left p { margin: 4px 0 0 0; color: var(--text-muted); font-size: 13px; font-weight: 500;}
+  .logo { max-width: 120px; }
+
+  .intro { font-size: 13px; margin-bottom: 20px; }
+  .intro p { margin-bottom: 8px; }
+
+  h2 { font-size: 14px; text-transform: uppercase; border-bottom: 2px solid var(--text-main); padding-bottom: 4px; margin-top: 15px; margin-bottom: 10px; letter-spacing: 1px;}
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .service-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    background: var(--bg-light);
+  }
+
+  .service-card h3 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .service-price {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .feature-list { list-style: none; padding: 0; margin: 10px 0 0 0; }
+  .feature-list li { font-size: 11px; margin-bottom: 6px; padding-left: 14px; position: relative; line-height: 1.3; color: var(--text-muted);}
+  .feature-list li::before { content: '✓'; position: absolute; left: 0; top: 0; font-weight: bold; color: var(--text-main);}
+
+  .note { font-size: 10px; color: var(--text-muted); font-style: italic; margin-top: 10px; border-top: 1px solid #ddd; padding-top: 8px;}
+
+  .total-box {
+    background: var(--text-main);
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+    margin: 15px 0;
+  }
+  .total-box h3 { margin: 0; font-size: 13px; font-weight: 500; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px;}
+  .total-box .amount { font-size: 24px; font-weight: 700; margin: 4px 0 0 0; }
+
+  .comparison-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  .comparison-table th { border-bottom: 2px solid var(--text-main); padding: 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; text-align: left;}
+  .comparison-table td { padding: 8px; border-bottom: 1px solid var(--border); font-size: 12px;}
+  .comparison-table .total-row { font-weight: 700; background: var(--bg-light); }
+
+  .terms-list { list-style: none; padding: 0; margin: 0; }
+  .terms-list li { font-size: 12px; margin-bottom: 6px; display: flex; }
+  .terms-list li strong { width: 220px; color: var(--text-main); }
+
+  .closing { font-size: 12px; margin-top: 15px; font-style: italic; text-align: center; color: var(--text-muted);}
+
+  .signature { text-align: center; margin-top: 20px; border-top: 1px solid var(--border); padding-top: 12px; }
+  .signature strong { font-size: 13px; }
+
+  @media print {
+    @page { size: A4 portrait; margin: 0; }
+    body { width: 100%; margin: 0; padding: 8mm; zoom: 0.70; }
+    .service-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>Digital Growth Proposal</h1>
+    <p>Monthly Retainer Plan</p>
+    <p style="margin-top: 8px; color: var(--text-main);"><strong>Prepared For:</strong> Om Ayurveda</p>
+  </div>
+  <div class="header-right">
+    <img src="spider bytelab .png" alt="Spiderbyte Lab" class="logo">
+  </div>
+</div>
+
+<div class="intro">
+  <p><strong>Complete Digital Management Package for Om Ayurveda</strong></p>
+  <p>Our dedicated team manages Om Ayurveda's complete online presence so you can focus on scaling your business and helping patients. Instead of hiring multiple employees, you get one experienced digital team dedicated to expanding Om Ayurveda's reach and establishing it as a trusted Ayurvedic brand.</p>
+</div>
+
+<h2>1. What's Included</h2>
+
+<div class="services-grid">
+  <div class="service-card">
+    <h3>🌐 Website Growth & Tech</h3>
+    <ul class="feature-list">
+      <li>24/7 Emergency Priority Support & Uptime Monitoring</li>
+      <li>Unlimited E-Commerce Product Uploads (Fair Usage)</li>
+      <li>Continuous Landing Page Optimization (Consultations/Offers)</li>
+      <li>Core Web Vitals & Advanced Speed Optimization</li>
+      <li>Weekly Automated Cloud Backups & Malware Protection</li>
+      <li>Monthly Technical & On-Page SEO Optimization</li>
+      <li>Google Analytics 4 (GA4) & Search Console Data</li>
+      <li>Instant Bug Fixes & Payment Gateway Maintenance</li>
+    </ul>
+  </div>
+
+  <div class="service-card">
+    <h3>▶️ YouTube Channel Domination</h3>
+    <ul class="feature-list">
+      <li>Full-Scale Channel Branding & Ongoing Channel Management</li>
+      <li>4 High-Retention Edited Videos (B-Roll, Transitions)</li>
+      <li>Highly Engaging Custom Click-Through Thumbnails</li>
+      <li>Advanced YouTube SEO (High-Volume Keywords, Tags)</li>
+      <li>Competitor Research & Video Topic Ideation</li>
+      <li>Audience Engagement & Comment Moderation</li>
+      <li>Monthly Channel Analytics & Growth Strategy Report</li>
+    </ul>
+    <div class="note">*Long-form video editing charged separately (starting ₹400/min).</div>
+  </div>
+
+  <div class="service-card">
+    <h3>📱 Instagram & FB Brand Building</h3>
+    <ul class="feature-list">
+      <li>4 High-Quality Viral-Style Reels (Hooks, Trending Audio)</li>
+      <li>8 Premium Custom Designed Posts / Carousels</li>
+      <li>Complete 30-Day Content Calendar & Posting Strategy</li>
+      <li>Deep Hashtag Research & Competitor Analysis</li>
+      <li>Persuasive Conversion-Focused Copywriting</li>
+      <li>Active Community Management & DM Replies</li>
+      <li>Weekly Strategic Story Management (Polls, Q&A)</li>
+      <li>Monthly Social Media Growth & Insights Report</li>
+    </ul>
+  </div>
+
+  <div class="service-card">
+    <h3>📈 Meta Ads & Performance</h3>
+    <ul class="feature-list">
+      <li>High-Converting Campaign Strategy & Setup</li>
+      <li>Precision Audience Targeting & Retargeting Setup</li>
+      <li>Facebook Pixel & Conversion API Integration</li>
+      <li>A/B Testing of Ad Creatives & Copy</li>
+      <li>Continuous ROI & ROAS Optimization</li>
+      <li>Weekly Budget Monitoring & Bid Adjustments</li>
+      <li>Transparent Performance Dashboard Reports</li>
+    </ul>
+    <div class="note">*Ad Budget is paid directly by the client and is not included.</div>
+  </div>
+</div>
+
+<div class="total-box">
+  <h3>Total Monthly Investment</h3>
+  <div class="amount">₹35,000 / Month</div>
+  <div style="font-size: 12px; margin-top: 5px; font-weight: normal;">A complete digital team under one roof.</div>
+</div>
+
+<h2>2. Why Spiderbyte Lab?</h2>
+<p style="font-size: 13px; margin-bottom: 15px;">Unlike freelancers, your project is handled by a specialized team, ensuring every area is managed by the right expert. This allows faster execution, higher quality work, and consistent business growth without the cost of hiring an in-house team.</p>
+
+<table class="comparison-table">
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>Estimated In-House Cost</th>
+      <th>Spiderbyte Lab Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Website Developer</td>
+      <td>₹20,000+</td>
+      <td rowspan="5" style="text-align: center; vertical-align: middle; background: var(--bg-light); font-weight: bold; color: var(--accent); border-left: 1px solid var(--border);">
+        All Included for<br>₹35,000
+      </td>
+    </tr>
+    <tr>
+      <td>Video Editor</td>
+      <td>₹20,000+</td>
+    </tr>
+    <tr>
+      <td>Social Media Manager</td>
+      <td>₹18,000+</td>
+    </tr>
+    <tr>
+      <td>SEO Specialist</td>
+      <td>₹20,000+</td>
+    </tr>
+    <tr>
+      <td>Meta Ads Expert</td>
+      <td>₹20,000+</td>
+    </tr>
+    <tr class="total-row">
+      <td>Estimated Total</td>
+      <td>₹98,000+ / Month</td>
+      <td style="text-align: center; color: var(--accent);">Save ₹63,000+ / Mo</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. Terms & Conditions</h2>
+<ul class="terms-list">
+  <li><strong>Minimum Contract:</strong> 3 Months</li>
+  <li><strong>Payment Terms:</strong> Advance Monthly</li>
+  <li><strong>Additional Work Outside Scope:</strong> Quoted Separately</li>
+  <li><strong>Ad Spend:</strong> Paid by Client directly to Meta/Google</li>
+  <li><strong>Major Features or Redesigns:</strong> Not Included (Quoted separately)</li>
+</ul>
+
+<div class="closing">
+  At Spiderbyte Lab, we don't simply manage your digital platforms—we build a consistent online presence designed to establish <strong>Om Ayurveda</strong> as a leading and trusted name in Ayurvedic healthcare. We look forward to being your long-term growth partner.
+</div>
+
+<div class="signature">
+  <strong>Spiderbyte Lab</strong>
+  <div style="margin-top: 5px; font-size: 13px; color: var(--text-main);">
+    🌐 www.spiderbytelab.in | 📱 +91 9053584729
+  </div>
+</div>
+
+</body>
+</html>
