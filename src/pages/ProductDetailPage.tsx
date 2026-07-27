@@ -44,6 +44,17 @@ const ProductDetailPage = () => {
       if (foundProduct) {
         const hasDiscount = foundProduct.on_sale && foundProduct.regular_price && foundProduct.regular_price !== foundProduct.price;
 
+        // Extract any .mp4 or .webm URLs from the description to add to the gallery
+        const videoRegex = /https?:\/\/[^\s"'<>]+\.(?:mp4|webm)/gi;
+        const descText = (foundProduct.description || '') + ' ' + (foundProduct.short_description || '');
+        const extractedVideos = [...new Set(descText.match(videoRegex) || [])];
+
+        let combinedMedia = foundProduct.images?.length > 0 
+          ? foundProduct.images.map((img: any) => (typeof img === 'string' ? img : img.src))
+          : ["https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"];
+        
+        combinedMedia = [...combinedMedia, ...extractedVideos];
+
         const cleanedProduct = {
           id: foundProduct.id,
           name: foundProduct.name || "Ayurvedic Formulation",
@@ -53,9 +64,7 @@ const ProductDetailPage = () => {
           onSale: hasDiscount,
           description: foundProduct.description || foundProduct.short_description || "Authentic Ayurvedic formulation.",
           shortDescription: foundProduct.short_description?.replace(/<[^>]*>?/gm, '') || "Premium Ayurvedic wellness solution.",
-          images: foundProduct.images?.length > 0 
-            ? foundProduct.images.map((img: any) => (typeof img === 'string' ? img : img.src))
-            : ["https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"]
+          images: combinedMedia
         };
         
         setProduct(cleanedProduct);
@@ -127,11 +136,22 @@ const ProductDetailPage = () => {
                     setIsLightboxOpen(true);
                   }}
                 >
-                  <img 
-                    src={product?.images?.[activeImage] || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"} 
-                    alt={product?.name} 
-                    className="w-full h-full object-contain bg-white transition-transform duration-700 group-hover:scale-105"
-                  />
+                  {product?.images?.[activeImage]?.match(/\.(mp4|webm)/i) ? (
+                    <video 
+                      src={product.images[activeImage]} 
+                      autoPlay 
+                      muted 
+                      loop 
+                      playsInline
+                      className="w-full h-full object-contain bg-white transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <img 
+                      src={product?.images?.[activeImage] || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"} 
+                      alt={product?.name} 
+                      className="w-full h-full object-contain bg-white transition-transform duration-700 group-hover:scale-105"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-brand-black/0 group-hover:bg-brand-black/5 transition-colors duration-500" />
                   <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/90 backdrop-blur-md p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-brand-gold/10">
                     <Maximize2 className="w-4 h-4 md:w-5 md:h-5 text-brand-forest" />
@@ -154,7 +174,11 @@ const ProductDetailPage = () => {
                         activeImage === i ? "border-brand-gold shadow-lg scale-95" : "border-white hover:border-brand-gold/30"
                       )}
                     >
-                      <img src={img} alt="Thumbnail" className="w-full h-full object-cover" />
+                      {img.match(/\.(mp4|webm)/i) ? (
+                        <video src={img} className="w-full h-full object-cover" muted />
+                      ) : (
+                        <img src={img} alt="Thumbnail" className="w-full h-full object-cover" />
+                      )}
                     </button>
                   ))}
                 </div>
@@ -359,7 +383,11 @@ const ProductDetailPage = () => {
         <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-brand-black/95 border-none flex items-center justify-center">
           <button onClick={() => setIsLightboxOpen(false)} className="absolute top-4 right-4 text-white/50 hover:text-white z-50"><X className="w-8 h-8" /></button>
           <button onClick={handlePrev} className="absolute left-4 text-white/50 hover:text-white p-2 z-50"><ChevronLeft className="w-12 h-12" /></button>
-          <img src={product?.images?.[lightboxIndex]} alt="Gallery" className="max-w-full max-h-[85vh] object-contain" />
+          {product?.images?.[lightboxIndex]?.match(/\.(mp4|webm)/i) ? (
+            <video src={product.images[lightboxIndex]} controls autoPlay className="max-w-full max-h-[85vh] object-contain" />
+          ) : (
+            <img src={product?.images?.[lightboxIndex]} alt="Gallery" className="max-w-full max-h-[85vh] object-contain" />
+          )}
           <button onClick={handleNext} className="absolute right-4 text-white/50 hover:text-white p-2 z-50"><ChevronRight className="w-12 h-12" /></button>
         </DialogContent>
       </Dialog>
