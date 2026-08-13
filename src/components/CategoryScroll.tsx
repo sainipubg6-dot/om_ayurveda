@@ -66,6 +66,7 @@ const CategoryScroll = () => {
                     className="w-full h-full object-contain drop-shadow-xl group-hover:-translate-y-2 group-hover:scale-110 transition-transform duration-300 relative z-10"
                     loading={idx < 4 ? "eager" : "lazy"}
                     {...(idx < 4 ? { fetchPriority: "high" } : {})}
+                    referrerPolicy="no-referrer"
                   />
                 </div>
                 <span className="text-[9px] xs:text-[10px] sm:text-sm md:text-base font-bold text-brand-forest text-center leading-tight sm:whitespace-nowrap group-hover:text-brand-gold transition-colors px-0 w-full break-words">

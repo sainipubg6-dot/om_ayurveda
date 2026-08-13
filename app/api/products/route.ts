@@ -1,5 +1,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
 
 async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -38,8 +40,6 @@ async function handler(req, res) {
 
     // Fallback cache if API fails (useful for local development behind firewalls)
     if (!products) {
-      const fs = require('fs');
-      const path = require('path');
       const fallbackPath = path.join(process.cwd(), 'src', 'themes', 'products-fallback.json');
       
       if (fs.existsSync(fallbackPath)) {

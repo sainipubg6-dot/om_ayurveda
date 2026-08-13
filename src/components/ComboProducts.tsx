@@ -93,6 +93,7 @@ const ComboProducts = () => {
                       src={getSecureImageUrl(product.images?.[0]?.src) || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"} 
                       alt={product.name} 
                       className="w-full h-full object-contain transition-transform duration-1000 group-hover:scale-105"
+                      referrerPolicy="no-referrer"
                     />
                     <div className="absolute top-2 right-2 md:top-4 md:right-4">
                        <div className="bg-brand-forest/90 text-brand-gold p-1.5 md:p-2 rounded-full shadow-lg backdrop-blur-sm">

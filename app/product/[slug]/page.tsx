@@ -150,6 +150,7 @@ const ProductDetailPage = () => {
                       src={product?.images?.[activeImage] || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"} 
                       alt={product?.name} 
                       className="w-full h-full object-contain bg-white transition-transform duration-700 group-hover:scale-105"
+                      referrerPolicy="no-referrer"
                     />
                   )}
                   <div className="absolute inset-0 bg-brand-black/0 group-hover:bg-brand-black/5 transition-colors duration-500" />
@@ -358,6 +359,7 @@ const ProductDetailPage = () => {
                             src={getSecureImageUrl(relatedProduct.images?.[0]?.src) || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"} 
                             alt={relatedProduct.name}
                             className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"
+                            referrerPolicy="no-referrer"
                           />
                         </div>
                         <h3 className="font-serif font-bold text-brand-forest text-base md:text-xl mb-2 line-clamp-2 flex-grow">{relatedProduct.name}</h3>

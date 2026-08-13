@@ -146,6 +146,7 @@ const ProductsPage = () => {
                               src={getSecureImageUrl(product.images?.[0]?.src) || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"} 
                               alt={cleanedName} 
                               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                              referrerPolicy="no-referrer"
                             />
                           </div>
                           
