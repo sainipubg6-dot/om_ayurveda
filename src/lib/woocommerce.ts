@@ -55,21 +55,10 @@ export const useWCProducts = () => {
 
   useEffect(() => {
     const load = async () => {
-      // 1. Instantly load from cache to make the page load feel instant (0ms lag)
-      const cachedData = localStorage.getItem('wc_products_cache');
-      if (cachedData) {
-        setProducts(JSON.parse(cachedData));
-        setLoading(false);
-      }
-
       try {
-        // 2. Fetch fresh products from WooCommerce in the background
         const data = await fetchWCProducts();
-        
         if (data && data.length > 0) {
           setProducts(data);
-          localStorage.setItem('wc_products_cache', JSON.stringify(data));
-          localStorage.setItem('wc_products_cache_time', Date.now().toString());
         }
       } catch (error) {
         console.error('Background WooCommerce sync error:', error);
