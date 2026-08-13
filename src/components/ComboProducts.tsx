@@ -1,7 +1,8 @@
 "use client";
 
+import Link from 'next/link';
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+
 import { ArrowRight, ShoppingCart, Star, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useWCProducts } from '@/lib/woocommerce';
@@ -63,7 +64,7 @@ const ComboProducts = () => {
                     <ChevronRight className="w-5 h-5" />
                   </Button>
                </div>
-               <Link to="/products?category=combo">
+               <Link href="/products?category=combo">
                   <Button variant="outline" className="border border-brand-forest text-brand-forest bg-transparent hover:bg-brand-forest hover:text-brand-cream font-bold px-3 py-1 xs:px-4 xs:py-2 md:px-8 md:py-6 h-8 xs:h-10 md:h-14 rounded-full flex items-center group text-[10px] xs:text-xs md:text-base">
                     All Combos
                     <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2 group-hover:translate-x-1 transition-transform" />
@@ -84,7 +85,7 @@ const ComboProducts = () => {
         >
           {combos.map((product) => (
             <div key={product.id} className="w-[150px] xs:w-[180px] sm:w-[220px] md:w-[320px] flex-shrink-0 snap-start group flex flex-col">
-              <Link to={`/product/${product.slug || product.id}`} className="flex-1">
+              <Link href={`/product/${product.slug || product.id}`} className="flex-1">
                 <div className="bg-white rounded-[1.5rem] md:rounded-[2.5rem] p-3 md:p-6 shadow-xl border border-brand-gold/5 hover:border-brand-gold/30 transition-all duration-700 hover:-translate-y-2 flex flex-col h-full overflow-hidden">
                   <div className="relative aspect-square rounded-xl md:rounded-[2rem] overflow-hidden mb-3 md:mb-6 bg-brand-cream/10">
                     <img 

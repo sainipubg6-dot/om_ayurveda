@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { CheckCircle2, Instagram, Facebook } from 'lucide-react';
 

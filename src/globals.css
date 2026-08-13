@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Festival themes — toggle via src/themes/festival-config.ts */
+@import './themes/festival.css';
+
 @layer base {
   :root {
     --background: 33 56% 87%;

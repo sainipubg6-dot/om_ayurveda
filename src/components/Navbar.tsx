@@ -1,17 +1,19 @@
 "use client";
 
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+
 import { useCart } from '@/contexts/CartContext';
 
 const Navbar = () => {
   const { cartCount } = useCart();
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -43,7 +45,7 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center group cursor-pointer" aria-label="Om Ayurveda Home">
+          <Link href="/" className="flex items-center group cursor-pointer" aria-label="Om Ayurveda Home">
             <img 
               src="/Logo.png" 
               alt="Om Ayurveda Logo" 
@@ -55,12 +57,11 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-8">
             <div className="flex items-center gap-6">
               {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href}
+                <Link key={link.name}
+                  href={link.href}
                   className={cn(
                     "transition-all font-bold text-xs uppercase tracking-[0.2em]",
-                    location.pathname === link.href ? "text-white underline underline-offset-8 decoration-2" : "text-white/70 hover:text-white"
+                    pathname === link.href ? "text-white underline underline-offset-8 decoration-2" : "text-white/70 hover:text-white"
                   )}
                 >
                   {link.name}
@@ -69,7 +70,7 @@ const Navbar = () => {
             </div>
             
             <div className="flex items-center gap-4 border-l border-white/10 pl-6">
-              <Link to="/cart" className="relative p-2 text-white hover:text-brand-gold transition-colors" aria-label={`View Cart with ${cartCount} items`}>
+              <Link href="/cart" className="relative p-2 text-white hover:text-brand-gold transition-colors" aria-label={`View Cart with ${cartCount} items`}>
                 <ShoppingCart className="w-5 h-5" />
                 <span className="absolute -top-1 -right-1 bg-brand-gold text-brand-black text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-brand-forest">
                   {cartCount}
@@ -88,7 +89,7 @@ const Navbar = () => {
 
           {/* Mobile Toggle & Cart */}
           <div className="flex items-center gap-2 md:hidden">
-            <Link to="/cart" className="relative p-2 text-white transition-colors mr-2" aria-label={`View Cart with ${cartCount} items`}>
+            <Link href="/cart" className="relative p-2 text-white transition-colors mr-2" aria-label={`View Cart with ${cartCount} items`}>
               <ShoppingCart className="w-6 h-6" />
               <span className="absolute top-0 right-0 bg-brand-gold text-brand-black text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border-2 border-brand-forest">
                 {cartCount}
@@ -121,13 +122,12 @@ const Navbar = () => {
 
         <div className="flex flex-col items-center gap-8 relative z-10">
           {navLinks.map((link, i) => (
-            <Link
-              key={link.name}
-              to={link.href}
+            <Link key={link.name}
+              href={link.href}
               onClick={() => setIsOpen(false)}
               className={cn(
                 "text-2xl font-serif tracking-[0.3em] uppercase transition-all duration-300",
-                location.pathname === link.href ? "text-brand-gold scale-110" : "text-white hover:text-brand-gold"
+                pathname === link.href ? "text-brand-gold scale-110" : "text-white hover:text-brand-gold"
               )}
             >
               {link.name}
@@ -146,7 +146,7 @@ const Navbar = () => {
             <Phone className="w-5 h-5 mr-3" />
             Call for Advice
           </Button>
-          <Link to="/cart" className="w-full" onClick={() => setIsOpen(false)}>
+          <Link href="/cart" className="w-full" onClick={() => setIsOpen(false)}>
             <Button variant="outline" className="w-full border-white/20 text-white py-8 text-xl rounded-2xl bg-white/5">
               <ShoppingCart className="w-5 h-5 mr-3" />
               Cart ({cartCount})

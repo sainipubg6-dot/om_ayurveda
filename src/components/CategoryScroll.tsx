@@ -1,6 +1,9 @@
+"use client";
+
+import Link from 'next/link';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+
 
 const categories = [
   { name: 'All Products', image: '/images/products/omega-3-front.webp', bgColor: 'bg-pink-100', link: '/products' },
@@ -20,8 +23,7 @@ const CategoryScroll = () => {
       <div className="w-full">
         <div className="flex overflow-x-auto md:justify-center scrollbar-hide snap-x snap-mandatory gap-2 sm:gap-6 md:gap-10 pb-2 pt-2 px-3 md:px-8">
           {categories.map((cat, idx) => (
-            <Link 
-              to={cat.link}
+            <Link href={cat.link}
               key={idx}
               className="flex flex-col items-center gap-1 sm:gap-4 w-[64px] xs:w-[72px] sm:w-[120px] shrink-0 snap-start group cursor-pointer"
             >
@@ -31,7 +33,7 @@ const CategoryScroll = () => {
                   alt={cat.name} 
                   className="w-full h-full object-contain drop-shadow-xl group-hover:-translate-y-2 group-hover:scale-110 transition-transform duration-300 relative z-10"
                   loading={idx < 4 ? "eager" : "lazy"}
-                  {...(idx < 4 ? { fetchpriority: "high" } : {})}
+                  {...(idx < 4 ? { fetchPriority: "high" } : {})}
                 />
               </div>
               <span className="text-[9px] xs:text-[10px] sm:text-sm md:text-base font-bold text-brand-forest text-center leading-tight sm:whitespace-nowrap group-hover:text-brand-gold transition-colors px-0 w-full break-words">

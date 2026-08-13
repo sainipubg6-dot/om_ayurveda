@@ -1,7 +1,8 @@
 "use client";
 
+import Link from 'next/link';
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+
 import { ArrowRight, Clock, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -100,7 +101,7 @@ const FeaturedServices = () => {
                     <ChevronRight className="w-5 h-5" />
                   </Button>
                </div>
-               <Link to="/services">
+               <Link href="/services">
                   <Button variant="outline" className="border border-brand-forest text-brand-forest bg-transparent hover:bg-brand-forest hover:text-brand-cream font-bold px-3 py-1 xs:px-4 xs:py-2 md:px-8 md:py-6 h-8 xs:h-10 md:h-14 rounded-full flex items-center group text-[10px] xs:text-xs md:text-base">
                     All Services
                     <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2 group-hover:translate-x-1 transition-transform" />

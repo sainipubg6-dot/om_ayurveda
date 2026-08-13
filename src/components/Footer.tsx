@@ -1,7 +1,8 @@
 "use client";
 
+import Link from 'next/link';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import { Facebook, Instagram, Youtube, Loader2, MapPin, Phone, Mail } from 'lucide-react';
 import { showSuccess, showError } from '@/utils/toast';
 
@@ -39,7 +40,7 @@ const Footer = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-3 md:mb-4">
           {/* Brand - Tight on Mobile */}
           <div className="col-span-2 lg:col-span-1">
-            <Link to="/" className="flex flex-col mb-3 group inline-flex" aria-label="Om Ayurveda Home">
+            <Link href="/" className="flex flex-col mb-3 group inline-flex" aria-label="Om Ayurveda Home">
               <span className="font-serif font-bold text-xl md:text-2xl text-white tracking-tight leading-none">OM AYURVEDA</span>
               <div className="h-0.5 w-full bg-brand-gold mt-1 mb-1.5" />
               <span className="font-hindi text-white font-medium text-xs md:text-sm text-center">पहला सुख निरोगी काया</span>
@@ -63,7 +64,7 @@ const Footer = () => {
             <ul className="space-y-0.5">
               {['Home', 'About', 'Services', 'Products', 'Contact'].map(name => (
                 <li key={name}>
-                  <Link to={name === 'Home' ? '/' : `/${name.toLowerCase()}`} className="text-white/60 hover:text-brand-gold transition-colors text-[9px] md:text-[11px]">
+                  <Link href={name === 'Home' ? '/' : `/${name.toLowerCase()}`} className="text-white/60 hover:text-brand-gold transition-colors text-[9px] md:text-[11px]">
                     {name}
                   </Link>
                 </li>
@@ -81,7 +82,7 @@ const Footer = () => {
                 { name: 'Refunds', path: '/refunds' }
               ].map(policy => (
                 <li key={policy.name}>
-                  <Link to={policy.path} className="text-white/60 hover:text-brand-gold transition-colors text-[9px] md:text-[11px]">
+                  <Link href={policy.path} className="text-white/60 hover:text-brand-gold transition-colors text-[9px] md:text-[11px]">
                     {policy.name}
                   </Link>
                 </li>

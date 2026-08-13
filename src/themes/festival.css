@@ -1,0 +1,143 @@
+/* ============================================
+   FESTIVAL THEMES — Om Ayurveda
+   ============================================
+   Import this file in globals.css.
+   Themes activate via body class set by FestivalProvider.
+   To add a new festival: add a new section below + update festival-config.ts.
+*/
+
+/* -----------------------------------------------
+   INDEPENDENCE DAY — Tricolor (Saffron · White · Green)
+   ----------------------------------------------- */
+body.festival-independence-day {
+  --festival-primary: #FF9933;      /* Saffron */
+  --festival-secondary: #138808;    /* India Green */
+  --festival-accent: #000080;       /* Navy Blue (Ashoka Chakra) */
+  --festival-highlight: #FFFFFF;
+}
+
+
+/* Festival banner styling */
+.festival-banner-independence-day {
+  background: linear-gradient(135deg, #FF9933 0%, #f7a84b 30%, #FFFFFF 50%, #5dba68 70%, #138808 100%);
+  color: #1a1a2e;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.3);
+}
+
+.festival-banner-independence-day .festival-emoji {
+  animation: flagWave 1.5s ease-in-out infinite;
+}
+
+@keyframes flagWave {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+
+/* -----------------------------------------------
+   RAKSHA BANDHAN — Festive Pink · Rose · Gold
+   ----------------------------------------------- */
+body.festival-raksha-bandhan {
+  --festival-primary: #e84393;      /* Rose Pink */
+  --festival-secondary: #d4a017;    /* Gold */
+  --festival-accent: #6c5ce7;       /* Purple */
+  --festival-highlight: #ffeef8;
+}
+
+
+.festival-banner-raksha-bandhan {
+  background: linear-gradient(135deg, #e84393 0%, #fd79a8 30%, #ffeef8 50%, #f8d56b 70%, #d4a017 100%);
+  color: #2d1b3d;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.3);
+}
+
+.festival-banner-raksha-bandhan .festival-emoji {
+  animation: rakhiSpin 2s ease-in-out infinite;
+}
+
+@keyframes rakhiSpin {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(10deg) scale(1.15); }
+}
+
+
+/* -----------------------------------------------
+   SHARED BANNER BASE
+   ----------------------------------------------- */
+.festival-banner {
+  width: 100%;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.festival-banner .festival-emoji {
+  display: inline-block;
+  font-size: 18px;
+}
+
+.festival-banner .festival-dismiss {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.3);
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+  transition: background 0.2s;
+}
+
+.festival-banner .festival-dismiss:hover {
+  background: rgba(255,255,255,0.6);
+}
+
+@media (max-width: 640px) {
+  .festival-banner {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  .festival-banner .festival-emoji {
+    font-size: 14px;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   FOOTER LOGO & SLOGAN THEME DYNAMIC COLORS
+   ────────────────────────────────────────────── */
+body.festival-independence-day footer span.font-serif {
+  color: var(--festival-primary) !important; /* Saffron */
+}
+body.festival-independence-day footer div.bg-brand-gold {
+  background-color: var(--festival-highlight) !important; /* White */
+}
+body.festival-independence-day footer span.font-hindi {
+  color: var(--festival-secondary) !important; /* Green */
+}
+
+body.festival-raksha-bandhan footer span.font-serif {
+  color: var(--festival-primary) !important; /* Pink */
+}
+body.festival-raksha-bandhan footer div.bg-brand-gold {
+  background-color: var(--festival-highlight) !important; /* White/Pink Light */
+}
+body.festival-raksha-bandhan footer span.font-hindi {
+  color: var(--festival-secondary) !important; /* Gold */
+}
+

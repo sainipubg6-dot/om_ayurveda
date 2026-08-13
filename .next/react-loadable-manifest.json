@@ -1,0 +1,58 @@
+{
+  "app\\page.tsx -> @/components/AboutLegacy": {
+    "id": 6948,
+    "files": [
+      "static/chunks/948.40b882fe6dc88184.js"
+    ]
+  },
+  "app\\page.tsx -> @/components/ComboProducts": {
+    "id": 5813,
+    "files": [
+      "static/chunks/143-e66a2a8c0bdd3cd7.js",
+      "static/chunks/813.f030ec82146a260e.js"
+    ]
+  },
+  "app\\page.tsx -> @/components/FeaturedProducts": {
+    "id": 9619,
+    "files": [
+      "static/chunks/143-e66a2a8c0bdd3cd7.js",
+      "static/chunks/619.0e1c7fb3f3a45880.js"
+    ]
+  },
+  "app\\page.tsx -> @/components/FeaturedServices": {
+    "id": 5791,
+    "files": [
+      "static/chunks/791.78829ea5cd57f5b1.js"
+    ]
+  },
+  "app\\page.tsx -> @/components/Newsletter": {
+    "id": 3020,
+    "files": [
+      "static/chunks/20.239420813b1b7718.js"
+    ]
+  },
+  "app\\page.tsx -> @/components/Testimonials": {
+    "id": 2161,
+    "files": [
+      "static/chunks/161.14fe95e23fc5fa71.js"
+    ]
+  },
+  "app\\page.tsx -> @/components/TrustAndResults": {
+    "id": 7288,
+    "files": [
+      "static/chunks/288.62b01dd79317ecb7.js"
+    ]
+  },
+  "node_modules\\.pnpm\\next@15.1.4_@babel+core@7.2_b5633ad24f5f50c8626fd79d76167095\\node_modules\\next\\dist\\client\\index.js -> ../pages/_app": {
+    "id": 4143,
+    "files": [
+      "static/chunks/524.e5607a6476ae2516.js"
+    ]
+  },
+  "node_modules\\.pnpm\\next@15.1.4_@babel+core@7.2_b5633ad24f5f50c8626fd79d76167095\\node_modules\\next\\dist\\client\\index.js -> ../pages/_error": {
+    "id": 6294,
+    "files": [
+      "static/chunks/294.2c6bb42d67b72818.js"
+    ]
+  }
+}

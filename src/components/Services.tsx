@@ -1,7 +1,8 @@
 "use client";
 
+import Link from 'next/link';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import { Activity, Sparkles, ChevronRight, CheckCircle2, IndianRupee, Clock, Tag, PhoneCall, Gift } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -340,7 +341,7 @@ const TreatmentCard = ({ service }: { service: (typeof physiotherapyServices)[0]
       </div>
 
       {/* Book CTA */}
-      <Link to="/contact" className="mt-5">
+      <Link href="/contact" className="mt-5">
         <button className="w-full bg-brand-forest/8 hover:bg-brand-forest text-brand-forest hover:text-brand-gold border border-brand-forest/20 hover:border-brand-forest py-2.5 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2">
           <PhoneCall className="w-4 h-4" /> Book This Treatment
         </button>
@@ -473,7 +474,7 @@ const Services = () => {
                       <span className="flex items-center gap-1.5 text-brand-forest/60 text-xs">
                         <Clock className="w-3.5 h-3.5" /> {combo.duration}
                       </span>
-                      <Link to="/contact">
+                      <Link href="/contact">
                         <button className="flex items-center gap-1.5 bg-brand-forest text-brand-gold px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-forest/90 transition-colors">
                           Book Combo <ChevronRight className="w-3.5 h-3.5" />
                         </button>
@@ -495,7 +496,7 @@ const Services = () => {
               * All prices are per session. GST 18% applicable. Consult our doctors for personalised treatment plans.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link to="/contact">
+              <Link href="/contact">
                 <Button className="w-full sm:w-auto bg-brand-gold text-brand-black hover:bg-brand-goldDark font-bold px-7 py-3 rounded-full text-sm h-auto">
                   <PhoneCall className="w-4 h-4 mr-2" /> Book a Consultation
                 </Button>

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import React, { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart, Info, CheckCircle2, ChevronRight, Filter } from 'lucide-react';
@@ -7,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { cn } from '@/lib/utils';
 import { useWCProducts } from '@/lib/woocommerce';
 
-import { useNavigate, Link } from 'react-router-dom';
+
 import { useCart } from '@/contexts/CartContext';
 import { toast } from 'sonner';
 
@@ -101,7 +102,7 @@ const Products = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
             {filteredProducts.map((product) => (
               <div key={product.id} className="group flex flex-col bg-brand-cream/[0.02] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-brand-gold/10 hover:border-brand-gold/40 transition-all duration-700 hover:-translate-y-2 relative">
-                <Link to={`/product/${product.slug || product.id}`} className="block relative aspect-[4/5] overflow-hidden bg-brand-cream/5">
+                <Link href={`/product/${product.slug || product.id}`} className="block relative aspect-[4/5] overflow-hidden bg-brand-cream/5">
                   <img 
                     src={product.image} 
                     alt={product.name}
@@ -114,7 +115,7 @@ const Products = () => {
                 <div className="p-6 md:p-10 flex flex-col flex-1 bg-gradient-to-b from-transparent to-brand-forest/40">
                   <div className="mb-4">
                     <span className="text-brand-gold text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-bold block mb-2">{product.category}</span>
-                    <Link to={`/product/${product.slug || product.id}`} className="block group/title">
+                    <Link href={`/product/${product.slug || product.id}`} className="block group/title">
                       <h4 className="text-brand-cream font-serif text-2xl md:text-3xl font-bold leading-tight group-hover/title:text-brand-gold transition-colors">
                         {product.name}
                       </h4>
