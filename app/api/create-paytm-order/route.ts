@@ -17,9 +17,14 @@ async function handler(req, res) {
   const merchantKey = process.env.PAYTM_MERCHANT_KEY;
   const website = process.env.PAYTM_WEBSITE || 'WEBSTAGING';
 
-    try {
-      const isProduction = process.env.PAYTM_WEBSITE === 'DEFAULT';
-      const host = isProduction ? 'secure.paytmpayments.com' : 'securestage.paytmpayments.com';
+  if (!mid || !merchantKey) {
+    console.error("Missing Paytm Credentials! MID:", mid ? "Present" : "Missing", "Key:", merchantKey ? "Present" : "Missing");
+    return res.status(500).json({ message: 'Paytm credentials are not configured on the server.' });
+  }
+
+  try {
+    const isProduction = process.env.PAYTM_WEBSITE === 'DEFAULT';
+    const host = isProduction ? 'secure.paytmpayments.com' : 'securestage.paytmpayments.com';
 
     const reqProtocol = req.headers['x-forwarded-proto'] || 'https';
     const reqHost = req.headers.host || 'localhost:3001';
