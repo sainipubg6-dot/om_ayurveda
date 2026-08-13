@@ -17,16 +17,36 @@ export interface WCProduct {
 export const fetchWCProducts = async (): Promise<WCProduct[]> => {
   try {
     const response = await fetch('/api/products');
-    
-    if (!response.ok) {
-      console.error(`API Error: ${response.status} ${response.statusText}`);
-      throw new Error(`Failed to fetch products: ${response.status}`);
+    if (response.ok) {
+      return await response.json();
     }
-    return await response.json();
+    console.warn(`Local API endpoint /api/products failed (${response.status}). Trying direct browser fallback...`);
   } catch (error) {
-    console.error('Error fetching from API:', error);
-    return [];
+    console.warn('Error fetching from local API, trying direct browser fallback:', error);
   }
+
+  // Direct client-side browser fetch fallback to WooCommerce (bypasses Vercel server-side CDN block)
+  try {
+    const rootUrl = process.env.NEXT_PUBLIC_WC_ROOT_URL;
+    const consumerKey = process.env.NEXT_PUBLIC_WC_CONSUMER_KEY;
+    const consumerSecret = process.env.NEXT_PUBLIC_WC_CONSUMER_SECRET;
+
+    if (rootUrl && consumerKey && consumerSecret) {
+      const authParams = `consumer_key=${consumerKey}&consumer_secret=${consumerSecret}`;
+      const separator = rootUrl.includes('?') ? '&' : '?';
+      const url = `${rootUrl}/wp-json/wc/v3/products${separator}${authParams}&per_page=100`;
+
+      const directRes = await fetch(url);
+      if (directRes.ok) {
+        console.log('Successfully fetched products directly from WooCommerce in browser.');
+        return await directRes.json();
+      }
+    }
+  } catch (directError) {
+    console.error('Failed direct WooCommerce browser fetch fallback:', directError);
+  }
+
+  return [];
 };
 
 export const useWCProducts = () => {
