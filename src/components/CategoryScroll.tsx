@@ -6,15 +6,15 @@ import { motion } from 'framer-motion';
 
 
 const categories = [
-  { name: 'All Products', image: '/images/products/omega-3-front.webp', bgColor: 'bg-pink-100', link: '/products' },
-  { name: 'Brain & Immunity', image: '/images/products/swranprash front.webp', bgColor: 'bg-orange-100', link: '/products' },
-  { name: 'Digestion Care', image: '/images/products/detox-churna-front.webp', bgColor: 'bg-green-100', link: '/products' },
-  { name: 'Hair Care', image: '/images/products/hair-oil-front.webp', bgColor: 'bg-amber-100', link: '/products' },
-  { name: 'Joint Care', image: '/images/products/joint-pro-front.webp', bgColor: 'bg-blue-100', link: '/products' },
-  { name: 'Liver Support', image: '/images/products/liver -front.webp', bgColor: 'bg-rose-100', link: '/products' },
-  { name: 'Pain Relief', image: '/images/products/ortho-front.webp', bgColor: 'bg-purple-100', link: '/products' },
-  { name: 'Strength & Vitality', image: '/images/products/gokshura-front.webp', bgColor: 'bg-yellow-100', link: '/products' },
-  { name: 'Respiratory', image: '/images/products/cough-har-front.webp', bgColor: 'bg-teal-100', link: '/products' },
+  { name: 'All Products', image: '/images/products/omega-3-front.png', bgColor: 'bg-pink-100', link: '/products' },
+  { name: 'Brain & Immunity', image: '/images/products/swranprash front.png', bgColor: 'bg-orange-100', link: '/products' },
+  { name: 'Digestion Care', image: '/images/products/detox-churna-front.png', bgColor: 'bg-green-100', link: '/products' },
+  { name: 'Hair Care', image: '/images/products/hair-oil-front.png', bgColor: 'bg-amber-100', link: '/products' },
+  { name: 'Joint Care', image: '/images/products/joint-pro-front.png', bgColor: 'bg-blue-100', link: '/products' },
+  { name: 'Liver Support', image: '/images/products/liver -front.png', bgColor: 'bg-rose-100', link: '/products' },
+  { name: 'Pain Relief', image: '/images/products/ortho-front.png', bgColor: 'bg-purple-100', link: '/products' },
+  { name: 'Strength & Vitality', image: '/images/products/gokshura-front.png', bgColor: 'bg-yellow-100', link: '/products' },
+  { name: 'Respiratory', image: '/images/products/cough-har-front.png', bgColor: 'bg-teal-100', link: '/products' },
 ];
 
 const CategoryScroll = () => {
