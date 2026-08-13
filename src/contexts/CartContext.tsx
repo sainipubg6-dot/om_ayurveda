@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { getSecureImageUrl } from '@/lib/utils';
 
 export interface CartItem {
   id: number;
@@ -82,7 +83,7 @@ const staticPriceMap: Record<number, number> = {
           name: product.name,
           price: Number(String(product.price).replace(/,/g, '')),
           quantity: 1,
-          image: product.image || (product.images?.[0]?.src || product.images?.[0] || ''),
+          image: getSecureImageUrl(product.image || (product.images?.[0]?.src || product.images?.[0] || '')),
           category: product.category || (product.categories?.[0]?.name || 'Uncategorized'),
         },
       ];

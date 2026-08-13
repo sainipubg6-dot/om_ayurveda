@@ -14,7 +14,7 @@ import {
 import { useWCProducts } from '@/lib/woocommerce';
 import { useCart } from '@/contexts/CartContext';
 import { toast } from 'sonner';
-import { cn } from '@/lib/utils';
+import { cn, getSecureImageUrl } from '@/lib/utils';
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import {
   Accordion,
@@ -54,7 +54,7 @@ const ProductDetailPage = () => {
         const extractedVideos = [...new Set(descText.match(videoRegex) || [])];
 
         let combinedMedia = foundProduct.images?.length > 0 
-          ? foundProduct.images.map((img: any) => (typeof img === 'string' ? img : img.src))
+          ? foundProduct.images.map((img: any) => getSecureImageUrl(typeof img === 'string' ? img : img.src))
           : ["https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"];
         
         combinedMedia = [...combinedMedia, ...extractedVideos];
@@ -355,7 +355,7 @@ const ProductDetailPage = () => {
                       >
                         <div className="aspect-square bg-brand-cream/50 rounded-xl md:rounded-2xl mb-4 overflow-hidden">
                           <img 
-                            src={relatedProduct.images?.[0]?.src || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"} 
+                            src={getSecureImageUrl(relatedProduct.images?.[0]?.src) || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"} 
                             alt={relatedProduct.name}
                             className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"
                           />

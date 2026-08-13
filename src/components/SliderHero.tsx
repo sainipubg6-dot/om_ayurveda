@@ -83,7 +83,7 @@ const baseSlides: Slide[] = [
     id: 3,
     title: "Premium Swarnaprash",
     subtitle: "Ancient Ayurvedic formula for immunity and cognitive growth in children.",
-    image: "/images/products/swranprash front.webp",
+    image: "https://green-donkey-647181.hostingersite.com/wp-content/uploads/2026/06/sukra-amrit.webp", // Live fallback
     buttonText: "Shop Now",
     link: "/products"
   },
@@ -91,21 +91,43 @@ const baseSlides: Slide[] = [
     id: 4,
     title: "Website Launch Sale!",
     subtitle: "Enjoy a flat 10% OFF on all premium churna and supplements.",
-    image: "/images/products/detox-churna-front.webp",
+    image: "https://green-donkey-647181.hostingersite.com/wp-content/uploads/2026/06/stay-long.webp", // Live fallback
     buttonText: "Claim Offer",
     link: "/products",
     isSale: true
   }
 ];
 
+import { useWCProducts } from '@/lib/woocommerce';
+import { getSecureImageUrl } from '@/lib/utils';
+
 const SliderHero = () => {
+  const { products } = useWCProducts();
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
-  // Build slides: prepend festival slide when active
+  // Build slides: prepend festival slide when active and replace product images dynamically from WooCommerce
   const slides = useMemo<Slide[]>(() => {
+    const updatedBaseSlides = baseSlides.map(slide => {
+      if (slide.id === 3) {
+        const swaranprash = products?.find(p => p.name.toLowerCase().includes('swar') || p.name.toLowerCase().includes('sukra'));
+        return {
+          ...slide,
+          image: swaranprash?.images?.[0]?.src ? getSecureImageUrl(swaranprash.images[0].src) : slide.image
+        };
+      }
+      if (slide.id === 4) {
+        const detox = products?.find(p => p.name.toLowerCase().includes('detox') || p.name.toLowerCase().includes('churna'));
+        return {
+          ...slide,
+          image: detox?.images?.[0]?.src ? getSecureImageUrl(detox.images[0].src) : slide.image
+        };
+      }
+      return slide;
+    });
+
     const festival = FESTIVAL_CONFIG.activeFestival;
-    if (festival === 'none' || !FESTIVAL_SLIDES[festival]) return baseSlides;
+    if (festival === 'none' || !FESTIVAL_SLIDES[festival]) return updatedBaseSlides;
 
     const f = FESTIVAL_SLIDES[festival];
     const festivalSlide: Slide = {
@@ -120,8 +142,8 @@ const SliderHero = () => {
       badge: f.badge,
       emoji: f.emoji,
     };
-    return [festivalSlide, ...baseSlides];
-  }, []);
+    return [festivalSlide, ...updatedBaseSlides];
+  }, [products]);
 
   useEffect(() => {
     if (!api) return;
@@ -209,7 +231,7 @@ const SliderHero = () => {
                   /* ── Normal slide (image background) ── */
                   <div className="absolute inset-0">
                     <img 
-                      src={slide.image} 
+                      src={getSecureImageUrl(slide.image)} 
                       alt={slide.title} 
                       className="w-full h-full object-cover"
                       loading={slide.id === 1 ? "eager" : "lazy"}

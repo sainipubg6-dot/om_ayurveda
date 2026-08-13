@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { useWCProducts } from '@/lib/woocommerce';
 import { useCart } from '@/contexts/CartContext';
 import { toast } from 'sonner';
+import { getSecureImageUrl } from '@/lib/utils';
 
 const ComboProducts = () => {
   const { products, loading } = useWCProducts();
@@ -89,7 +90,7 @@ const ComboProducts = () => {
                 <div className="bg-white rounded-[1.5rem] md:rounded-[2.5rem] p-3 md:p-6 shadow-xl border border-brand-gold/5 hover:border-brand-gold/30 transition-all duration-700 hover:-translate-y-2 flex flex-col h-full overflow-hidden">
                   <div className="relative aspect-square rounded-xl md:rounded-[2rem] overflow-hidden mb-3 md:mb-6 bg-brand-cream/10">
                     <img 
-                      src={product.images?.[0]?.src || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"} 
+                      src={getSecureImageUrl(product.images?.[0]?.src) || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"} 
                       alt={product.name} 
                       className="w-full h-full object-contain transition-transform duration-1000 group-hover:scale-105"
                     />

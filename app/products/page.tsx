@@ -12,7 +12,7 @@ import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-import { cn } from '@/lib/utils';
+import { cn, getSecureImageUrl } from '@/lib/utils';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -143,7 +143,7 @@ const ProductsPage = () => {
                         <div className="bg-white rounded-sm p-2.5 md:p-3.5 shadow-sm hover:shadow-md border-0 transition-all duration-350 hover:-translate-y-1 flex flex-col h-full overflow-hidden">
                           <div className="relative aspect-square rounded-sm overflow-hidden mb-3 bg-brand-cream/20 flex items-center justify-center p-0">
                             <img 
-                              src={product.images?.[0]?.src || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"} 
+                              src={getSecureImageUrl(product.images?.[0]?.src) || "https://images.unsplash.com/photo-1611073113643-6765b3f2c9f8?auto=format&fit=crop&q=80&w=800"} 
                               alt={cleanedName} 
                               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
