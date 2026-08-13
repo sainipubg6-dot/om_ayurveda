@@ -55,32 +55,24 @@ export const useWCProducts = () => {
 
   useEffect(() => {
     const load = async () => {
-      try {
-        // 1. Check Cache first
-        const cachedData = localStorage.getItem('wc_products_cache');
-        const cachedTime = localStorage.getItem('wc_products_cache_time');
-        const now = Date.now();
-        
-        // Cache for 10 minutes (600,000 ms)
-        if (cachedData && cachedTime && (now - parseInt(cachedTime) < 600000)) {
-          setProducts(JSON.parse(cachedData));
-          setLoading(false);
-          return;
-        }
+      // 1. Instantly load from cache to make the page load feel instant (0ms lag)
+      const cachedData = localStorage.getItem('wc_products_cache');
+      if (cachedData) {
+        setProducts(JSON.parse(cachedData));
+        setLoading(false);
+      }
 
-        // 2. If no cache or expired, fetch from API
+      try {
+        // 2. Fetch fresh products from WooCommerce in the background
         const data = await fetchWCProducts();
         
         if (data && data.length > 0) {
           setProducts(data);
           localStorage.setItem('wc_products_cache', JSON.stringify(data));
-          localStorage.setItem('wc_products_cache_time', now.toString());
-        } else if (cachedData) {
-          // Fallback to old cache if fetch fails (e.g. temporary block)
-          setProducts(JSON.parse(cachedData));
+          localStorage.setItem('wc_products_cache_time', Date.now().toString());
         }
       } catch (error) {
-        console.error('Cache/Load Error:', error);
+        console.error('Background WooCommerce sync error:', error);
       } finally {
         setLoading(false);
       }
