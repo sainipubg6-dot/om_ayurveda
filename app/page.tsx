@@ -4,8 +4,6 @@ import React, { useEffect, lazy, Suspense } from 'react';
 import Hero from '@/components/Hero';
 import Marquee from '@/components/Marquee';
 import SliderHero from '@/components/SliderHero';
-import FeaturedProducts from '@/components/FeaturedProducts';
-import ComboProducts from '@/components/ComboProducts';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { FadedContent } from '@/components/react-bits/FadedContent';
 import CategoryScroll from '@/components/CategoryScroll';

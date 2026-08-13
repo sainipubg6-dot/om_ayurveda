@@ -1,6 +1,19 @@
 {
-  "/api/products/route": "app/api/products/route.js",
+  "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",
+  "/about/page": "app/about/page.js",
+  "/api/create-paytm-order/route": "app/api/create-paytm-order/route.js",
+  "/api/create-razorpay-order/route": "app/api/create-razorpay-order/route.js",
+  "/api/paytm-callback/route": "app/api/paytm-callback/route.js",
+  "/api/products/route": "app/api/products/route.js",
+  "/api/verify-payment/route": "app/api/verify-payment/route.js",
+  "/api/verify-paytm-payment/route": "app/api/verify-paytm-payment/route.js",
+  "/cart/page": "app/cart/page.js",
+  "/checkout/page": "app/checkout/page.js",
+  "/contact/page": "app/contact/page.js",
   "/page": "app/page.js",
-  "/products/page": "app/products/page.js"
+  "/product/[slug]/page": "app/product/[slug]/page.js",
+  "/products/page": "app/products/page.js",
+  "/services/page": "app/services/page.js",
+  "/social/page": "app/social/page.js"
 }
