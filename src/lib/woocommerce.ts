@@ -15,17 +15,7 @@ export interface WCProduct {
 }
 
 export const fetchWCProducts = async (): Promise<WCProduct[]> => {
-  try {
-    const response = await fetch('/api/products');
-    if (response.ok) {
-      return await response.json();
-    }
-    console.warn(`Local API endpoint /api/products failed (${response.status}). Trying direct browser fallback...`);
-  } catch (error) {
-    console.warn('Error fetching from local API, trying direct browser fallback:', error);
-  }
-
-  // Direct client-side browser fetch fallback to WooCommerce (bypasses Vercel server-side CDN block)
+  // 1. Direct client-side browser fetch first (bypasses Vercel and Node.js blocks)
   try {
     const rootUrl = process.env.NEXT_PUBLIC_WC_ROOT_URL || 'https://green-donkey-647181.hostingersite.com';
     const consumerKey = process.env.NEXT_PUBLIC_WC_CONSUMER_KEY || 'ck_3fe8804712cbf2348a272f13436710eccc9f64b2';
@@ -43,7 +33,18 @@ export const fetchWCProducts = async (): Promise<WCProduct[]> => {
       }
     }
   } catch (directError) {
-    console.error('Failed direct WooCommerce browser fetch fallback:', directError);
+    console.warn('Failed direct WooCommerce browser fetch:', directError);
+  }
+
+  // 2. Fallback to API if direct fetch fails (e.g. CORS issues)
+  try {
+    const response = await fetch('/api/products');
+    if (response.ok) {
+      return await response.json();
+    }
+    console.warn(`Local API endpoint /api/products failed (${response.status}).`);
+  } catch (error) {
+    console.error('Error fetching from local API:', error);
   }
 
   return [];

@@ -7,5 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export function getSecureImageUrl(url?: string): string {
   if (!url) return '';
-  return url.replace(/^http:\/\//i, 'https://');
+  let cleanUrl = url.replace(/^http:\/\//i, 'https://');
+  
+  return cleanUrl;
 }

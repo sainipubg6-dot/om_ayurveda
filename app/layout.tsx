@@ -9,6 +9,7 @@ import '../src/globals.css';
 export const metadata: Metadata = {
   title: 'Ayurveda Veda - Premium Ayurvedic Solutions',
   description: 'Authentic Ayurvedic products for modern wellness',
+  referrer: 'no-referrer',
 };
 
 export default function RootLayout({
