@@ -27,9 +27,9 @@ export const fetchWCProducts = async (): Promise<WCProduct[]> => {
 
   // Direct client-side browser fetch fallback to WooCommerce (bypasses Vercel server-side CDN block)
   try {
-    const rootUrl = process.env.NEXT_PUBLIC_WC_ROOT_URL;
-    const consumerKey = process.env.NEXT_PUBLIC_WC_CONSUMER_KEY;
-    const consumerSecret = process.env.NEXT_PUBLIC_WC_CONSUMER_SECRET;
+    const rootUrl = process.env.NEXT_PUBLIC_WC_ROOT_URL || 'https://green-donkey-647181.hostingersite.com';
+    const consumerKey = process.env.NEXT_PUBLIC_WC_CONSUMER_KEY || 'ck_3fe8804712cbf2348a272f13436710eccc9f64b2';
+    const consumerSecret = process.env.NEXT_PUBLIC_WC_CONSUMER_SECRET || 'cs_c370625b7e170677e7d1c743f1089c37b84ebb70';
 
     if (rootUrl && consumerKey && consumerSecret) {
       const authParams = `consumer_key=${consumerKey}&consumer_secret=${consumerSecret}`;
