@@ -202,6 +202,22 @@ const CheckoutPage = () => {
                 console.log("eventName => ",eventName);
                 if (eventName === 'APP_CLOSED') {
                   setIsSubmitting(false);
+                  
+                  // Fire abandoned cart notification
+                  fetch('/api/notify-abandoned', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      userDetails: {
+                        name: formData.name,
+                        phone: formData.phone,
+                        email: formData.email,
+                        city: formData.city
+                      },
+                      cart: cart,
+                      totalAmount: orderData.amount
+                    })
+                  }).catch(console.error);
                 }
             },
             "transactionStatus": async function(data: any){

@@ -3,16 +3,8 @@ import { useEffect, useState } from 'react';
 // WooCommerce API calls are now proxied through secure serverless functions
 
 
-export interface WCProduct {
-  id: number;
-  name: string;
-  slug: string;
-  price: string;
-  description: string;
-  short_description: string;
-  images: Array<{ src: string }>;
-  categories: Array<{ name: string }>;
-}
+import { WCProduct } from './woocommerce-server';
+export type { WCProduct };
 
 export const fetchWCProducts = async (): Promise<WCProduct[]> => {
   // 1. Direct client-side browser fetch first (bypasses Vercel and Node.js blocks)
