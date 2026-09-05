@@ -98,6 +98,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.56.2
         version: 5.74.4(react@19.0.0)
+      '@types/nodemailer':
+        specifier: ^8.0.1
+        version: 8.0.1
       '@woocommerce/woocommerce-rest-api':
         specifier: ^1.0.2
         version: 1.0.2
@@ -143,6 +146,9 @@ importers:
       node-fetch:
         specifier: ^3.3.2
         version: 3.3.2
+      nodemailer:
+        specifier: ^10.0.0
+        version: 10.0.0
       paytmchecksum:
         specifier: ^1.5.1
         version: 1.5.1
@@ -1502,6 +1508,9 @@ packages:
   '@types/node@22.14.1':
     resolution: {integrity: sha512-u0HuPQwe/dHrItgHHpmw3N2fYCR6x4ivMNbPHRkBVP4CvN+kiRrKHWk3i8tXiO/joPwXLMYvF9TTF0eqgHIuOw==}
 
+  '@types/nodemailer@8.0.1':
+    resolution: {integrity: sha512-PxpaInm8V1JQDd4j0ds5HfvWQk8JupS1C0Picb96QJsrrRDjBH+DlK7L4ZdNSqNULhiZRQHc40nLVShaGxXAMw==}
+
   '@types/react-dom@19.2.3':
     resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
     peerDependencies:
@@ -2829,6 +2838,10 @@ packages:
 
   node-releases@2.0.36:
     resolution: {integrity: sha512-TdC8FSgHz8Mwtw9g5L4gR/Sh9XhSP/0DEkQxfEFXOpiul5IiHgHan2VhYYb6agDSfp4KuvltmGApc8HMgUrIkA==}
+
+  nodemailer@10.0.0:
+    resolution: {integrity: sha512-wdv+hXBg0iIPIOf108FaZyTxqjQpCvQeAJt9pHHTooPy/y3vQtI9eiImM9AIVKR3e/0FeMA1oueNfBjFJcaK+Q==}
+    engines: {node: '>=20.0.0'}
 
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
@@ -5002,6 +5015,10 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
+  '@types/nodemailer@8.0.1':
+    dependencies:
+      '@types/node': 22.14.1
+
   '@types/react-dom@19.2.3(@types/react@19.2.8)':
     dependencies:
       '@types/react': 19.2.8
@@ -6290,6 +6307,8 @@ snapshots:
   node-releases@2.0.19: {}
 
   node-releases@2.0.36: {}
+
+  nodemailer@10.0.0: {}
 
   normalize-path@3.0.0: {}
 
