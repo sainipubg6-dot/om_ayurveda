@@ -31,8 +31,8 @@ const Index = () => {
       "@context": "https://schema.org",
       "@type": "MedicalClinic",
       "name": "Om Ayurveda",
-      "image": "https://omayurveda.co.in/Logo.png",
-      "url": "https://omayurveda.co.in/",
+      "image": "https://omayurveda.in/Logo.png",
+      "url": "https://omayurveda.in/",
       "telephone": "+91-70150-01978",
       "description": "Premium Ayurvedic clinic and Swarna Bhasma center with multiple branches across Haryana and USA. Healing since 1958.",
       "address": {

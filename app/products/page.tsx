@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   title: 'Our Products | Om Ayurveda',
   description: 'Explore our authentic Ayurvedic products, clinical formularies, and wellness solutions.',
   alternates: {
-    canonical: 'https://omayurveda.co.in/products',
+    canonical: 'https://omayurveda.in/products',
   },
   openGraph: {
     title: 'Our Products | Om Ayurveda',
     description: 'Explore our authentic Ayurvedic products, clinical formularies, and wellness solutions.',
-    url: 'https://omayurveda.co.in/products',
+    url: 'https://omayurveda.in/products',
   }
 };
 

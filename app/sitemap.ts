@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { getWCProductsServer } from '@/lib/woocommerce-server';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://omayurveda.co.in';
+  const baseUrl = 'https://omayurveda.in';
 
   // Fetch all products dynamically
   const products = await getWCProductsServer();

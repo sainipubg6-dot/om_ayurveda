@@ -20,18 +20,18 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   const title = `${wcProduct.name} | Om Ayurveda`;
   const description = wcProduct.short_description?.replace(/<[^>]*>?/gm, '') || 'Authentic Ayurvedic formulation.';
-  const image = wcProduct.images?.[0]?.src ? getSecureImageUrl(wcProduct.images[0].src) : 'https://omayurveda.co.in/Logo.png';
+  const image = wcProduct.images?.[0]?.src ? getSecureImageUrl(wcProduct.images[0].src) : 'https://omayurveda.in/Logo.png';
 
   return {
     title,
     description,
     alternates: {
-      canonical: `https://omayurveda.co.in/product/${params.slug}`,
+      canonical: `https://omayurveda.in/product/${params.slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://omayurveda.co.in/product/${params.slug}`,
+      url: `https://omayurveda.in/product/${params.slug}`,
       images: [
         {
           url: image,

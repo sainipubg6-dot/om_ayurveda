@@ -8,5 +8,5 @@
  *  - 'raksha-bandhan'    : Festive Pink, Rose, Gold highlights
  */
 export const FESTIVAL_CONFIG = {
-  activeFestival: 'independence-day', // 'none' | 'independence-day' | 'raksha-bandhan'
+  activeFestival: 'none', // 'none' | 'independence-day' | 'raksha-bandhan'
 };
