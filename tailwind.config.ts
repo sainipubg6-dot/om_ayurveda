@@ -113,8 +113,8 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        serif: ["Playfair Display", "Cormorant Garamond", "serif"],
-        sans: ["Inter", "DM Sans", "sans-serif"],
+        serif: ["var(--font-serif)", "Playfair Display", "Cormorant Garamond", "serif"],
+        sans: ["var(--font-sans)", "Inter", "DM Sans", "sans-serif"],
         hindi: ["Tiro Devanagari Hindi", "serif"],
       },
       keyframes: {

@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { getWCProductsServer } from '@/lib/woocommerce-server';
 import { getSecureImageUrl } from '@/lib/utils';
 import ProductDetailClient from './ProductDetailClient';
+import JsonLd from '@/components/JsonLd';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -89,7 +90,7 @@ export default async function ProductDetailPage(props: Props) {
   }
 
   // Generate Product Schema
-  const schema = cleanedProduct ? {
+  const productSchema: any = cleanedProduct ? {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": cleanedProduct.name,
@@ -98,24 +99,48 @@ export default async function ProductDetailPage(props: Props) {
     "brand": {
       "@type": "Brand",
       "name": "Om Ayurveda"
-    },
-    "offers": {
+    }
+  } : null;
+
+  if (productSchema && cleanedProduct && parseFloat(cleanedProduct.price) > 0) {
+    productSchema.offers = {
       "@type": "Offer",
-      "url": `https://omayurveda.co.in/product/${params.slug}`,
+      "url": `https://omayurveda.in/product/${params.slug}`,
       "priceCurrency": "INR",
       "price": cleanedProduct.price,
       "availability": "https://schema.org/InStock"
-    }
+    };
+  }
+
+  const breadcrumbSchema = cleanedProduct ? {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://omayurveda.in"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Products",
+        "item": "https://omayurveda.in/products"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": cleanedProduct.name,
+        "item": `https://omayurveda.in/product/${params.slug}`
+      }
+    ]
   } : null;
 
   return (
     <div className="min-h-screen flex flex-col bg-brand-cream selection:bg-brand-gold selection:text-brand-black">
-      {schema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
-      )}
+      {productSchema && <JsonLd schema={productSchema} />}
+      {breadcrumbSchema && <JsonLd schema={breadcrumbSchema} />}
       <main className="flex-1 pt-24 md:pt-32 pb-16 md:pb-24">
         <div className="container px-4 md:px-6">
           <ProductDetailClient product={cleanedProduct} relatedProducts={relatedProducts} />

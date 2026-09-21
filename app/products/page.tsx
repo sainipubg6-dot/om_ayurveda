@@ -3,14 +3,14 @@ import { getWCProductsServer } from '@/lib/woocommerce-server';
 import ProductsClient from './ProductsClient';
 
 export const metadata: Metadata = {
-  title: 'Our Products | Om Ayurveda',
-  description: 'Explore our authentic Ayurvedic products, clinical formularies, and wellness solutions.',
+  title: 'Ayurvedic Products | Om Ayurveda',
+  description: 'Shop authentic Ayurvedic products from Om Ayurveda — clinical formularies for immunity, digestion, joint care, hair care and more. Since 1958.',
   alternates: {
     canonical: 'https://omayurveda.in/products',
   },
   openGraph: {
-    title: 'Our Products | Om Ayurveda',
-    description: 'Explore our authentic Ayurvedic products, clinical formularies, and wellness solutions.',
+    title: 'Ayurvedic Products | Om Ayurveda',
+    description: 'Shop authentic Ayurvedic products from Om Ayurveda — clinical formularies for immunity, digestion, joint care, hair care and more. Since 1958.',
     url: 'https://omayurveda.in/products',
   }
 };

@@ -59,11 +59,11 @@ const CategoryScroll = () => {
                 key={idx}
                 className="flex flex-col items-center gap-1 sm:gap-4 w-[64px] xs:w-[72px] sm:w-[120px] shrink-0 snap-start group cursor-pointer"
               >
-                <div className={`w-12 h-12 xs:w-14 xs:h-14 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full ${cat.bgColor} flex items-center justify-center p-2 sm:p-4 relative group-hover:shadow-lg transition-shadow duration-300`}>
+                <div className={`w-12 h-12 xs:w-14 xs:h-14 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full overflow-hidden ${cat.bgColor} flex items-center justify-center relative group-hover:shadow-lg transition-shadow duration-300`}>
                   <img 
                     src={dynamicImage} 
                     alt={cat.name} 
-                    className="w-full h-full object-contain drop-shadow-xl group-hover:-translate-y-2 group-hover:scale-110 transition-transform duration-300 relative z-10"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 relative z-10"
                     loading={idx < 4 ? "eager" : "lazy"}
                     {...(idx < 4 ? { fetchPriority: "high" } : {})}
                     referrerPolicy="no-referrer"

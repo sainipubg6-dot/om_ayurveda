@@ -36,15 +36,10 @@ export const getWCProductsServer = async (): Promise<WCProduct[]> => {
     console.error('Server fetch error:', error);
   }
 
-  // Fallback to local cache if API fails
+  // Fallback to local cache if API fails or is blocked
   try {
-    const fs = await import('fs');
-    const path = await import('path');
-    const fallbackPath = path.join(process.cwd(), 'src', 'themes', 'products-fallback.json');
-    if (fs.existsSync(fallbackPath)) {
-      const fallbackData = fs.readFileSync(fallbackPath, 'utf8');
-      return JSON.parse(fallbackData);
-    }
+    const fallbackData = (await import('@/themes/products-fallback.json')).default;
+    return fallbackData as WCProduct[];
   } catch (fallbackError) {
     console.error('Fallback read error:', fallbackError);
   }

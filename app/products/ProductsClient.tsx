@@ -150,36 +150,42 @@ export default function ProductsClient({ products }: { products: WCProduct[] }) 
                   </p>
                 )}
 
-                <div className="flex items-center justify-between mt-auto pt-4 md:pt-4 border-t border-brand-forest/5">
-                  <div className="flex flex-col">
-                    <span className="font-bold text-brand-forest text-sm md:text-xl flex items-center">
-                      <span className="text-xs md:text-sm mr-0.5">₹</span>{product.price}
-                    </span>
-                    {hasDiscount && (
-                      <span className="text-[10px] md:text-xs text-brand-black/40 line-through">
-                        ₹{product.regular_price}
+                {parseFloat(product.price) > 0 ? (
+                  <div className="flex items-center justify-between mt-auto pt-4 md:pt-4 border-t border-brand-forest/5">
+                    <div className="flex flex-col">
+                      <span className="font-bold text-brand-forest text-sm md:text-xl flex items-center">
+                        <span className="text-xs md:text-sm mr-0.5">₹</span>{product.price}
                       </span>
-                    )}
+                      {hasDiscount && (
+                        <span className="text-[10px] md:text-xs text-brand-black/40 line-through">
+                          ₹{product.regular_price}
+                        </span>
+                      )}
+                    </div>
+                    <Button 
+                      variant="ghost" 
+                      size="icon"
+                      className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-brand-forest text-white hover:bg-brand-gold hover:text-white hover:scale-110 transition-all shadow-md group-hover:shadow-lg"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        addToCart({
+                          id: product.id.toString(),
+                          name: product.name,
+                          price: parseFloat(product.price) || 0,
+                          image: imgSrc,
+                          quantity: 1
+                        });
+                        toast.success('Added to cart');
+                      }}
+                    >
+                      <ShoppingCart className="w-3 h-3 md:w-4 md:h-4" />
+                    </Button>
                   </div>
-                  <Button 
-                    variant="ghost" 
-                    size="icon"
-                    className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-brand-forest text-white hover:bg-brand-gold hover:text-white hover:scale-110 transition-all shadow-md group-hover:shadow-lg"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      addToCart({
-                        id: product.id.toString(),
-                        name: product.name,
-                        price: parseFloat(product.price) || 0,
-                        image: imgSrc,
-                        quantity: 1
-                      });
-                      toast.success('Added to cart');
-                    }}
-                  >
-                    <ShoppingCart className="w-3 h-3 md:w-4 md:h-4" />
-                  </Button>
-                </div>
+                ) : (
+                  <div className="flex items-center justify-between mt-auto pt-4 md:pt-4 border-t border-brand-forest/5">
+                    <span className="font-bold text-brand-gold text-sm md:text-lg">Contact for Price</span>
+                  </div>
+                )}
               </div>
             </Link>
           );

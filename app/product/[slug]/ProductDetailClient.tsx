@@ -146,47 +146,59 @@ export default function ProductDetailClient({
               {product?.name}
             </h1>
             
-            <div className="flex items-center gap-4 md:gap-8 mb-6 md:mb-12">
-              <div className="flex flex-col">
-                <span className="text-brand-black/30 text-[8px] md:text-[10px] uppercase font-bold tracking-[0.1em] md:tracking-[0.2em] mb-1">Clinic Price</span>
-                <div className="flex items-baseline gap-2 md:gap-3">
-                  {product.onSale && (
-                    <span className="text-brand-black/20 line-through text-lg md:text-2xl font-medium">₹{product.regularPrice}</span>
-                  )}
-                  <span className="text-brand-forest text-2xl md:text-5xl font-bold font-serif whitespace-nowrap">₹{product.price}</span>
+            {parseFloat(product.price) > 0 ? (
+              <>
+                <div className="flex items-center gap-4 md:gap-8 mb-6 md:mb-12">
+                  <div className="flex flex-col">
+                    <span className="text-brand-black/30 text-[8px] md:text-[10px] uppercase font-bold tracking-[0.1em] md:tracking-[0.2em] mb-1">Clinic Price</span>
+                    <div className="flex items-baseline gap-2 md:gap-3">
+                      {product.onSale && (
+                        <span className="text-brand-black/20 line-through text-lg md:text-2xl font-medium">₹{product.regularPrice}</span>
+                      )}
+                      <span className="text-brand-forest text-2xl md:text-5xl font-bold font-serif whitespace-nowrap">₹{product.price}</span>
+                    </div>
+                  </div>
+                  <div className="h-8 md:h-16 w-px bg-brand-gold/20" />
+                  <div className="flex flex-col">
+                    <span className="text-brand-black/30 text-[8px] md:text-[10px] uppercase font-bold tracking-[0.1em] md:tracking-[0.2em] mb-1">Availability</span>
+                    <span className="text-brand-leaf font-bold text-base md:text-lg flex items-center gap-2">
+                      <div className="w-2 h-2 bg-brand-leaf rounded-full animate-pulse" />
+                      Fresh Stock
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="h-8 md:h-16 w-px bg-brand-gold/20" />
-              <div className="flex flex-col">
-                <span className="text-brand-black/30 text-[8px] md:text-[10px] uppercase font-bold tracking-[0.1em] md:tracking-[0.2em] mb-1">Availability</span>
-                <span className="text-brand-leaf font-bold text-base md:text-lg flex items-center gap-2">
-                  <div className="w-2 h-2 bg-brand-leaf rounded-full animate-pulse" />
-                  Fresh Stock
-                </span>
-              </div>
-            </div>
 
-            <div className="mb-8 md:mb-16 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-              <button 
-                className="w-full border-2 border-brand-forest text-brand-forest hover:bg-brand-forest/5 font-bold py-3 md:py-6 text-base md:text-xl rounded-xl md:rounded-[1.5rem] transition-all active:scale-95 flex items-center justify-center gap-2 md:gap-3"
-                onClick={() => {
-                  addToCart(product);
-                  toast.success(`${product?.name} added to cart`);
-                }}
-              >
-                <ShoppingCart className="w-4 h-4 md:w-6 md:h-6" />
-                Add to Cart
-              </button>
-              <button 
-                className="w-full bg-brand-forest hover:bg-brand-forest/95 text-brand-gold font-bold py-3 md:py-6 text-base md:text-xl rounded-xl md:rounded-[1.5rem] shadow-xl transition-all active:scale-95 flex items-center justify-center gap-2 md:gap-3"
-                onClick={() => {
-                  addToCart(product);
-                  router.push('/checkout');
-                }}
-              >
-                Buy Now
-              </button>
-            </div>
+                <div className="mb-8 md:mb-16 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                  <button 
+                    className="w-full border-2 border-brand-forest text-brand-forest hover:bg-brand-forest/5 font-bold py-3 md:py-6 text-base md:text-xl rounded-xl md:rounded-[1.5rem] transition-all active:scale-95 flex items-center justify-center gap-2 md:gap-3"
+                    onClick={() => {
+                      addToCart(product);
+                      toast.success(`${product?.name} added to cart`);
+                    }}
+                  >
+                    <ShoppingCart className="w-4 h-4 md:w-6 md:h-6" />
+                    Add to Cart
+                  </button>
+                  <button 
+                    className="w-full bg-brand-forest hover:bg-brand-forest/95 text-brand-gold font-bold py-3 md:py-6 text-base md:text-xl rounded-xl md:rounded-[1.5rem] shadow-xl transition-all active:scale-95 flex items-center justify-center gap-2 md:gap-3"
+                    onClick={() => {
+                      addToCart(product);
+                      router.push('/checkout');
+                    }}
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="mb-8 md:mb-16">
+                <Link href="/contact">
+                  <button className="w-full bg-brand-gold hover:bg-brand-gold/90 text-brand-forest font-bold py-4 md:py-6 text-base md:text-xl rounded-xl md:rounded-[1.5rem] shadow-xl transition-all active:scale-95 flex items-center justify-center">
+                    Contact for Price
+                  </button>
+                </Link>
+              </div>
+            )}
 
             {/* Trust Badges */}
             <div className="grid grid-cols-2 gap-3 md:gap-6 bg-white/40 backdrop-blur-xl p-4 md:p-8 rounded-[1.25rem] md:rounded-[2rem] border border-brand-gold/5 shadow-xl">

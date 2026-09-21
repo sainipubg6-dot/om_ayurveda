@@ -4,7 +4,12 @@ import Script from 'next/script';
 import { Providers } from './providers';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import JsonLd, { organizationSchema } from '@/components/JsonLd';
+import { Inter, Playfair_Display } from 'next/font/google';
 import '../src/globals.css';
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://omayurveda.in'),
@@ -39,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en-IN" className={`${inter.variable} ${playfair.variable}`}>
       <body className="antialiased min-h-screen bg-brand-cream font-sans">
         {/* Google Analytics (GA4) */}
         {process.env.NEXT_PUBLIC_GA_ID && (
@@ -64,6 +69,7 @@ export default function RootLayout({
             />
           </>
         )}
+        <JsonLd schema={organizationSchema} />
         <Providers>
           <Navbar />
           <main className="min-h-[calc(100vh-4rem)]">
